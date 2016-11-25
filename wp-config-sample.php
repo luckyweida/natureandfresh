@@ -66,17 +66,6 @@ define('NONCE_SALT',       'put your unique phrase here');
 $table_prefix  = 'wp_';
 
 /**
- * WordPress Localized Language, defaults to English.
- *
- * Change this to localize WordPress. A corresponding MO file for the chosen
- * language must be installed to wp-content/language-selector/languages. For example, install
- * de_DE.mo to wp-content/language-selector/languages and set WPLANG to 'de_DE' to enable German
- * language support.
- */
-define('WPLANG', '');
-define('WP_LANG_DIR', dirname(__FILE__) . '/wp-content/plugins/language-selector/languages');
-
-/**
  * For developers: WordPress debugging mode.
  *
  * Change this to true to enable the display of notices during development.
@@ -91,23 +80,6 @@ define('WP_LANG_DIR', dirname(__FILE__) . '/wp-content/plugins/language-selector
 define('WP_DEBUG', false);
 
 /* That's all, stop editing! Happy blogging. */
-$pageURL = 'http';
-if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
-$pageURL .= "://";
-if ($_SERVER["SERVER_PORT"] != "80" and $_SERVER["SERVER_PORT"] != "443") {
-	$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"];
-} else {
-	$pageURL .= $_SERVER["SERVER_NAME"];
-}
-
-if ($_SERVER["HOST"] != "") {
-	define('WP_SITEURL', $pageURL);
-} else {
-        define('WP_SITEURL', $pageURL.'/wordpress');
-}
-
-if (!defined('SYNOWORDPRESS'))
-	define('SYNOWORDPRESS', 'Synology Inc.');
 
 /** Absolute path to the WordPress directory. */
 if ( !defined('ABSPATH') )
@@ -115,7 +87,3 @@ if ( !defined('ABSPATH') )
 
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
-require_once(ABSPATH . 'syno-misc.php');
-
-define( 'AUTOMATIC_UPDATER_DISABLED', true );
-add_filter('pre_site_transient_update_core','__return_null');

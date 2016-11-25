@@ -1,0 +1,165 @@
+@font-face {
+  font-family: 'PlayfairDisplay-Regular';
+  src: url('../fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'PlayfairDisplay-Italic';
+  src: url('../fonts/PlayfairDisplay/PlayfairDisplay-Italic.ttf');
+}
+
+@font-face {
+  font-family: 'PlayfairDisplay-Bold';
+  src: url('../fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url('../fonts/Roboto/Roboto-Regular.ttf');
+}
+
+body {
+  background-color: #FEFBF3;
+  color: #555555;
+  overflow-x: hidden;
+  font-family: "Roboto-Regular";
+  a {
+    color: #555555;
+  }
+  .container {
+    background: linear-gradient(
+            to right,
+            #f4f3ee 6.39%, #FEFBF3 6.39%,
+            #FEFBF3 8.52%, #f4f3ee 8.52%,
+            #f4f3ee 14.91%, #FEFBF3 14.91%,
+            #FEFBF3 17.04%, #f4f3ee 17.04%,
+            #f4f3ee 23.43%, #FEFBF3 23.43%,
+            #FEFBF3 25.56%, #f4f3ee 25.56%,
+            #f4f3ee 31.95%, #FEFBF3 31.95%,
+            #FEFBF3 34.08%, #f4f3ee 34.08%,
+            #f4f3ee 40.47%, #FEFBF3 40.47%,
+            #FEFBF3 42.6%, #f4f3ee 42.6%,
+            #f4f3ee 48.99%, #FEFBF3 48.99%,
+            #FEFBF3 51.12%, #f4f3ee 51.12%,
+            #f4f3ee 57.51%, #FEFBF3 57.51%,
+            #FEFBF3 59.64%, #f4f3ee 59.64%,
+            #f4f3ee 66.03%, #FEFBF3 66.03%,
+            #FEFBF3 68.16%, #f4f3ee 68.16%,
+            #f4f3ee 74.55%, #FEFBF3 74.55%,
+            #FEFBF3 76.68%, #f4f3ee 76.68%,
+            #f4f3ee 83.07%, #FEFBF3 83.07%,
+            #FEFBF3 85.2%, #f4f3ee 85.2%,
+            #f4f3ee 91.59%, #FEFBF3 91.59%,
+            #FEFBF3 93.72%, #f4f3ee 93.72%,
+            #f4f3ee 100.11%, #FEFBF3 100.11%
+    );
+    max-width: 1140px;
+    padding: 0;
+    .row {
+      margin: 0;
+    }
+    header {
+      padding: 1em 0 3em 0;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 3em;
+      .left {
+        float: left;
+        a:not(last-child) {
+          margin-right: 1.5em;
+        }
+      }
+      .right {
+        float: right;
+        a:not(first-child) {
+          margin-left: 1.5em;
+        }
+      }
+    }
+  }
+}
+
+.homepage {
+  .top {
+    .left {
+      h1 {
+        font-family: 'PlayfairDisplay-Bold';
+        font-size: 90px;
+        font-weight: bold;
+        text-align: right;
+        line-height: 78px;
+      }
+      h2 {
+        font-family: 'PlayfairDisplay-Italic';
+        font-size: 26px;
+        font-style: italic;
+        text-align: right;
+        line-height: 35px;
+      }
+      p {
+        margin-top: 2em;
+        margin-left: auto;
+        width: 281px;
+        height: 182px;
+        font-size: 18px;
+        text-align: justify;
+        line-height: 26px;
+      }
+    }
+    .right {
+      text-align: center;
+      .product {
+        > img {
+          width: 235px;
+          height: 320px;
+        }
+        .control {
+          .first-row {
+            .add, .remove {
+              display: inline-block;
+              border-radius: 50%;
+              width: 20px;
+              height: 20px;
+              background-color: #E0D9C9;
+              vertical-align: middle;
+              line-height: 25px;
+              cursor: pointer;
+              img {
+                margin-top: .35em;
+                font-size: 16px;
+                font-weight: 900;
+              }
+            }
+            .remove {
+              img {
+                margin-top: .45em;
+              }
+            }
+            .add:hover, .remove:hover {
+              background: #fefcf6;
+            }
+            [type=text] {
+              font-family: 'PlayfairDisplay-Bold';
+              font-size: 24px;
+              width: 2em;
+              text-align: center;
+              border: none;
+              background: none;
+            }
+          }
+          .second-row {
+            .btn-success {
+              margin-top: 1.5em;
+              background: #99c1a0 !important;
+              border-color: #7EB184;
+            }
+            .btn-success:hover {
+              background: #7EB184 !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

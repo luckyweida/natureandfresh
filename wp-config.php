@@ -20,19 +20,19 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'wordpressblog');
+define('DB_NAME', 'ckywgma30362com38023_nnf');
 
 /** MySQL database username */
-define('DB_USER', 'wordpress');
+define('DB_USER', 'root');
 
 /** MySQL database password */
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', 'er1c550n');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
 
 /** Database Charset to use in creating database tables. */
-define('DB_CHARSET', 'utf8');
+define('DB_CHARSET', 'utf8mb4');
 
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
@@ -46,14 +46,14 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY', 'put your unique phrase here');
-define('SECURE_AUTH_KEY', 'put your unique phrase here');
-define('LOGGED_IN_KEY', 'put your unique phrase here');
-define('NONCE_KEY', 'put your unique phrase here');
-define('AUTH_SALT', 'put your unique phrase here');
-define('SECURE_AUTH_SALT', 'put your unique phrase here');
-define('LOGGED_IN_SALT', 'put your unique phrase here');
-define('NONCE_SALT', 'put your unique phrase here');
+define('AUTH_KEY',         'jT)K3wl* U4SnkZ[?xWvY.)ddZFS;J_{dox6:7H[;W+8~6:O[{g[e,$%.T.U.[H>');
+define('SECURE_AUTH_KEY',  '>t6<5Q6l_Vr!dsM7bf|a1.2AO@iR:Qr:#!M387O-Y3AOiYf}mFno`<paaIpGnx,^');
+define('LOGGED_IN_KEY',    'k+RnS9v|R-aCsN/m7GR6r2iLV#m71a_Q[@/yA@&Il22id;A8Eyvs3qQ2[CyKhz8`');
+define('NONCE_KEY',        '_PMT[vofAcSXz&f8]+#y*Lew~WK=tL:{lk-W,:_JLPZZlD!1H3m_{32A%Bm$bP+o');
+define('AUTH_SALT',        '.T#A#0=0^kh1 >m)YfP<>yO8VAgE2P*X@oQ6u]oa+lyg2ku!8+CK!XzB$4skamPb');
+define('SECURE_AUTH_SALT', 'upK&{Y-IME,-m/$~0&76eg>VXFdXP/|,$$pgA~M>!bpH5O17mA}qudTGl~wZ0]9x');
+define('LOGGED_IN_SALT',   '%-D{79`.b=d(%+kqAy&`#vOV+J0)?}.5j@Ei{dLy9`qw4<q/hr*h)n.0cP]Z^1Df');
+define('NONCE_SALT',       '3WK!Z6wxer@<In&Mx.NbB)NZQTv :655=8B?>r$DfpRV:QP)Za4Pxf^bt-R&ENjG');
 
 /**#@-*/
 
@@ -63,18 +63,7 @@ define('NONCE_SALT', 'put your unique phrase here');
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix = 'wp_';
-
-/**
- * WordPress Localized Language, defaults to English.
- *
- * Change this to localize WordPress. A corresponding MO file for the chosen
- * language must be installed to wp-content/language-selector/languages. For example, install
- * de_DE.mo to wp-content/language-selector/languages and set WPLANG to 'de_DE' to enable German
- * language support.
- */
-define('WPLANG', '');
-define('WP_LANG_DIR', dirname(__FILE__) . '/wp-content/plugins/language-selector/languages');
+$table_prefix  = 'wp_';
 
 /**
  * For developers: WordPress debugging mode.
@@ -91,33 +80,10 @@ define('WP_LANG_DIR', dirname(__FILE__) . '/wp-content/plugins/language-selector
 define('WP_DEBUG', false);
 
 /* That's all, stop editing! Happy blogging. */
-$pageURL = 'http';
-if ($_SERVER["HTTPS"] == "on") {
-    $pageURL .= "s";
-}
-$pageURL .= "://";
-if ($_SERVER["SERVER_PORT"] != "80" and $_SERVER["SERVER_PORT"] != "443") {
-    $pageURL .= $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"];
-} else {
-    $pageURL .= $_SERVER["SERVER_NAME"];
-}
-
-if ($_SERVER["HOST"] != "") {
-    define('WP_SITEURL', $pageURL);
-} else {
-    define('WP_SITEURL', $pageURL . '/naturefresh');
-}
-
-if (!defined('SYNOWORDPRESS'))
-    define('SYNOWORDPRESS', 'Synology Inc.');
 
 /** Absolute path to the WordPress directory. */
-if (!defined('ABSPATH'))
-    define('ABSPATH', dirname(__FILE__) . '/');
+if ( !defined('ABSPATH') )
+	define('ABSPATH', dirname(__FILE__) . '/');
 
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
-require_once(ABSPATH . 'syno-misc.php');
-
-define('AUTOMATIC_UPDATER_DISABLED', true);
-add_filter('pre_site_transient_update_core', '__return_null');
