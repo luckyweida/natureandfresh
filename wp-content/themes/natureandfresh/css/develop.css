@@ -1,1 +1,224 @@
-@font-face{font-family:PlayfairDisplay-Regular;src:url(../fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf)}@font-face{font-family:PlayfairDisplay-Italic;src:url(../fonts/PlayfairDisplay/PlayfairDisplay-Italic.ttf)}@font-face{font-family:PlayfairDisplay-Bold;src:url(../fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf)}@font-face{font-family:Roboto-Regular;src:url(../fonts/Roboto/Roboto-Regular.ttf)}body{background-color:#FEFBF3;color:#555;overflow-x:hidden;font-family:Roboto-Regular}body a{color:#555}body .container{background:linear-gradient(to right,#f4f3ee 6.39%,#fefbf3 6.39%,#fefbf3 8.52%,#f4f3ee 8.52%,#f4f3ee 14.91%,#fefbf3 14.91%,#fefbf3 17.04%,#f4f3ee 17.04%,#f4f3ee 23.43%,#fefbf3 23.43%,#fefbf3 25.56%,#f4f3ee 25.56%,#f4f3ee 31.95%,#fefbf3 31.95%,#fefbf3 34.08%,#f4f3ee 34.08%,#f4f3ee 40.47%,#fefbf3 40.47%,#fefbf3 42.6%,#f4f3ee 42.6%,#f4f3ee 48.99%,#fefbf3 48.99%,#fefbf3 51.12%,#f4f3ee 51.12%,#f4f3ee 57.51%,#fefbf3 57.51%,#fefbf3 59.64%,#f4f3ee 59.64%,#f4f3ee 66.03%,#fefbf3 66.03%,#fefbf3 68.16%,#f4f3ee 68.16%,#f4f3ee 74.55%,#fefbf3 74.55%,#fefbf3 76.68%,#f4f3ee 76.68%,#f4f3ee 83.07%,#fefbf3 83.07%,#fefbf3 85.2%,#f4f3ee 85.2%,#f4f3ee 91.59%,#fefbf3 91.59%,#fefbf3 93.72%,#f4f3ee 93.72%,#f4f3ee 100.11%,#fefbf3 100.11%);max-width:1140px;padding:0}body .container .row{margin:0}body .container header{padding:1em 0 3em;text-align:center;vertical-align:middle;line-height:3em}body .container header .left{float:left}body .container header .left a:not(last-child){margin-right:1.5em}body .container header .right{float:right}body .container header .right a:not(first-child){margin-left:1.5em}.homepage .top .left h1{font-family:PlayfairDisplay-Bold;font-size:90px;font-weight:700;text-align:right;line-height:78px}.homepage .top .left h2{font-family:PlayfairDisplay-Italic;font-size:26px;font-style:italic;text-align:right;line-height:35px}.homepage .top .left p{margin-top:2em;margin-left:auto;width:281px;height:182px;font-size:18px;text-align:justify;line-height:26px}.homepage .top .right{text-align:center}.homepage .top .right .product>img{width:235px;height:320px}.homepage .top .right .product .control .first-row .add,.homepage .top .right .product .control .first-row .remove{display:inline-block;border-radius:50%;width:20px;height:20px;background-color:#E0D9C9;vertical-align:middle;line-height:25px;cursor:pointer}.homepage .top .right .product .control .first-row .add img,.homepage .top .right .product .control .first-row .remove img{margin-top:.35em;font-size:16px;font-weight:900}.homepage .top .right .product .control .first-row .remove img{margin-top:.45em}.homepage .top .right .product .control .first-row .add:hover,.homepage .top .right .product .control .first-row .remove:hover{background:#fefcf6}.homepage .top .right .product .control .first-row [type=text]{font-family:PlayfairDisplay-Bold;font-size:24px;width:2em;text-align:center;border:none;background:0 0}.homepage .top .right .product .control .second-row .btn-success{margin-top:1.5em;background:#99c1a0!important;border-color:#7EB184}.homepage .top .right .product .control .second-row .btn-success:hover{background:#7EB184!important}
+@font-face {
+  font-family: 'PlayfairDisplay-Regular';
+  src: url('../fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf');
+}
+@font-face {
+  font-family: 'PlayfairDisplay-Italic';
+  src: url('../fonts/PlayfairDisplay/PlayfairDisplay-Italic.ttf');
+}
+@font-face {
+  font-family: 'PlayfairDisplay-Bold';
+  src: url('../fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf');
+}
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url('../fonts/Roboto/Roboto-Regular.ttf');
+}
+body {
+  background-color: #FEFBF3;
+  color: #555555;
+  overflow-x: hidden;
+  font-size: 18px;
+  font-family: "Roboto-Regular";
+  padding: 0;
+  margin: 0;
+}
+body a {
+  color: #555555;
+}
+body footer {
+  margin-top: 3em;
+  margin-bottom: 6em;
+}
+body footer .submenu {
+  margin-bottom: 1em;
+}
+body footer .submenu a {
+  font-family: "PlayfairDisplay-Regular";
+  font-size: 24px;
+  line-height: 16px;
+  margin-right: .5em;
+}
+body footer .submenu a:not(:last-child):after {
+  content: '\00B7';
+  font-size: 1.3em;
+  padding-left: .5em;
+  padding-top: .5em;
+  color: #7EB184;
+}
+body footer .address {
+  font-size: 13px;
+  line-height: 11px;
+  color: #555555;
+}
+body footer .company {
+  font-family: "PlayfairDisplay-Regular";
+  font-size: 12px;
+  text-align: center;
+  line-height: 11px;
+}
+body footer .company a {
+  font-family: "PlayfairDisplay-Italic";
+  color: #7EB184;
+}
+body .leftBgImage {
+  background: url(../images/img-macadamia-side.png) no-repeat;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 100%;
+}
+body .rightBgImage {
+  background: url(../images/img-macadamia-branch.png) no-repeat;
+  position: absolute;
+  right: 0;
+  top: 60%;
+  width: 35%;
+  height: 100%;
+}
+body .container {
+  max-width: 1140px;
+  padding: 0;
+}
+body .container .row {
+  margin: 0;
+}
+body .container header {
+  padding: 1em 0 3em 0;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 3em;
+}
+body .container header a {
+  font-size: 14px;
+}
+body .container header a img {
+  margin-right: .5em;
+}
+body .container header .left {
+  float: left;
+}
+body .container header .left a:not(last-child) {
+  margin-right: 1.5em;
+}
+body .container header .right {
+  float: right;
+}
+body .container header .right a:not(first-child) {
+  margin-left: 1.5em;
+}
+.homepage .top .left h1 {
+  font-family: 'PlayfairDisplay-Bold';
+  font-size: 90px;
+  font-weight: bold;
+  text-align: right;
+  line-height: 78px;
+}
+.homepage .top .left h2 {
+  font-family: 'PlayfairDisplay-Italic';
+  font-size: 26px;
+  font-style: italic;
+  text-align: right;
+  line-height: 35px;
+}
+.homepage .top .left p {
+  margin-top: 2em;
+  margin-left: auto;
+  width: 281px;
+  height: 182px;
+  font-size: 18px;
+  text-align: justify;
+  line-height: 26px;
+}
+.homepage .top .left img {
+  margin-left: auto;
+  display: block;
+}
+.homepage .top .left .hr {
+  margin-right: 4em;
+  margin-top: -8em;
+  margin-bottom: 2em;
+}
+.homepage .top .right {
+  text-align: center;
+}
+.homepage .top .right .product > img {
+  width: 235px;
+  height: 320px;
+}
+.homepage .top .right .product .control .first-row .add,
+.homepage .top .right .product .control .first-row .remove {
+  display: inline-block;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: #E0D9C9;
+  vertical-align: middle;
+  line-height: 25px;
+  cursor: pointer;
+}
+.homepage .top .right .product .control .first-row .add img,
+.homepage .top .right .product .control .first-row .remove img {
+  margin-top: .35em;
+  font-size: 16px;
+  font-weight: 900;
+}
+.homepage .top .right .product .control .first-row .remove img {
+  margin-top: .45em;
+}
+.homepage .top .right .product .control .first-row .add:hover,
+.homepage .top .right .product .control .first-row .remove:hover {
+  background: #fefcf6;
+}
+.homepage .top .right .product .control .first-row [type=text] {
+  font-family: 'PlayfairDisplay-Bold';
+  font-size: 24px;
+  width: 2em;
+  text-align: center;
+  border: none;
+  background: none;
+}
+.homepage .top .right .product .control .second-row .btn-success {
+  margin-top: 1.5em;
+  background: #99c1a0 !important;
+  border-color: #7EB184;
+}
+.homepage .top .right .product .control .second-row .btn-success:hover {
+  background: #7EB184 !important;
+}
+.homepage .middle {
+  text-align: center;
+  padding: 2em 0 8em 0;
+}
+.homepage .bottom .leftHalf {
+  background: url(../images/img-farm_birdview.png) no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 50%;
+  position: absolute;
+  left: 0px;
+  height: 100%;
+}
+.homepage .bottom .right {
+  text-align: center;
+}
+.homepage .bottom .right .title-wrap {
+  background: #FEFBF3;
+  padding: 1em 0 2em 3em;
+  margin-left: -5em;
+}
+.homepage .bottom .right .title-wrap h2 {
+  font-family: 'PlayfairDisplay-Regular';
+  font-size: 50px;
+  line-height: 67px;
+  text-align: left;
+  margin: auto;
+}
+.homepage .bottom .right p {
+  text-align: left;
+  width: 320px;
+  margin: 1em auto;
+}
