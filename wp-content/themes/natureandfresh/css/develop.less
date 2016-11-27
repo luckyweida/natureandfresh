@@ -19,14 +19,42 @@
 }
 
 //Global
-body {
+
+html, body {
+  height: 100%;
   background-color: #FEFBF3;
   color: #555555;
-  overflow-x: hidden;
   font-size: 18px;
   font-family: "Roboto-Regular";
   padding: 0;
   margin: 0;
+  overflow-x: hidden;
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  .preload-loading {
+    width: 100%;
+    height: 100%;
+    background-color: #7EB184;
+    overflow: hidden;
+    text-align: center;
+    .loading-widgets {
+      border: none;
+      text-align: center;
+      margin-top: 10%;
+      img {
+        margin: 0 auto 4em auto;
+        display: block;
+      }
+      .dial {
+        display: none;
+      }
+    }
+  }
+  .preload-content {
+    display: none;
+  }
   a {
     color: #555555;
   }
@@ -66,20 +94,30 @@ body {
     }
   }
   .leftBgImage {
-    background: url(../images/img-macadamia-side.png) no-repeat;
     position: absolute;
     left: 0;
     top: 50%;
-    width: 100%;
+    width: 15%;
     height: 100%;
   }
   .rightBgImage {
-    background: url(../images/img-macadamia-branch.png) no-repeat;
     position: absolute;
     right: 0;
     top: 60%;
     width: 35%;
     height: 100%;
+  }
+  span.is-img {
+    img {
+      opacity: 0;
+      -webkit-transition: all 1s ease-in-out;
+      -moz-transition: all 1s ease-in-out;
+      -o-transition: all 1s ease-in-out;
+      transition: all 1s ease-in-out;
+    }
+    .loaded {
+      opacity: 1 !important;
+    }
   }
   .container {
     //background: linear-gradient(
@@ -181,9 +219,30 @@ body {
     .right {
       text-align: center;
       .product {
-        > img {
-          width: 235px;
-          height: 320px;
+        .inner {
+          text-align: center;
+          position: relative;
+          width: 260px;
+          margin: 0 auto;
+          .carousel-prev {
+            cursor: pointer;
+            position: absolute;
+            left: 0;
+            top: 40%;
+          }
+          .carousel-next {
+            cursor: pointer;
+            position: absolute;
+            right: 0;
+            top: 40%;
+          }
+          .featured {
+            margin: 0 auto;
+            display: block;
+            width: 235px;
+            height: 320px;
+            overflow: hidden;
+          }
         }
         .control {
           .first-row {
@@ -197,14 +256,14 @@ body {
               line-height: 25px;
               cursor: pointer;
               img {
-                margin-top: .35em;
+                margin-top: -.35em;
                 font-size: 16px;
                 font-weight: 900;
               }
             }
             .remove {
               img {
-                margin-top: .45em;
+                margin-top: -.45em;
               }
             }
             .add:hover, .remove:hover {
@@ -241,15 +300,14 @@ body {
   //Bottom part
   .bottom {
     .leftHalf {
-      background: url(../images/img-farm_birdview.png) no-repeat;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
       width: 50%;
       position: absolute;
       left: 0px;
       height: 100%;
+      overflow: hidden;
+      img {
+        width: 100%;
+      }
     }
     .right {
       text-align: center;

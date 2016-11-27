@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="9px" height="15px" viewBox="0 0 9 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41 (35326) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home" transform="translate(-1196.000000, -337.000000)" fill="#E2D9C8">
+            <g id="section-copy" transform="translate(-361.000000, 170.000000)">
+                <g id="Pouch" transform="translate(1256.000000, 3.000000)">
+                    <path d="M303.437354,178.476839 L309.022485,172.402226 C309.353616,172.042076 309.353616,171.457924 309.022485,171.097774 L303.437354,165.023161 C303.188926,164.75296 302.837683,164.67701 302.513149,164.823136 C302.188616,164.969436 301.989583,165.293361 301.989583,165.675387 L301.989583,177.824613 C301.989583,178.206639 302.188616,178.530564 302.513149,178.676864 C302.837683,178.82299 303.188926,178.74704 303.437354,178.476839 L303.437354,178.476839" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
