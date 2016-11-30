@@ -17,8 +17,12 @@ Template Name: Home page
         <div class="container">
             <header>
                 <div class="left">
+                    <div id="nav-icon1">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                     <a href="#">
-                        <img class="lazy-load" src="http://placehold.it/16x16/FEFBF3/FEFBF3" data-src="<?php echo get_template_directory_uri(); ?>/images/icon-menu.svg">
                         Menu
                     </a>
 
@@ -100,7 +104,7 @@ Template Name: Home page
                         <p>Introduction copy to be placed here, we try our best not to use machines in the orchard. Instead, we use natural fertilizers such as Agrissentials Rok Solid and comfrey. We use comfrey as a liquid fertilizer on our trees for the nutrients and minerals it brings up from deep in the ground.</p>
                         <p>We are out on the farm daily picking the macadamia nuts which are then husked and dried at a low temperature for eight weeks. The cracked nuts are then vacuum packed to preserve that fresh, original macadamia taste that we love. From growing to harvesting, drying and packaging, you can enjoy natural quality foods that have been grown and prepared with care.</p>
                         <p>With more products to come, it is an exciting time for everyone at Nature & Fresh! Stay tuned to our website for more updates and information as we continue to work on bringing you more of the fresh, natural taste you love.</p>
-                        <p><a href="/about" class="btn btn-success">Add to cart</a></p>
+                        <p><a href="/about" class="btn btn-success">About us</a></p>
                     </div>
                 </div>
             </div>

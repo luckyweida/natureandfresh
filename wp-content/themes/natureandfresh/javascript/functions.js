@@ -1,15 +1,20 @@
 $(function () {
+    $('#nav-icon1').click(function(){
+        $(this).toggleClass('open');
+    });
+
+    // $('.preload-loading .loading-widgets img').fadeIn(1000);
     $('.preload-loading .loading-widgets img').addClass('animated bounceInUp');
     setTimeout(function () {
-        $(".dial").fadeIn();
+        // $(".dial").fadeIn();
         $(".dial").knob({
             min: 0,
             max: 100,
-            width: 80,
-            thickness: .2,
-            fgColor: '#FEFBF3',
+            width: 50,
+            thickness: .15,
+            fgColor: '#5B7543',
         });
-        $('.preload-loading .loading-widgets .dial').addClass('animated bounceInUp');
+        // $('.preload-loading .loading-widgets .dial').addClass('animated bounceInUp');
         $('.preload-loading .loading-widgets canvas').addClass('animated bounceInUp');
 
         setTimeout(function () {
@@ -25,8 +30,10 @@ function startLoadContent(progress) {
 
     if (progress >= 100) {
         $('.preload-loading .loading-widgets img').addClass('animated bounceOutUp');
-        $('.preload-loading .loading-widgets .dial').hide();
+        // $('.preload-loading .loading-widgets .dial').hide();
         $('.preload-loading .loading-widgets canvas').fadeOut();
+
+
         setTimeout(function () {
             $('.preload-loading').slideUp(800, function () {
                 $('html,body').css('height', 'auto');
