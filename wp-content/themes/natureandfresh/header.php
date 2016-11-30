@@ -18,7 +18,7 @@
 
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css" type="text/css"/>
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/develop.css?v=2" type="text/css"/>
-
+ 
 	<?php wp_head(); ?>
 </head>
 <body>
