@@ -37,35 +37,35 @@ function startLoadContent(progress) {
         setTimeout(function () {
             $('.preload-loading').slideUp(800, function () {
                 $('html,body').css('height', 'auto');
-                $('.preload-content').fadeIn(500, function () {
 
-
-                    $.each($('img.lazy-load'), function (key, val) {
-                        $(val).wrap('<span class="is-img ' + ($(val).data('class') ? $(val).data('class') : '') + '"></span>');
-                    });
-                    $(window).scroll(function (ev) {
-                        processImages();
-                    });
-                    processImages();
-
-                    setTimeout(function () {
-                        var owl = $(".owl-carousel").owlCarousel({
-                            items: 1,
-                            loop: true,
-                            lazyLoad: true,
-                        });
-                        owl.owlCarousel();
-                        $('.owl-carousel').fadeIn();
-
-                        $(document).on('click', '.carousel-next', function () {
-                            owl.trigger('next.owl.carousel');
-                        });
-                        $(document).on('click', '.carousel-prev', function () {
-                            owl.trigger('prev.owl.carousel');
-                        });
-                    }, 1000)
-                })
             });
+
+            $('.preload-content').fadeIn(500, function () {
+                $.each($('img.lazy-load'), function (key, val) {
+                    $(val).wrap('<span class="is-img ' + ($(val).data('class') ? $(val).data('class') : '') + '"></span>');
+                });
+                $(window).scroll(function (ev) {
+                    processImages();
+                });
+                processImages();
+
+                setTimeout(function () {
+                    var owl = $(".owl-carousel").owlCarousel({
+                        items: 1,
+                        loop: true,
+                        lazyLoad: true,
+                    });
+                    owl.owlCarousel();
+                    $('.owl-carousel').fadeIn();
+
+                    $(document).on('click', '.carousel-next', function () {
+                        owl.trigger('next.owl.carousel');
+                    });
+                    $(document).on('click', '.carousel-prev', function () {
+                        owl.trigger('prev.owl.carousel');
+                    });
+                }, 1000)
+            })
         }, 500);
         return;
     }
