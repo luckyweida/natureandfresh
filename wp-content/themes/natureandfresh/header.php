@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.0/assets/owl.carousel.min.css" />
 
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css" type="text/css"/>
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/develop.css" type="text/css"/>
+	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/develop.css?v=2" type="text/css"/>
 
 	<?php wp_head(); ?>
 </head>

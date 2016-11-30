@@ -31,7 +31,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Knob/1.2.13/jquery.knob.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.0/owl.carousel.min.js"></script>
 
-<script src="<?php echo get_template_directory_uri(); ?>/javascript/functions.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/javascript/functions.js?v=2"></script>
 
 
 </body>
