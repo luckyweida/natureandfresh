@@ -56,7 +56,11 @@ html, body {
     display: none;
   }
   a {
+    transition: all 0.35s ease-in-out;
     color: #555555;
+  }
+  a:hover {
+    color: #5B7543;
   }
   footer {
     margin-top: 3em;
@@ -219,18 +223,25 @@ html, body {
     .right {
       text-align: center;
       .product {
+        .inner:hover {
+          .carousel-prev, .carousel-next {
+            visibility: visible;
+          }
+        }
         .inner {
           text-align: center;
           position: relative;
           width: 260px;
           margin: 0 auto;
           .carousel-prev {
+            visibility: hidden;
             cursor: pointer;
             position: absolute;
             left: 0;
             top: 40%;
           }
           .carousel-next {
+            visibility: hidden;
             cursor: pointer;
             position: absolute;
             right: 0;
@@ -256,14 +267,14 @@ html, body {
               line-height: 25px;
               cursor: pointer;
               img {
-                margin-top: -.35em;
+                margin-top: -.65em;
                 font-size: 16px;
                 font-weight: 900;
               }
             }
             .remove {
               img {
-                margin-top: -.45em;
+                margin-top: -.55em;
               }
             }
             .add:hover, .remove:hover {
@@ -285,7 +296,7 @@ html, body {
               border-color: #7EB184;
             }
             .btn-success:hover {
-              background: #7EB184 !important;
+              background: #5B7543 !important;
             }
           }
         }

@@ -58,7 +58,12 @@ body .preload-content {
 }
 html a,
 body a {
+  transition: all 0.35s ease-in-out;
   color: #555555;
+}
+html a:hover,
+body a:hover {
+  color: #5B7543;
 }
 html footer,
 body footer {
@@ -205,6 +210,10 @@ body .container header .right a:not(first-child) {
 .homepage .top .right {
   text-align: center;
 }
+.homepage .top .right .product .inner:hover .carousel-prev,
+.homepage .top .right .product .inner:hover .carousel-next {
+  visibility: visible;
+}
 .homepage .top .right .product .inner {
   text-align: center;
   position: relative;
@@ -212,12 +221,14 @@ body .container header .right a:not(first-child) {
   margin: 0 auto;
 }
 .homepage .top .right .product .inner .carousel-prev {
+  visibility: hidden;
   cursor: pointer;
   position: absolute;
   left: 0;
   top: 40%;
 }
 .homepage .top .right .product .inner .carousel-next {
+  visibility: hidden;
   cursor: pointer;
   position: absolute;
   right: 0;
@@ -243,12 +254,12 @@ body .container header .right a:not(first-child) {
 }
 .homepage .top .right .product .control .first-row .add img,
 .homepage .top .right .product .control .first-row .remove img {
-  margin-top: -0.35em;
+  margin-top: -0.65em;
   font-size: 16px;
   font-weight: 900;
 }
 .homepage .top .right .product .control .first-row .remove img {
-  margin-top: -0.45em;
+  margin-top: -0.55em;
 }
 .homepage .top .right .product .control .first-row .add:hover,
 .homepage .top .right .product .control .first-row .remove:hover {
@@ -268,7 +279,7 @@ body .container header .right a:not(first-child) {
   border-color: #7EB184;
 }
 .homepage .top .right .product .control .second-row .btn-success:hover {
-  background: #7EB184 !important;
+  background: #5B7543 !important;
 }
 .homepage .middle {
   text-align: center;
