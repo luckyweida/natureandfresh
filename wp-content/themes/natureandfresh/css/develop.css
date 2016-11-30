@@ -38,10 +38,10 @@ body {
 html #nav-icon1,
 body #nav-icon1 {
   float: left;
-  width: 40px;
+  width: 20px;
   height: 40px;
   position: relative;
-  margin-right: 1em;
+  margin-right: .5em;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
@@ -56,7 +56,7 @@ html #nav-icon1 span,
 body #nav-icon1 span {
   display: block;
   position: absolute;
-  height: 6px;
+  height: 3px;
   width: 100%;
   background: #555555;
   border-radius: 9px;
@@ -73,19 +73,19 @@ body #nav-icon1 span {
 }
 html #nav-icon1 span:nth-child(1),
 body #nav-icon1 span:nth-child(1) {
-  top: 10px;
+  top: 22px;
 }
 html #nav-icon1 span:nth-child(2),
 body #nav-icon1 span:nth-child(2) {
-  top: 25px;
+  top: 30px;
 }
 html #nav-icon1 span:nth-child(3),
 body #nav-icon1 span:nth-child(3) {
-  top: 40px;
+  top: 38px;
 }
 html #nav-icon1.open span:nth-child(1),
 body #nav-icon1.open span:nth-child(1) {
-  top: 25px;
+  top: 28px;
   -webkit-transform: rotate(135deg);
   -moz-transform: rotate(135deg);
   -o-transform: rotate(135deg);
@@ -98,7 +98,7 @@ body #nav-icon1.open span:nth-child(2) {
 }
 html #nav-icon1.open span:nth-child(3),
 body #nav-icon1.open span:nth-child(3) {
-  top: 25px;
+  top: 28px;
   -webkit-transform: rotate(-135deg);
   -moz-transform: rotate(-135deg);
   -o-transform: rotate(-135deg);
