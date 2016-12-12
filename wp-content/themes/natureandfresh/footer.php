@@ -1,8 +1,8 @@
 
 <footer id="footer">
     <div class="container">
-        <div class="row top">
-            <div class="col-md-12 submenu">
+        <div class="row">
+            <div class="col-md-12 ft-menu">
                 <a href="#">Home</a>
                 <a href="#">Shop</a>
                 <a href="#">About</a>
@@ -10,10 +10,10 @@
                 <a href="#">Get in touch</a>
             </div>
             <div class="col-md-8">
-                <p class="address">Tel. 021 079 0102  |  Email. info@natureandfresh.co.nz  |  Addrress. 1340C Glenbrook Road, RD1, Waiuku 2681, New Zealand</p>
+                <p class="ft-contact">Tel. <a href="tell:021-079-0102">021 079 0102</a>&nbsp;&nbsp;|&nbsp;&nbsp;Email. <a href="mailto:info@natureandfresh.co.nz">info@natureandfresh.co.nz</a>&nbsp;&nbsp;|&nbsp;&nbsp;Addrress. 1340C Glenbrook Road, RD1, Waiuku 2681, New Zealand</p>
             </div>
             <div class="col-md-4">
-                <p class="company">©2016 Nature & Fresh.  website By <a href="#">Francis The Designer</a></p>
+                <p class="author">©2016 Nature & Fresh.  website By <a href="http://francisthedesigner.co.nz/" target="_blank" title="Francis The Designer">Francis The Designer</a></p>
             </div>
 
         </div>
