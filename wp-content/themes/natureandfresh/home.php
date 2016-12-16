@@ -5,6 +5,43 @@ Template Name: Home page
 ?>
 
 <?php get_header(); ?>
+
+
+<div id="myNav" class="overlay">
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-2">
+            <div class="overlay-content">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times; <span>close menu</span></a>
+            </div>
+        </div>
+        <div class="col-md-6">
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-2">
+            <div class="overlay-content">
+                <a class="menu-item" href="#">shop</a>
+                <a class="menu-item" href="#">about</a>
+                <a class="menu-item" href="#">the photo</a>
+                <a class="menu-item" href="#">wholesale</a>
+                <a class="menu-item" href="#">get in touch</a>
+            </div>
+        </div>
+        <div class="col-md-6" id="instafeed">
+        </div>
+        <div class="col-md-2">
+            <a style="float: left" target="_blank" href="https://www.facebook.com/Nature-Fresh-409725865782785/?fref=ts"><img src="<?php echo get_template_directory_uri(); ?>/images/ft_facebook.svg"></a>
+        </div>
+    </div>
+</div>
+
 <div class="preload-loading">
     <div class="loading-widgets">
         <img src="<?php echo get_template_directory_uri(); ?>/images/logo.svg" />
@@ -24,7 +61,7 @@ Template Name: Home page
                         <span></span>
                     </div>
 
-                    <a href="#">
+                    <a href="#" class="menu">
                         menu
                     </a>
 
@@ -66,8 +103,8 @@ Template Name: Home page
                 <div class="col-md-6 home-feature_right">
                     <div class="home-feature__productSlider">
                         <div class="home-feature__productSlider_inner">
-                            <img class="lazy-load" src="http://placehold.it/16x16/FEFBF3/FEFBF3" data-src="<?php echo get_template_directory_uri(); ?>/images/icon-arrow_left.svg" data-class="carousel-prev"/>
-                            <img class="lazy-load" src="http://placehold.it/16x16/FEFBF3/FEFBF3" data-src="<?php echo get_template_directory_uri(); ?>/images/icon-arrow_right.svg" data-class="carousel-next"/>
+                            <span class="carousel-prev"><img class="svg loaded" src="<?php echo get_template_directory_uri(); ?>/images/icon-arrow_left.svg" data-class="carousel-prev"/></span>
+                            <span class="carousel-next"><img class="svg loaded" src="<?php echo get_template_directory_uri(); ?>/images/icon-arrow_right.svg" data-class="carousel-next"/></span>
                             <div class="owl-carousel owl-theme featured">
                                 <span class="is-img owl-item"><img data-src="<?php echo get_template_directory_uri(); ?>/images/img-macadamiaNut_pouch.png"/></span>
                                 <span class="is-img owl-item"><img data-src="<?php echo get_template_directory_uri(); ?>/images/img-macadamiaNut_pouch.png"/></span>
@@ -79,11 +116,9 @@ Template Name: Home page
                         <div class="control">
                             <form>
                                 <div class="control_quantity">
-                                    <div class="remove">
-                                    </div>
-                                    <input value="1" type="text"/>
-                                    <div class="add">
-                                    </div>
+                                    <div class="remove"></div>
+                                    <input value="1" class="amount" type="text"/>
+                                    <div class="add"></div>
                                 </div>
                                 <button type="button" class="btn btn-sm">Add to cart</button>
                             </form>
@@ -104,7 +139,7 @@ Template Name: Home page
 
         <section class="container-fluid article-offset">
             <div class="row">
-                <div class="article-offset_img col-md-6 noPadding lazy-load" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/img-farm_birdview.png'); background-size: cover; background-position: center;">
+                <div class="article-offset_img col-md-6 noPadding lazy-load" data-style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/img-farm_birdview.png'); background-size: cover; background-position: center;">
                 </div>
                 <article class="col-md-6">
                     <div class="article-offset_heading">

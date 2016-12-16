@@ -3,11 +3,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 ft-menu">
-                <a href="#">Home</a>
-                <a href="#">Shop</a>
-                <a href="#">About</a>
-                <a href="#">Wholesale</a>
-                <a href="#">Get in touch</a>
+                <a class="mi" href="#">Home</a>
+                <a class="mi" href="#">Shop</a>
+                <a class="mi" href="#">About</a>
+                <a class="mi" href="#">Wholesale</a>
+                <a class="mi" href="#">Get in touch</a>
+
+                <a style="float: right" target="_blank" href="https://www.facebook.com/Nature-Fresh-409725865782785/?fref=ts"><img src="<?php echo get_template_directory_uri(); ?>/images/ft_facebook.svg"></a>
             </div>
             <div class="col-md-8">
                 <p class="ft-contact">Tel. <a href="tell:021-079-0102">021 079 0102</a>&nbsp;&nbsp;|&nbsp;&nbsp;Email. <a href="mailto:info@natureandfresh.co.nz">info@natureandfresh.co.nz</a>&nbsp;&nbsp;|&nbsp;&nbsp;Addrress. 1340C Glenbrook Road, RD1, Waiuku 2681, New Zealand</p>
@@ -31,6 +33,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Knob/1.2.13/jquery.knob.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.0/owl.carousel.min.js"></script>
 
+<script src="//cdnjs.cloudflare.com/ajax/libs/instafeed.js/1.4.1/instafeed.min.js" type="text/javascript"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/javascript/functions.js?v=2"></script>
 
 

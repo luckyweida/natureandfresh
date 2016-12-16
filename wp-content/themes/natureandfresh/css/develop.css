@@ -58,6 +58,64 @@
 body {
   overflow-y: hidden;
   font-size: 16px;
+  /* The Overlay (background) */
+  /* Position the content inside the overlay */
+  /* The navigation links inside the overlay */
+  /* Position the close button (top right corner) */
+  /* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+}
+body .overlay {
+  /* Height & width depends on how you want to reveal the overlay (see JS below) */
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  background-color: #FEFBF3;
+  overflow-x: hidden;
+  transition: 0.5s;
+  display: none;
+}
+body .overlay-content {
+  position: relative;
+  top: 0;
+  width: 100%;
+  text-align: left;
+}
+body .overlay-content .menu-item {
+  padding-bottom: .3em;
+}
+body .overlay a {
+  text-decoration: none;
+  display: block;
+  font-family: Roboto-Regular;
+  font-size: 34px;
+  font-weight: bold;
+  line-height: 40px;
+  color: #555555;
+  transition: 0.3s;
+}
+body .overlay .closebtn {
+  margin: .5em 0 1em 0;
+  font-size: 45px;
+}
+body .overlay .closebtn span {
+  position: absolute;
+  top: 7px;
+  font-weight: normal;
+  font-size: 15px;
+  padding-left: 1em;
+}
+@media screen and (max-height: 450px) {
+  body .overlay a {
+    font-size: 20px;
+  }
+  body .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
 }
 html {
   overflow-y: scroll;
@@ -244,7 +302,7 @@ footer .ft-menu a {
   line-height: 16px;
   margin-right: .5em;
 }
-footer .ft-menu a:not(:last-child):after {
+footer .ft-menu a.mi:after {
   content: '\00B7';
   font-size: 1.3em;
   padding-left: .5em;
@@ -311,9 +369,9 @@ footer .author a:hover {
   float: left;
   margin-top: 5em;
 }
-.homepage .home-feature .home-feature_right .home-feature__productSlider .inner:hover .carousel-prev,
-.homepage .home-feature .home-feature_right .home-feature__productSlider .inner:hover .carousel-next {
-  visibility: visible;
+.homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner:hover .carousel-prev,
+.homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner:hover .carousel-next {
+  visibility: visible !important;
 }
 .homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner {
   text-align: center;
@@ -322,18 +380,20 @@ footer .author a:hover {
   margin: 0 auto;
 }
 .homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner .carousel-prev {
-  visibility: hidden;
   cursor: pointer;
   position: absolute;
   left: 0;
   top: 40%;
 }
 .homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner .carousel-next {
-  visibility: hidden;
   cursor: pointer;
   position: absolute;
   right: 0;
   top: 40%;
+}
+.homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner .carousel-next:hover path,
+.homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner .carousel-prev:hover path {
+  fill: #7EB184 !important;
 }
 .homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner .featured {
   margin: 0 auto;
