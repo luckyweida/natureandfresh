@@ -18,7 +18,8 @@ function closeNav() {
     $('#overlay-menu').removeClass('fadeIn')
     $('#overlay-menu').addClass('animated fadeOut');
     $('.overlay-menu .container').removeClass('pulse')
-    $('.overlay-menu .container').addClass('animated fadeOut')
+    $('.overlay-menu .container').addClass('animated fadeOut');
+    $('#overlay-menu').fadeOut();
     $('#nav-icon1').removeClass('open');
     $('#nav-menu').html('menu');
 };
