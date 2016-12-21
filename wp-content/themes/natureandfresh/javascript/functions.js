@@ -5,15 +5,15 @@ function openNav() {
     console.log(parseInt(Math.random() * 100 % 15, 10))
     $($('#instafeed').find('img')[parseInt(Math.random() * 100 % 15, 10)]).fadeIn();
 
-    $('#myNav').removeClass('fadeOutLeftBig')
-    $('#myNav').addClass('animated fadeInLeftBig')
-    $('#myNav').show();
+    $('#overlay-menu').removeClass('fadeOutLeftBig')
+    $('#overlay-menu').addClass('animated fadeInLeftBig')
+    $('#overlay-menu').show();
 };
 
 /* Close when someone clicks on the "x" symbol inside the overlay */
 function closeNav() {
-    $('#myNav').removeClass('fadeInLeftBig')
-    $('#myNav').addClass('animated fadeOutLeftBig')
+    $('#overlay-menu').removeClass('fadeInLeftBig')
+    $('#overlay-menu').addClass('animated fadeOutLeftBig')
     $('#nav-icon1').toggleClass('open');
 };
 
@@ -34,7 +34,7 @@ $(function () {
 
     $('#nav-icon1').click(function () {
         $(this).toggleClass('open');
-        $('.overlay nav').addClass('animated fadeInUp')
+        $('.overlay-menu nav').addClass('animated fadeInUp')
         openNav();
         return false;
     });
@@ -121,6 +121,8 @@ $(function () {
             items: 1,
             loop: true,
             lazyLoad: true,
+            animateIn: 'fadeIn',
+            animateOut: 'fadeOut',
             onChanged: function (ev) {
                 processImages();
             }

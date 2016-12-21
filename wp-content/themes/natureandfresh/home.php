@@ -7,40 +7,7 @@ Template Name: Home page
 <?php get_header(); ?>
 
 
-<div id="myNav" class="overlay">
-    <div class="row">
-        <div class="col-md-2">
-        </div>
-        <div class="col-md-2">
-            <div class="overlay-content">
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times; <span>close menu</span></a>
-            </div>
-        </div>
-        <div class="col-md-6">
-        </div>
-        <div class="col-md-2">
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-2">
-        </div>
-        <div class="col-md-2">
-            <div class="overlay-content">
-                <a class="menu-item" href="#">shop</a>
-                <a class="menu-item" href="#">about</a>
-                <a class="menu-item" href="#">the photo</a>
-                <a class="menu-item" href="#">wholesale</a>
-                <a class="menu-item" href="#">get in touch</a>
-            </div>
-        </div>
-        <div class="col-md-6" id="instafeed">
-        </div>
-        <div class="col-md-2">
-            <a style="float: left" target="_blank" href="https://www.facebook.com/Nature-Fresh-409725865782785/?fref=ts"><img src="<?php echo get_template_directory_uri(); ?>/images/ft_facebook.svg"></a>
-        </div>
-    </div>
-</div>
 
 <div class="preload-loading">
     <div class="loading-widgets">
@@ -50,36 +17,57 @@ Template Name: Home page
 </div>
 
 <div class="preload-content">
-    <div class="homepage">
-        <section class="container">
-
-            <header>
-                <nav class="main-nav">
-                    <div id="nav-icon1">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-
-                    <a href="#" class="menu">
-                        menu
-                    </a>
-
-                    <a href="/shop">shop</a>
-                </nav>
-
-                <a id="logo" href="/" title="Nature & Fresh">
-                    <img class="lazy-load" src="http://placehold.it/16x16/FEFBF3/FEFBF3" data-src="<?php echo get_template_directory_uri(); ?>/images/logo.svg"  data-delay="500" alt="Nature and Fresh">
+    <section class="container">
+        <header class="row">
+            <nav class="main-nav">
+                <a id="nav-icon1" href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </a>
 
-                <div class="menu-account">
-                    <a href="/sign-in">sign in</a>
+                <a href="#" class="menu">
+                    menu
+                </a>
 
-                    <a href="/cart">cart
-                        <small>(5)</small>
-                    </a>
+                <a href="/shop">shop</a>
+            </nav>
+
+            <a id="logo" href="/" title="Nature & Fresh">
+                <img class="lazy-load" src="http://placehold.it/16x16/FEFBF3/FEFBF3" data-src="<?php echo get_template_directory_uri(); ?>/images/logo.svg"  data-delay="500" alt="Nature and Fresh">
+            </a>
+
+            <div class="menu-account">
+                <a href="/sign-in">sign in</a>
+
+                <a href="/cart">cart
+                    <small>(5)</small>
+                </a>
+            </div>
+        </header>
+
+        <!--overlay-menu-->
+        <div id="overlay-menu" class="overlay-menu">
+            <div class="container">
+                <div class="row">
+                    <nav class="col-md-4">
+                        <a class="menu-item" href="#">shop</a>
+                        <a class="menu-item" href="#">about</a>
+                        <a class="menu-item" href="#">the photo</a>
+                        <a class="menu-item" href="#">wholesale</a>
+                        <a class="menu-item" href="#">get in touch</a>
+                    </nav>
+                    <div class="col-md-6" id="instafeed"></div>
+                    <div class="col-md-2 overlay-menu_facebook">
+                        <a target="_blank" href="https://www.facebook.com/Nature-Fresh-409725865782785/?fref=ts"><img src="<?php echo get_template_directory_uri(); ?>/images/ft_facebook.svg"></a>
+                    </div>
                 </div>
-            </header>
+            </div>
+        </div><!--Ends overlay-menu-->
+    </section>
+
+    <div id="homepage">
+        <section class="container">
 
             <div class="row home-feature">
                 <article class="col-md-6 home-feature_left">
@@ -105,10 +93,10 @@ Template Name: Home page
                         <div class="home-feature__productSlider_inner">
                             <span class="carousel-prev"><img class="svg loaded" src="<?php echo get_template_directory_uri(); ?>/images/icon-arrow_left.svg" data-class="carousel-prev"/></span>
                             <span class="carousel-next"><img class="svg loaded" src="<?php echo get_template_directory_uri(); ?>/images/icon-arrow_right.svg" data-class="carousel-next"/></span>
+
                             <div class="owl-carousel owl-theme featured">
                                 <span class="is-img owl-item"><img data-src="<?php echo get_template_directory_uri(); ?>/images/img-macadamiaNut_pouch.png"/></span>
-                                <span class="is-img owl-item"><img data-src="<?php echo get_template_directory_uri(); ?>/images/img-macadamiaNut_pouch.png"/></span>
-                                <span class="is-img owl-item"><img data-src="<?php echo get_template_directory_uri(); ?>/images/img-macadamiaNut_pouch.png"/></span>
+                                <span class="is-img owl-item"><img data-src="<?php echo get_template_directory_uri(); ?>/images/img-macadamia_spread.png"/></span>
                             </div>
                         </div>
 
@@ -151,11 +139,9 @@ Template Name: Home page
                     <p><a href="/about" class="btn btn-lg">About us</a></p>
                 </article>
 
-             </div>
+            </div>
         </section>
-
-    </section>
-
+    </div><!--Ends #homepage-->
     <?php get_sidebar(); ?>
     <?php get_footer(); ?>
 

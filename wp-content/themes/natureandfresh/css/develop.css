@@ -31,18 +31,18 @@
   line-height: 1.8;
 }
 .btn {
-  background: #7EB184;
+  background: #7eb184;
   border: none;
   text-shadow: none;
   box-shadow: none;
   border-radius: 5px;
   font-size: 1em;
   color: white;
-  transition: all 0.2s ease-in-out !important;
+  transition: all 0.2s ease-in-out;
 }
 .btn:hover,
 .btn:focus {
-  background: #5B7543;
+  background: #5b7543;
   color: white;
 }
 .btn.btn-sm {
@@ -58,64 +58,6 @@
 body {
   overflow-y: hidden;
   font-size: 16px;
-  /* The Overlay (background) */
-  /* Position the content inside the overlay */
-  /* The navigation links inside the overlay */
-  /* Position the close button (top right corner) */
-  /* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
-}
-body .overlay {
-  /* Height & width depends on how you want to reveal the overlay (see JS below) */
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  z-index: 999;
-  left: 0;
-  top: 0;
-  background-color: #FEFBF3;
-  overflow-x: hidden;
-  transition: 0.5s;
-  display: none;
-}
-body .overlay-content {
-  position: relative;
-  top: 0;
-  width: 100%;
-  text-align: left;
-}
-body .overlay-content .menu-item {
-  padding-bottom: .3em;
-}
-body .overlay a {
-  text-decoration: none;
-  display: block;
-  font-family: Roboto-Regular;
-  font-size: 34px;
-  font-weight: bold;
-  line-height: 40px;
-  color: #555555;
-  transition: 0.3s;
-}
-body .overlay .closebtn {
-  margin: .5em 0 1em 0;
-  font-size: 45px;
-}
-body .overlay .closebtn span {
-  position: absolute;
-  top: 7px;
-  font-weight: normal;
-  font-size: 15px;
-  padding-left: 1em;
-}
-@media screen and (max-height: 450px) {
-  body .overlay a {
-    font-size: 20px;
-  }
-  body .overlay .closebtn {
-    font-size: 40px;
-    top: 15px;
-    right: 35px;
-  }
 }
 html {
   overflow-y: scroll;
@@ -126,17 +68,10 @@ p {
 html,
 body {
   height: 100%;
-  background-color: #FEFBF3;
+  background-color: #fefbf3;
   color: #555555;
-  font-size: 18px;
   font-family: 'Roboto-Regular', sans-serif;
-  padding: 0;
-  margin: 0;
-  overflow-x: hidden;
-  -webkit-transition: all 1s ease-in-out;
-  -moz-transition: all 1s ease-in-out;
-  -o-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 html .preload-loading,
 body .preload-loading {
@@ -167,13 +102,13 @@ body .preload-content {
 }
 html a,
 body a {
-  transition: all 0.2s ease-in-out !important;
+  transition: all 0.2s ease-in-out;
   color: #555555;
 }
 html a:hover,
 body a:hover {
-  transition: all 0.2s ease-in-out !important;
-  color: #7EB184;
+  transition: all 0.2s ease-in-out;
+  color: #7eb184;
   text-decoration: none;
 }
 html span.is-img img,
@@ -188,20 +123,16 @@ html span.is-img .loaded,
 body span.is-img .loaded {
   opacity: 1 !important;
 }
-html .container,
-body .container {
-  max-width: 1140px;
-  padding: 0;
-}
-html .container .row,
-body .container .row {
-  margin: 0;
-}
 header {
-  padding: 2em 0 4em 0;
+  padding-top: 2.5em;
+  padding-bottom: 4em;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+header:before,
+header:after {
+  display: none !important;
 }
 header a {
   font-size: .875em;
@@ -219,7 +150,12 @@ header .main-nav {
 header .main-nav a:not(first-child) {
   margin-right: 3em;
 }
+header .main-nav .menu {
+  z-index: 9999;
+}
 header .main-nav #nav-icon1 {
+  z-index: 9999;
+  margin-top: 4px;
   width: 20px;
   height: 20px;
   position: relative;
@@ -233,6 +169,9 @@ header .main-nav #nav-icon1 {
   -o-transition: 0.5s ease-in-out;
   transition: 0.5s ease-in-out;
   cursor: pointer;
+}
+header .main-nav #nav-icon1.open {
+  position: fixed;
 }
 header .main-nav #nav-icon1 span {
   display: block;
@@ -284,10 +223,72 @@ header .menu-account a:last-child:before {
   width: 2px;
   height: 16px;
   display: inline-block;
-  background: #EBE1CD;
+  background: #ebe1cd;
   margin: 0 9px 0 4px;
   position: relative;
   top: 3px;
+}
+/* The Overlay menu */
+.overlay-menu {
+  /* Height & width depends on how you want to reveal the overlay (see JS below) */
+
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  background-color: #f0eade;
+  overflow-y: hidden;
+  transition: all 0.2s ease-in-out;
+  display: none;
+}
+.overlay-menu .container .row {
+  padding-top: 5em;
+  /* Position the close button (top right corner) */
+
+}
+.overlay-menu .container .row nav {
+  padding-left: 0;
+}
+.overlay-menu .container .row nav a {
+  text-decoration: none;
+  display: block;
+  font-family: "Roboto-Bold", serif;
+  font-size: 2.125em;
+  line-height: 1.5;
+}
+.overlay-menu .container .row nav a:hover {
+  color: #7eb184;
+}
+@media screen and (max-height: 450px) {
+  .overlay-menu .container .row nav a {
+    font-size: 1.4em;
+  }
+}
+.overlay-menu .container .row #instafeed img {
+  width: 100%;
+}
+.overlay-menu .container .row .overlay-menu_facebook {
+  text-align: right;
+}
+.overlay-menu .container .row .closebtn {
+  margin: .5em 0 1em 0;
+  font-size: 45px;
+}
+@media screen and (max-height: 450px) {
+  .overlay-menu .container .row .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}
+.overlay-menu .container .row .closebtn span {
+  position: absolute;
+  top: 7px;
+  font-weight: normal;
+  font-size: 15px;
+  padding-left: 1em;
 }
 footer {
   margin-top: 6em;
@@ -307,7 +308,7 @@ footer .ft-menu a.mi:after {
   font-size: 1.3em;
   padding-left: .5em;
   padding-top: .5em;
-  color: #7EB184;
+  color: #7eb184;
 }
 footer .ft-contact {
   color: #555555;
@@ -323,93 +324,101 @@ footer .author {
 }
 footer .author a {
   font-family: "PlayfairDisplay-Italic";
-  color: #7EB184;
+  color: #7eb184;
   font-size: 1em;
 }
 footer .author a:hover {
-  color: #5B7543;
+  color: #5b7543;
 }
-.homepage .home-feature .home-feature_left h1 {
+#homepage .home-feature .home-feature_left h1 {
   font-family: 'PlayfairDisplay-Bold';
   font-size: 5.625em;
   text-align: right;
   line-height: 1;
+  margin-top: 0;
 }
-.homepage .home-feature .home-feature_left h2 {
+#homepage .home-feature .home-feature_left h2 {
   font-family: 'PlayfairDisplay-Italic';
   font-size: 1.625em;
   text-align: right;
   margin-top: 0;
 }
-.homepage .home-feature .home-feature_left p {
+#homepage .home-feature .home-feature_left p {
   margin-top: 2em;
   margin-bottom: 4em;
   margin-left: auto;
   text-align: right;
   width: 50%;
 }
-.homepage .home-feature .home-feature_left .home-feature_left__stamp img {
+#homepage .home-feature .home-feature_left .home-feature_left__stamp img {
   margin-left: auto;
   display: block;
 }
-.homepage .home-feature .home-feature_left .hr {
+#homepage .home-feature .home-feature_left .hr {
   margin-right: 4em;
   margin-top: -8em;
   margin-bottom: 2em;
 }
-.homepage .home-feature .home-feature_left .home-feature_left__img {
+#homepage .home-feature .home-feature_left .home-feature_left__img {
   position: absolute;
   right: 20em;
   top: 16em;
 }
-.homepage .home-feature .home-feature_right {
+#homepage .home-feature .home-feature_right {
   text-align: center;
 }
-.homepage .home-feature .home-feature_right .home-feature_right__img {
+#homepage .home-feature .home-feature_right .home-feature_right__img {
   float: left;
+  left: -6px;
   margin-top: 5em;
+  position: absolute;
 }
-.homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner:hover .carousel-prev,
-.homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner:hover .carousel-next {
+#homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner:hover .carousel-prev,
+#homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner:hover .carousel-next {
   visibility: visible !important;
 }
-.homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner {
+#homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner {
   text-align: center;
   position: relative;
   width: 260px;
   margin: 0 auto;
 }
-.homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner .carousel-prev {
+#homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner .carousel-prev {
   cursor: pointer;
   position: absolute;
   left: 0;
   top: 40%;
 }
-.homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner .carousel-next {
+#homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner .carousel-next {
   cursor: pointer;
   position: absolute;
   right: 0;
   top: 40%;
 }
-.homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner .carousel-next:hover path,
-.homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner .carousel-prev:hover path {
-  fill: #7EB184 !important;
+#homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner .carousel-next,
+#homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner .carousel-prev {
+  transition: all 0.2s ease-in-out !important;
 }
-.homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner .featured {
+#homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner .carousel-next:hover path,
+#homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner .carousel-prev:hover path {
+  fill: #7eb184 !important;
+  transition: all 0.2s ease-in-out !important;
+}
+#homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner .featured {
   margin: 0 auto;
   display: block;
   width: 235px;
   height: 320px;
   overflow: hidden;
 }
-.homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity {
+#homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity {
   display: flex;
   text-align: center;
   justify-content: center;
   align-items: center;
 }
-.homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity .add,
-.homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity .remove {
+#homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity .add,
+#homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity .remove {
   display: inline-block;
   border-radius: 50%;
   width: 20px;
@@ -417,26 +426,26 @@ footer .author a:hover {
   vertical-align: middle;
   line-height: 25px;
   cursor: pointer;
-  transition: all 0.2s ease-in-out !important;
+  transition: all 0.2s ease-in-out;
 }
-.homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity .add:hover,
-.homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity .remove:hover {
-  background-color: #7EB184;
+#homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity .add:hover,
+#homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity .remove:hover {
+  background-color: #7eb184;
   fill: white;
 }
-.homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity .add img,
-.homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity .remove img {
+#homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity .add img,
+#homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity .remove img {
   margin-top: -0.5em;
   font-size: 16px;
   font-weight: 900;
 }
-.homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity .add {
-  background: url('../images/icon-add.svg') 5px center no-repeat #EBE1CD;
+#homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity .add {
+  background: url('../images/icon-add.svg') 5px center no-repeat #ebe1cd;
 }
-.homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity .remove {
-  background: url('../images/icon-remove.svg') center center no-repeat #EBE1CD;
+#homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity .remove {
+  background: url('../images/icon-remove.svg') center center no-repeat #ebe1cd;
 }
-.homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity [type=text] {
+#homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity [type=text] {
   font-family: "Roboto-Bold", serif;
   font-size: 1rem;
   width: 2em;
@@ -446,15 +455,15 @@ footer .author a:hover {
   outline: none;
   margin: 0 .5em;
 }
-.homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity [type=text]:focus {
-  background: #EBE1CD;
+#homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity [type=text]:focus {
+  background: #ebe1cd;
   border-radius: 5px;
   outline: none;
 }
-.homepage .home-feature .home-feature_right .home-feature__productSlider .control .btn {
+#homepage .home-feature .home-feature_right .home-feature__productSlider .control .btn {
   margin-top: 1em;
 }
-.homepage .nuts-progression_img {
+#homepage .nuts-progression_img {
   margin: 4em 0 8em 0;
 }
 .article-offset {
@@ -487,7 +496,7 @@ footer .author a:hover {
   padding-bottom: 2em;
 }
 .article-offset .row article .article-offset_heading {
-  background: #FEFBF3;
+  background: #fefbf3;
   padding: 1em 0 2em 3em;
   margin-left: -5em;
 }
