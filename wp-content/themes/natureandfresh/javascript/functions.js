@@ -6,8 +6,8 @@ function openNav() {
 
     $('#overlay-menu').removeClass('fadeOut')
     $('#overlay-menu').addClass('animated fadeIn');
-    // $('.overlay-menu nav').removeClass('zoomOut')
-    // $('.overlay-menu nav').addClass('animated zoomIn')
+    $('.overlay-menu .container').removeClass('fadeOut')
+    $('.overlay-menu .container').addClass('animated pulse')
     $('#overlay-menu').show();
     $('#nav-icon1').addClass('open');
     $('#nav-menu').html('close menu');
@@ -17,8 +17,8 @@ function openNav() {
 function closeNav() {
     $('#overlay-menu').removeClass('fadeIn')
     $('#overlay-menu').addClass('animated fadeOut');
-    // $('.overlay-menu nav').removeClass('zoomIn')
-    // $('.overlay-menu nav').addClass('animated zoomOut')
+    $('.overlay-menu .container').removeClass('pulse')
+    $('.overlay-menu .container').addClass('animated fadeOut')
     $('#nav-icon1').removeClass('open');
     $('#nav-menu').html('menu');
 };
@@ -34,6 +34,7 @@ $(function () {
         accessToken: '2303036.1677ed0.e57f7e4944304bb6b9c064a037f82e0c',
         template: '<img style="display: none;" src="{{image}}"></img>',
         after: function() {
+
             $('#nav-icon1').click(function () {
                 if ($('#nav-icon1').hasClass('open')) {
                     closeNav();
