@@ -26,7 +26,7 @@ Template Name: Home page
                     <span></span>
                 </a>
 
-                <a href="#" class="menu">
+                <a id="nav-menu" href="#" class="menu">
                     menu
                 </a>
 

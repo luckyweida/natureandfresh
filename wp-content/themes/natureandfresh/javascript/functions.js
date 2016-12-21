@@ -2,19 +2,25 @@
 /* Open when someone clicks on the span element */
 function openNav() {
     $('#instafeed').find('img').hide();
-    console.log(parseInt(Math.random() * 100 % 15, 10))
     $($('#instafeed').find('img')[parseInt(Math.random() * 100 % 15, 10)]).fadeIn();
 
-    $('#overlay-menu').removeClass('fadeOutLeftBig')
-    $('#overlay-menu').addClass('animated fadeInLeftBig')
+    $('#overlay-menu').removeClass('fadeOut')
+    $('#overlay-menu').addClass('animated fadeIn');
+    // $('.overlay-menu nav').removeClass('zoomOut')
+    // $('.overlay-menu nav').addClass('animated zoomIn')
     $('#overlay-menu').show();
+    $('#nav-icon1').addClass('open');
+    $('#nav-menu').html('close menu');
 };
 
 /* Close when someone clicks on the "x" symbol inside the overlay */
 function closeNav() {
-    $('#overlay-menu').removeClass('fadeInLeftBig')
-    $('#overlay-menu').addClass('animated fadeOutLeftBig')
-    $('#nav-icon1').toggleClass('open');
+    $('#overlay-menu').removeClass('fadeIn')
+    $('#overlay-menu').addClass('animated fadeOut');
+    // $('.overlay-menu nav').removeClass('zoomIn')
+    // $('.overlay-menu nav').addClass('animated zoomOut')
+    $('#nav-icon1').removeClass('open');
+    $('#nav-menu').html('menu');
 };
 
 $(function () {
@@ -28,21 +34,28 @@ $(function () {
         accessToken: '2303036.1677ed0.e57f7e4944304bb6b9c064a037f82e0c',
         template: '<img style="display: none;" src="{{image}}"></img>',
         after: function() {
+            $('#nav-icon1').click(function () {
+                if ($('#nav-icon1').hasClass('open')) {
+                    closeNav();
+                } else {
+                    openNav();
+                }
+                return false;
+            });
+
+            $('.menu').click(function () {
+                if ($('#nav-icon1').hasClass('open')) {
+                    closeNav();
+                } else {
+                    openNav();
+                }
+                return false;
+            })
         }
     });
     feed.run();
 
-    $('#nav-icon1').click(function () {
-        $(this).toggleClass('open');
-        $('.overlay-menu nav').addClass('animated fadeInUp')
-        openNav();
-        return false;
-    });
 
-    $('.menu').click(function () {
-        $('#nav-icon1').click();
-        return false;
-    })
 
     $('.control_quantity .add').click(function () {
         var value = $(this).parent().find('.amount').val();

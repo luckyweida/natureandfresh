@@ -31,18 +31,18 @@
   line-height: 1.8;
 }
 .btn {
-  background: #7eb184;
+  background: #7EB184;
   border: none;
   text-shadow: none;
   box-shadow: none;
   border-radius: 5px;
   font-size: 1em;
   color: white;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out !important;
 }
 .btn:hover,
 .btn:focus {
-  background: #5b7543;
+  background: #5B7543;
   color: white;
 }
 .btn.btn-sm {
@@ -68,10 +68,10 @@ p {
 html,
 body {
   height: 100%;
-  background-color: #fefbf3;
+  background-color: #FEFBF3;
   color: #555555;
   font-family: 'Roboto-Regular', sans-serif;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out !important;
 }
 html .preload-loading,
 body .preload-loading {
@@ -102,13 +102,13 @@ body .preload-content {
 }
 html a,
 body a {
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out !important;
   color: #555555;
 }
 html a:hover,
 body a:hover {
-  transition: all 0.2s ease-in-out;
-  color: #7eb184;
+  transition: all 0.2s ease-in-out !important;
+  color: #7EB184;
   text-decoration: none;
 }
 html span.is-img img,
@@ -170,9 +170,6 @@ header .main-nav #nav-icon1 {
   transition: 0.5s ease-in-out;
   cursor: pointer;
 }
-header .main-nav #nav-icon1.open {
-  position: fixed;
-}
 header .main-nav #nav-icon1 span {
   display: block;
   position: absolute;
@@ -223,7 +220,7 @@ header .menu-account a:last-child:before {
   width: 2px;
   height: 16px;
   display: inline-block;
-  background: #ebe1cd;
+  background: #EBE1CD;
   margin: 0 9px 0 4px;
   position: relative;
   top: 3px;
@@ -231,22 +228,20 @@ header .menu-account a:last-child:before {
 /* The Overlay menu */
 .overlay-menu {
   /* Height & width depends on how you want to reveal the overlay (see JS below) */
-
   height: 100%;
   width: 100%;
   position: fixed;
   z-index: 999;
   left: 0;
   top: 0;
-  background-color: #f0eade;
+  background-color: #F0EADE;
   overflow-y: hidden;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out !important;
   display: none;
 }
 .overlay-menu .container .row {
   padding-top: 5em;
   /* Position the close button (top right corner) */
-
 }
 .overlay-menu .container .row nav {
   padding-left: 0;
@@ -259,7 +254,7 @@ header .menu-account a:last-child:before {
   line-height: 1.5;
 }
 .overlay-menu .container .row nav a:hover {
-  color: #7eb184;
+  color: #7EB184;
 }
 @media screen and (max-height: 450px) {
   .overlay-menu .container .row nav a {
@@ -308,7 +303,7 @@ footer .ft-menu a.mi:after {
   font-size: 1.3em;
   padding-left: .5em;
   padding-top: .5em;
-  color: #7eb184;
+  color: #7EB184;
 }
 footer .ft-contact {
   color: #555555;
@@ -324,11 +319,11 @@ footer .author {
 }
 footer .author a {
   font-family: "PlayfairDisplay-Italic";
-  color: #7eb184;
+  color: #7EB184;
   font-size: 1em;
 }
 footer .author a:hover {
-  color: #5b7543;
+  color: #5B7543;
 }
 #homepage .home-feature .home-feature_left h1 {
   font-family: 'PlayfairDisplay-Bold';
@@ -401,7 +396,7 @@ footer .author a:hover {
 }
 #homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner .carousel-next:hover path,
 #homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner .carousel-prev:hover path {
-  fill: #7eb184 !important;
+  fill: #7EB184 !important;
   transition: all 0.2s ease-in-out !important;
 }
 #homepage .home-feature .home-feature_right .home-feature__productSlider .home-feature__productSlider_inner .featured {
@@ -426,11 +421,11 @@ footer .author a:hover {
   vertical-align: middle;
   line-height: 25px;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out !important;
 }
 #homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity .add:hover,
 #homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity .remove:hover {
-  background-color: #7eb184;
+  background-color: #7EB184;
   fill: white;
 }
 #homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity .add img,
@@ -440,10 +435,10 @@ footer .author a:hover {
   font-weight: 900;
 }
 #homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity .add {
-  background: url('../images/icon-add.svg') 5px center no-repeat #ebe1cd;
+  background: url('../images/icon-add.svg') 5px center no-repeat #EBE1CD;
 }
 #homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity .remove {
-  background: url('../images/icon-remove.svg') center center no-repeat #ebe1cd;
+  background: url('../images/icon-remove.svg') center center no-repeat #EBE1CD;
 }
 #homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity [type=text] {
   font-family: "Roboto-Bold", serif;
@@ -456,7 +451,7 @@ footer .author a:hover {
   margin: 0 .5em;
 }
 #homepage .home-feature .home-feature_right .home-feature__productSlider .control .control_quantity [type=text]:focus {
-  background: #ebe1cd;
+  background: #EBE1CD;
   border-radius: 5px;
   outline: none;
 }
@@ -496,7 +491,7 @@ footer .author a:hover {
   padding-bottom: 2em;
 }
 .article-offset .row article .article-offset_heading {
-  background: #fefbf3;
+  background: #FEFBF3;
   padding: 1em 0 2em 3em;
   margin-left: -5em;
 }
