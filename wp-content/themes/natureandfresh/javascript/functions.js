@@ -6,8 +6,6 @@ function openNav() {
 
     $('#overlay-menu').removeClass('fadeOut')
     $('#overlay-menu').addClass('animated fadeIn');
-    $('.overlay-menu .container').removeClass('fadeOut')
-    $('.overlay-menu .container').addClass('animated pulse')
     $('#overlay-menu').show();
     $('#nav-icon1').addClass('open');
     $('#nav-menu').html('close menu');
@@ -17,8 +15,6 @@ function openNav() {
 function closeNav() {
     $('#overlay-menu').removeClass('fadeIn')
     $('#overlay-menu').addClass('animated fadeOut');
-    $('.overlay-menu .container').removeClass('pulse')
-    $('.overlay-menu .container').addClass('animated fadeOut');
     $('#overlay-menu').fadeOut();
     $('#nav-icon1').removeClass('open');
     $('#nav-menu').html('menu');
@@ -36,27 +32,28 @@ $(function () {
         template: '<img style="display: none;" src="{{image}}"></img>',
         after: function() {
 
-            $('#nav-icon1').click(function () {
-                if ($('#nav-icon1').hasClass('open')) {
-                    closeNav();
-                } else {
-                    openNav();
-                }
-                return false;
-            });
 
-            $('.menu').click(function () {
-                if ($('#nav-icon1').hasClass('open')) {
-                    closeNav();
-                } else {
-                    openNav();
-                }
-                return false;
-            })
         }
     });
     feed.run();
 
+    $('#nav-icon1').click(function () {
+        if ($('#nav-icon1').hasClass('open')) {
+            closeNav();
+        } else {
+            openNav();
+        }
+        return false;
+    });
+
+    $('.menu').click(function () {
+        if ($('#nav-icon1').hasClass('open')) {
+            closeNav();
+        } else {
+            openNav();
+        }
+        return false;
+    })
 
 
     $('.control_quantity .add').click(function () {

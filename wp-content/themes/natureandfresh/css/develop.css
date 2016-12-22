@@ -305,6 +305,10 @@ footer .ft-menu a.mi:after {
   padding-top: .5em;
   color: #7EB184;
 }
+footer .ft-menu .fb {
+  position: absolute;
+  right: 0;
+}
 footer .ft-contact {
   color: #555555;
   font-size: 0.8125em;

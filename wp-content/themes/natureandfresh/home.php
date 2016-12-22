@@ -20,7 +20,7 @@ Template Name: Home page
     <section class="container">
         <header class="row">
             <nav class="main-nav">
-                <a id="nav-icon1" href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+                <a id="nav-icon1" href="javascript:void(0)" class="closebtn">
                     <span></span>
                     <span></span>
                     <span></span>
