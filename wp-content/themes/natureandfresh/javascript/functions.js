@@ -2,7 +2,8 @@
 /* Open when someone clicks on the span element */
 function openNav() {
     $('#instafeed').find('img').hide();
-    $($('#instafeed').find('img')[parseInt(Math.random() * 100 % 15, 10)]).fadeIn();
+    var length = $('#instafeed').find('img').size();
+    $($('#instafeed').find('img')[parseInt((Math.random() * 100) % length, 10)]).fadeIn();
 
     $('#overlay-menu').removeClass('fadeOut')
     $('#overlay-menu').addClass('animated fadeIn');

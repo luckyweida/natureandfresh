@@ -34,7 +34,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.0/owl.carousel.min.js"></script>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/instafeed.js/1.4.1/instafeed.min.js" type="text/javascript"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/javascript/functions.js?v=3"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/javascript/functions.js?v=4"></script>
 
 
 </body>
