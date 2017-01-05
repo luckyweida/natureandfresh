@@ -27,8 +27,8 @@ $(function () {
         get: 'user',
         limit: 15,
         resolution: 'standard_resolution',
-        userId: '2303036',
-        accessToken: '2303036.1677ed0.e57f7e4944304bb6b9c064a037f82e0c',
+        userId: '4266168427',
+        accessToken: '4266168427.1677ed0.bf4887a85d5d48d3828b1fa66f8ea871',
         template: '<img style="display: none;" src="{{image}}"></img>',
         after: function() {
 
