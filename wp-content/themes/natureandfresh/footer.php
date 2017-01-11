@@ -9,7 +9,9 @@
                 <a class="mi" href="#">Wholesale</a>
                 <a href="#">Get in touch</a>
 
-                <a class="fb" target="_blank" href="https://www.facebook.com/Nature-Fresh-409725865782785/?fref=ts"><img src="<?php echo get_template_directory_uri(); ?>/images/ft_facebook.svg"></a>
+                <a class="fb" target="_blank" href="https://www.facebook.com/Nature-Fresh-409725865782785/?fref=ts">
+                    <img class="svg" src="<?php echo get_template_directory_uri(); ?>/images/ft_facebook.svg">
+                </a>
             </div>
             <div class="col-md-8">
                 <p class="ft-contact">Tel. <a href="tell:021-079-0102">021 079 0102</a>&nbsp;&nbsp;|&nbsp;&nbsp;Email. <a href="mailto:info@natureandfresh.co.nz">info@natureandfresh.co.nz</a>&nbsp;&nbsp;|&nbsp;&nbsp;Addrress. 1340C Glenbrook Road, RD1, Waiuku 2681, New Zealand</p>
