@@ -16,11 +16,70 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.0/assets/owl.carousel.min.css" />
 
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css" type="text/css"/>
+    <?php wp_head(); ?>
+
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css" type="text/css"/>
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/develop.css?v=3.4" type="text/css"/>
 
-	<?php wp_head(); ?>
 </head>
 <body>
 
+<div class="preload-loading">
+    <div class="loading-widgets">
+        <img src="<?php echo get_template_directory_uri(); ?>/images/logo.svg" />
+        <input type="text" value="0" class="dial" autocomplete="off">
+    </div>
+</div>
+
+<div class="preload-content">
+    <section class="container">
+        <header class="row">
+            <nav class="main-nav col-md-4 col-xs-4">
+                <a id="nav-icon1" href="javascript:void(0)" class="closebtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+
+                <a id="nav-menu" href="#" class="menu">
+                    menu
+                </a>
+
+                <a class="hidden-xs" href="/shop" title="shop">shop</a>
+            </nav>
+
+            <a id="logo" class="col-md-4 col-xs-4"  href="/" title="Nature & Fresh">
+                <img class="lazy-load" src="http://placehold.it/16x16/FEFBF3/FEFBF3" data-src="<?php echo get_template_directory_uri(); ?>/images/logo.svg"  data-delay="500" alt="Nature and Fresh">
+            </a>
+
+            <div class="menu-account col-md-4 col-xs-4">
+                <a href="/sign-in">sign in</a>
+
+                <a href="/cart">cart
+                    <small>(5)</small>
+                </a>
+            </div>
+        </header>
+
+        <!--overlay-menu-->
+        <div id="overlay-menu" class="overlay-menu">
+            <div class="container">
+                <div class="row">
+                    <nav class="col-md-4">
+                        <a class="menu-item" href="#">shop</a>
+                        <a class="menu-item" href="#">about</a>
+                        <a class="menu-item" href="#">the photo</a>
+                        <a class="menu-item" href="#">wholesale</a>
+                        <a class="menu-item" href="#">get in touch</a>
+                    </nav>
+                    <div class="col-md-6" id="instafeed"></div>
+                    <div class="col-md-2 overlay-menu_facebook">
+                        <a target="_blank" href="https://www.facebook.com/Nature-Fresh-409725865782785/?fref=ts">
+                            <img class="svg" src="<?php echo get_template_directory_uri(); ?>/images/ft_facebook.svg">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div><!--Ends overlay-menu-->
+    </section>
 
