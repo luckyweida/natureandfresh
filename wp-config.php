@@ -37,6 +37,11 @@ define('DB_CHARSET', 'utf8mb4');
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
 
+define('WC_CONSUMER_KEY', 'ck_9dcee26039e564183cd26efcb4e136550bc94a97');
+define('WC_CONSUMER_SECRET', 'cs_889acdc3e8c95da4f244db044cbbfe3ff6f63e6b');
+
+
+
 /**#@+
  * Authentication Unique Keys and Salts.
  *

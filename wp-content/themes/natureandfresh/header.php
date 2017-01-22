@@ -1,3 +1,13 @@
+<?php
+$count = 0;
+
+global $woocommerce;
+$items = $woocommerce->cart->get_cart();
+foreach ($items as $item) {
+    $count += $item['quantity'];
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +29,7 @@
     <?php wp_head(); ?>
 
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css" type="text/css"/>
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/develop.css?v=3.4" type="text/css"/>
+	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/develop.css?v=3.5" type="text/css"/>
 
 </head>
 <body>
@@ -56,7 +66,7 @@
                 <a href="/sign-in">sign in</a>
 
                 <a href="/cart">cart
-                    <small>(5)</small>
+                    <small>(<?php echo $count; ?>)</small>
                 </a>
             </div>
         </header>
