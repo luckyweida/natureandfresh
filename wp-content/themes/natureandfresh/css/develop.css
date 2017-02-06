@@ -818,3 +818,253 @@ footer .author a:hover {
   margin: 0 auto;
   margin-top: 1em;
 }
+#product .vertical-text {
+  font-size: 90%;
+  background: #E0D9C9;
+  padding: .5em 1em;
+  width: 11em;
+  cursor: pointer;
+}
+#product .vertical-text.desktop {
+  position: absolute;
+  right: 0;
+  top: 20em;
+  transform: rotate(90deg);
+  transform-origin: left top 0;
+}
+#product .vertical-text.mobile {
+  margin: 0 auto;
+}
+#product .product-title {
+  font-family: "Playfair Display", serif;
+  font-size: 58px;
+  font-weight: bold;
+  color: #555555;
+}
+#product .header .home-feature__productSlider .home-feature__productSlider_inner:hover .carousel-prev,
+#product .header .home-feature__productSlider .home-feature__productSlider_inner:hover .carousel-next {
+  visibility: visible !important;
+}
+#product .header .home-feature__productSlider .home-feature__productSlider_inner {
+  text-align: center;
+  position: relative;
+  margin: 0 auto;
+}
+#product .header .home-feature__productSlider .home-feature__productSlider_inner .owl-dots .owl-dot {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  background-color: #E0D9C9;
+  border-radius: 50%;
+  margin-right: .3em;
+}
+#product .header .home-feature__productSlider .home-feature__productSlider_inner .owl-dot.active {
+  background-color: #F3BF60;
+}
+#product .header .home-feature__productSlider .home-feature__productSlider_inner .featured {
+  margin: 0 auto;
+  display: block;
+  overflow: hidden;
+}
+#product .header .home-feature__productSlider .home-feature__productSlider_inner .featured span,
+#product .header .home-feature__productSlider .home-feature__productSlider_inner .featured img {
+  width: 100%;
+}
+#product .header .right .content {
+  font-size: 18px;
+}
+#product .header .right strong {
+  display: block;
+  margin: 20px 0 10px 0;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 16px;
+}
+#product .header .right .regular-arrow {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 10px;
+  color: #9E9E9E;
+  vertical-align: text-top;
+  margin: 0 15px;
+}
+#product .header .right .regular-price {
+  text-decoration: line-through;
+}
+#product .header .right .regular {
+  color: #9E9E9E;
+}
+#product .header .right .price {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 28px;
+}
+#product .header .right .dollar {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 10px;
+  vertical-align: text-top;
+}
+#product .header .right .price-wrap {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+#product .header .right .attrs {
+  margin-top: 30px;
+}
+#product .header .right .attrs .opt {
+  box-sizing: border-box;
+  border: 1px solid #E0D9C9;
+  border-radius: 5px;
+  padding: 7.5px 10.5px 8.5px 10.5px;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 15px;
+  color: #AAAAAA;
+  cursor: pointer;
+}
+#product .header .right .attrs input[type=radio] {
+  display: none;
+}
+#product .header .right .attrs input[type=radio]:checked + label {
+  background-color: #E0D9C9;
+  color: #555555;
+}
+#product .header .right .control .control_quantity {
+  display: flex;
+  text-align: left;
+  justify-content: left;
+  align-items: left;
+}
+#product .header .right .control .control_quantity .add,
+#product .header .right .control .control_quantity .remove {
+  display: inline-block;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  line-height: 25px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out !important;
+}
+#product .header .right .control .control_quantity .add:hover,
+#product .header .right .control .control_quantity .remove:hover {
+  background-color: #7EB184;
+  fill: white;
+}
+#product .header .right .control .control_quantity .add img,
+#product .header .right .control .control_quantity .remove img {
+  margin-top: -0.5em;
+  font-size: 16px;
+  font-weight: 900;
+}
+#product .header .right .control .control_quantity .add {
+  background: url('../images/icon-add.svg') 5px center no-repeat #EBE1CD;
+}
+#product .header .right .control .control_quantity .remove {
+  background: url('../images/icon-remove.svg') center center no-repeat #EBE1CD;
+}
+#product .header .right .control .control_quantity [type=text] {
+  font-family: "Roboto-Bold", serif;
+  font-size: 18px;
+  width: 2em;
+  text-align: center;
+  border: none;
+  background: none;
+  outline: none;
+  margin: 0 .5em;
+  line-height: 10px;
+}
+#product .header .right .control .control_quantity [type=text]:focus {
+  background: #EBE1CD;
+  border-radius: 5px;
+  outline: none;
+}
+#product .header .right .control .btn {
+  margin-top: 1em;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  color: white;
+  padding: 7px 15px 10px 15px;
+}
+#product .related-products {
+  padding: 5em 0 0 0;
+  text-align: center;
+}
+#product .related-products * {
+  transition: all 0.2s ease-in-out !important;
+}
+#product .related-products h2 {
+  font-family: "Roboto-Regular", serif;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 19px;
+  color: #555555;
+}
+#product .related-products .item {
+  position: relative;
+  max-width: 15em;
+  margin: 0 auto;
+}
+#product .related-products .item a .overlay {
+  position: absolute;
+  top: 35%;
+  display: none;
+  z-index: 99;
+  text-align: center;
+  width: 100%;
+}
+#product .related-products .item a .overlay h4 {
+  color: #555555;
+}
+#product .related-products .item:hover .overlay {
+  display: block;
+}
+#product .related-products .item:hover img {
+  opacity: 0.1;
+}
+@media screen and (min-width: 767px) {
+  #product .product-title.mobile {
+    display: none;
+  }
+  #product .product-title.desktop {
+    display: block;
+  }
+}
+@media screen and (max-width: 767px) {
+  #product .product-title.mobile {
+    display: block;
+  }
+  #product .product-title.desktop {
+    display: none;
+  }
+  #product .header {
+    text-align: center;
+  }
+  #product .header .control_quantity {
+    width: 6em;
+    margin: 0 auto;
+  }
+  #product .related-products {
+    padding: 2em 0 0 0 !important;
+  }
+}
+@media screen and (min-width: 1500px) {
+  #product .vertical-text.mobile {
+    display: none;
+  }
+  #product .vertical-text.desktop {
+    display: block;
+  }
+}
+@media screen and (max-width: 1499px) {
+  #product .vertical-text.desktop {
+    display: none;
+  }
+  #product .vertical-text.mobile {
+    display: block;
+  }
+}

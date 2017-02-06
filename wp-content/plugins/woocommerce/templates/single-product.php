@@ -10,50 +10,222 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see 	    https://docs.woocommerce.com/document/template-structure/
- * @author 		WooThemes
- * @package 	WooCommerce/Templates
+ * @see        https://docs.woocommerce.com/document/template-structure/
+ * @author        WooThemes
+ * @package    WooCommerce/Templates
  * @version     1.6.4
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly
 }
 
-get_header( 'shop' ); ?>
+function slugify($string, $replace = array(), $delimiter = '-')
+{
+    // https://github.com/phalcon/incubator/blob/master/Library/Phalcon/Utils/Slug.php
+    if (!extension_loaded('iconv')) {
+        throw new Exception('iconv module not loaded');
+    }
+    // Save the old locale and set the new locale to UTF-8
+    $oldLocale = setlocale(LC_ALL, '0');
+    setlocale(LC_ALL, 'en_US.UTF-8');
+    $clean = iconv('UTF-8', 'ASCII//TRANSLIT', $string);
+    if (!empty($replace)) {
+        $clean = str_replace((array)$replace, ' ', $clean);
+    }
+    $clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $clean);
+    $clean = strtolower($clean);
+    $clean = preg_replace("/[\/_|+ -]+/", $delimiter, $clean);
+    $clean = trim($clean, $delimiter);
+    // Revert back to the old locale
+    setlocale(LC_ALL, $oldLocale);
+    return $clean;
+}
 
-	<?php
-		/**
-		 * woocommerce_before_main_content hook.
-		 *
-		 * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
-		 * @hooked woocommerce_breadcrumb - 20
-		 */
-		do_action( 'woocommerce_before_main_content' );
-	?>
+require_once(get_template_directory() . '/lib/woocommerce-api.php');
+$options = array(
+    'debug' => true,
+    'return_as_array' => false,
+    'validate_url' => false,
+    'timeout' => 300,
+    'ssl_verify' => false,
+);
 
-		<?php while ( have_posts() ) : the_post(); ?>
+global $product;
 
-			<?php wc_get_template_part( 'content', 'single-product' ); ?>
+$current = null;
+$others = array();
+try {
+    $client = new WC_API_Client(get_site_url(), WC_CONSUMER_KEY, WC_CONSUMER_SECRET, $options);
+    $result = $client->products->get();
+    foreach ($result->products as $itm) {
+        if (strpos($itm->permalink, '/' . $product . '/') !== false) {
+            $current = $itm;
+        } else {
+            $others[] = $itm;
+        }
+    }
+//    var_dump('<pre>', $result->products, '</pre>');exit;
+} catch (WC_API_Client_Exception $e) {
+}
 
-		<?php endwhile; // end of the loop. ?>
+if (gettype($current) !== 'object') {
+    global $wp_query;
+    $wp_query->set_404();
+    status_header(404);
+    get_template_part(404);
+    exit();
+}
 
-	<?php
-		/**
-		 * woocommerce_after_main_content hook.
-		 *
-		 * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
-		 */
-		do_action( 'woocommerce_after_main_content' );
-	?>
+//var_dump('<pre>', $current, '</pre>');exit;
 
-	<?php
-		/**
-		 * woocommerce_sidebar hook.
-		 *
-		 * @hooked woocommerce_get_sidebar - 10
-		 */
-		do_action( 'woocommerce_sidebar' );
-	?>
+get_header('shop'); ?>
 
-<?php get_footer( 'shop' ); ?>
+<div id="product">
+    <div class="container">
+        <div class="vertical-text desktop js-product-overlay" data-toggle="modal" data-target="#myModal">Health Benefits</div>
+        <div class="row header">
+            <div class="col-sm-5">
+                <h4 class="product-title mobile"><?php echo $current->title; ?></h4>
+                <div class="home-feature__productSlider">
+                    <div class="home-feature__productSlider_inner">
+                        <div class="owl-carousel owl-theme featured">
+                            <?php foreach ($current->images as $image) { ?>
+                                <span class="is-img owl-item"><img data-src="<?php echo $image->src; ?>"/></span>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-offset-1 col-sm-6 right">
+                <h4 class="product-title desktop"><?php echo $current->title; ?></h4>
+                <div class="vertical-text mobile js-product-overlay" data-toggle="modal" data-target="#myModal">Health Benefits</div>
+
+                <div class="price-wrap">
+<!--                    <span class='dollar regular'>$</span><span class='regular regular-price price'>19.95</span>-->
+<!--                    <span class='regular-arrow'>&rsaquo;</span>-->
+<!--                    <span class='dollar'>$</span><span class='price'>15.95</span>-->
+                </div>
+                <div class="content"><?php echo $current->short_description; ?></div>
+
+                <div class="attrs js-choices">
+                    <?php foreach ($current->attributes as $attrIdx => $attribute) { ?>
+                        <div class="attr">
+                            <strong><?php echo $attribute->name; ?></strong>
+                            <div>
+                                <?php foreach ($attribute->options as $optIdx => $option) { ?>
+                                    <input name="attr<?php echo $attrIdx; ?>" <?php if ($optIdx == 0) { ?>checked<?php } ?> id="opt-<?php echo $attrIdx . '-' . $optIdx; ?>" type="radio" autocomplete="off" value="<?php echo slugify($option); ?>"/>
+                                    <label for="opt-<?php echo $attrIdx . '-' . $optIdx; ?>" class="opt"><?php echo $option; ?></label>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
+
+
+                <div class="control">
+                    <form enctype="multipart/form-data" autocomplete="off" novalidate method="post">
+                        <div class="price-wrap"></div>
+                        <strong>Quantity</strong>
+                        <div class="control_quantity">
+                            <div class="remove"></div>
+                            <input value="1" name="quantity" class="amount" type="text"/>
+                            <div class="add"></div>
+                        </div>
+
+                        <button type="submit" class="btn btn-sm">Add to cart</button>
+                        <div class="js-params" style="display: none;">
+                            <?php foreach ($current->variations as $varIdx => $variation) { ?>
+                                <?php
+                                $optionsHtml = join(' ', array_map(function ($obj) {
+                                    return slugify($obj->option);
+                                }, $variation->attributes));
+                                $optionsJson = urlencode(json_encode(array_map(function ($obj) {
+                                    return array($obj->slug, $obj->option);
+                                }, $variation->attributes)));
+                                ?>
+                                <div class="js-var">
+                                    <input id="var-<?php echo $varIdx ?>" <?php if ($varIdx == 0) { ?>checked<?php } ?> name="variation_id" data-attrs="<?php echo $optionsJson; ?>" data-html="<?php echo $optionsHtml; ?>" type="radio" value="<?php echo $variation->id; ?>"/>
+                                    <label for="var-<?php echo $varIdx ?>"><?php echo $optionsHtml; ?></label>
+                                </div>
+                            <?php } ?>
+
+                            <input name="add-to-cart" value="<?php echo $current->id; ?>" type="text"><br/>
+                            <input name="product_id" value="<?php echo $current->id; ?>" type="text"><br/>
+                            <div class="js-attrs"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            </p>
+        </div>
+    </div>
+
+    <section class="container related-products">
+        <h2>OH, AND YOU MIGHT LIKE THESE TOO</h2>
+        <div class="owl-carousel owl-theme">
+            <?php foreach ($others as $other) { ?>
+                <div class="item">
+                    <a href="<?php echo $other->permalink; ?>">
+                        <div class="overlay">
+                            <h4><?php echo $other->title; ?></h4>
+                            <button class="btn btn-success">View detail</button>
+                        </div>
+                        <img src="<?php echo $other->images[0]->src; ?>"/>
+                    </a>
+                </div>
+            <?php } ?>
+        </div>
+    </section>
+
+    <?php /**
+     * <section class="container-fluid article-offset">
+     * <div class="row">
+     * <div class="article-offset_img col-md-6 col-xs-12 noPadding lazy-load" data-style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/img-farm_birdview.png'); background-size: cover; background-position: center;"></div>
+     * <article class="col-md-6 col-xs-12">
+     * <div class="article-offset_heading">
+     * <h2>Amazing Health Benefits Of Macadamia Nuts</h2>
+     * </div>
+     * <p>Macadamia nuts are considered the world’s finest nuts. Macadamia nuts are small buttery flavored nuts cultivated from macadamia nut trees that are grown in tropical climates of Australia, Brazil, Indonesia, Kenya, New Zealand, and South Africa. Although Australia is the largest producer of Macadamia nuts, nuts cultivated in Hawaii are the most acclaimed for their delicious taste. Their delicate flavor and crunchy texture make them a delight to consume.</p>
+     * <p>Eating nuts on a regular basis has a positive effect on the health. These sweet, creamy, crunchy, and luxurious nuts are more often than not thought of as high fat indulgence rather than health food. But Macadamia contains a range of nutritious and health-promoting nutrients that make them an important part of our daily diet. A balanced diet containing macadamias promotes good health, longevity and a reduction in regenerative diseases.</p>
+     * </article>
+     * </div>
+     *
+     *
+     * <div class="row">
+     * <div class="article-offset_img col-md-6 col-xs-12 noPadding lazy-load" data-style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/img-farm_birdview.png'); background-size: cover; background-position: center;"></div>
+     * <article class="col-md-6 col-xs-12">
+     * <p>Macadamia nuts are considered the world’s finest nuts. Macadamia nuts are small buttery flavored nuts cultivated from macadamia nut trees that are grown in tropical climates of Australia, Brazil, Indonesia, Kenya, New Zealand, and South Africa. Although Australia is the largest producer of Macadamia nuts, nuts cultivated in Hawaii are the most acclaimed for their delicious taste. Their delicate flavor and crunchy texture make them a delight to consume.</p>
+     * <p>Eating nuts on a regular basis has a positive effect on the health. These sweet, creamy, crunchy, and luxurious nuts are more often than not thought of as high fat indulgence rather than health food. But Macadamia contains a range of nutritious and health-promoting nutrients that make them an important part of our daily diet. A balanced diet containing macadamias promotes good health, longevity and a reduction in regenerative diseases.</p>
+     * </article>
+     * </div>
+     * </section>
+     */ ?>
+</div>
+
+
+</div>
+
+<?php get_footer('shop'); ?>
+
+<script>
+    $(function () {
+        $('.owl-carousel').owlCarousel({
+            center: true,
+            loop: true,
+            margin: 10,
+            nav: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 5
+                }
+            }
+        })
+    })
+</script>

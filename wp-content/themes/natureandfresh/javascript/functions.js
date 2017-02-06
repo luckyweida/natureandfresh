@@ -24,6 +24,12 @@ function closeNav() {
 $(function () {
     var pageLoadingEnabled = 0;
 
+    $('.js-product-overlay').click(function () {
+        $('#product-overlay').removeClass('fadeOut')
+        $('#product-overlay').addClass('animated fadeIn');
+        $('#product-overlay').show();
+    });
+
     var feed = new Instafeed({
         get: 'user',
         limit: 15,
@@ -173,6 +179,36 @@ $(function () {
             for (var key in json) {
                 var val = json[key];
                 $(this).closest('form').find('.js-attrs').append('<input type="text" name="attribute_' + val[0] + '" value="' + val[1] + '">');
+            }
+        })
+    }
+
+    if ($('#product').length) {
+        processImages();
+        $('.js-attrs').empty();
+        var json = JSON.parse(decodeURIComponent($('.js-var input:checked').data('attrs')));
+        for (var key in json) {
+            var val = json[key];
+            $('.js-attrs').append('<input type="text" name="attribute_' + val[0] + '" value="' + val[1] + '"><br />');
+        }
+        $(document).on('change', '.js-choices', function () {
+            $('.js-attrs').empty();
+            var html = '';
+            $.each($('.attrs .attr input:checked'), function (idx, itm) {
+                html += $(itm).val() + ' ';
+            });
+            html = html.trim();
+
+            $('.js-var input').removeAttr('checked')
+            $.each($('.js-var input'), function (idx, itm) {
+                if ($(itm).data('html') == html) {
+                    $(itm).prop('checked', 'checked');
+                }
+            })
+            var json = JSON.parse(decodeURIComponent($('.js-var input:checked').data('attrs')));
+            for (var key in json) {
+                var val = json[key];
+                $('.js-attrs').append('<input type="text" name="attribute_' + val[0] + '" value="' + val[1] + '"><br />');
             }
         })
     }
