@@ -1026,6 +1026,12 @@ footer .author a:hover {
 #product .related-products .item:hover img {
   opacity: 0.1;
 }
+#product .modal-body {
+  padding: 1em 3em;
+}
+#product .modal-body img {
+  max-width: 100%;
+}
 @media screen and (min-width: 767px) {
   #product .product-title.mobile {
     display: none;

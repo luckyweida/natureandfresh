@@ -24,6 +24,10 @@ function closeNav() {
 $(function () {
     var pageLoadingEnabled = 0;
 
+    // $('#myModal').on('show.bs.modal', function (e) {
+    //     alert('modal show');
+    // });
+
     $('.js-product-overlay').click(function () {
         $('#product-overlay').removeClass('fadeOut')
         $('#product-overlay').addClass('animated fadeIn');
@@ -191,6 +195,8 @@ $(function () {
             var val = json[key];
             $('.js-attrs').append('<input type="text" name="attribute_' + val[0] + '" value="' + val[1] + '"><br />');
         }
+
+        $('.price-wrap').html($('.js-var input:checked').data('price'));
         $(document).on('change', '.js-choices', function () {
             $('.js-attrs').empty();
             var html = '';
@@ -203,6 +209,7 @@ $(function () {
             $.each($('.js-var input'), function (idx, itm) {
                 if ($(itm).data('html') == html) {
                     $(itm).prop('checked', 'checked');
+                    $('.price-wrap').html($(itm).data('price'));
                 }
             })
             var json = JSON.parse(decodeURIComponent($('.js-var input:checked').data('attrs')));
