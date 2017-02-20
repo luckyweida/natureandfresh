@@ -144,12 +144,26 @@ $(function () {
                 lazyLoad: true,
                 animateIn: 'fadeIn',
                 animateOut: 'fadeOut',
+                // dots: false,
+                singleItem: true,
+                center: true,
+                autoplay: true,
+                autoplayHoverPause: true,
+                // autoplaySpeed: 1,
+                // navigation : true,
+                // slideSpeed : 600,
+                // paginationSpeed : 900,
+                // autoPlay : 7000,
+                // transitionStyle : "fadeUp",
+                smartSpeed: 600,
+
                 onChanged: function (ev) {
                     processImages();
                 }
             });
-            owl.owlCarousel();
-            $(itm).fadeIn();
+
+            // owl.owlCarousel();
+            // $(itm).fadeIn();
 
             $(itm).parent().find('.carousel-next').on('click', function () {
                 console.log(1);
@@ -158,13 +172,30 @@ $(function () {
             $(itm).parent().find('.carousel-prev').on('click', function () {
                 owl.trigger('prev.owl.carousel');
             });
+
+
+
+            //Owl carousel height solution
+            // var $this = $(this);
+
+            // $this.owlCarousel({
+            //     afterUpdate: function () {
+            //       updateSize($this);
+            //     },
+            //     afterInit: function () {
+            //       updateSize($this);
+            //     }
+            // });
+
+
         })
     }
+
 
     if ($('#shop').length) {
         processImages();
         $.each($('.js-variation'), function (idx, itm) {
-            $(itm).closest('form').find('.price-wrap').html($(itm).find('option:selected').data('price'));
+            $(itm).closest('form').find('.price-details').html($(itm).find('option:selected').data('price'));
             $(itm).closest('form').find('.variation_id').val($(itm).find('option:selected').data('id'));
             $(itm).closest('form').find('.js-attrs').empty();
 
@@ -175,7 +206,7 @@ $(function () {
             }
         });
         $(document).on('change', '.js-variation', function () {
-            $(this).closest('form').find('.price-wrap').html($(this).find('option:selected').data('price'));
+            $(this).closest('form').find('.price-details').html($(this).find('option:selected').data('price'));
             $(this).closest('form').find('.variation_id').val($(this).find('option:selected').data('id'));
             $(this).closest('form').find('.js-attrs').empty();
 
@@ -196,7 +227,7 @@ $(function () {
             $('.js-attrs').append('<input type="text" name="attribute_' + val[0] + '" value="' + val[1] + '"><br />');
         }
 
-        $('.price-wrap').html($('.js-var input:checked').data('price'));
+        $('.price-details').html($('.js-var input:checked').data('price'));
         $(document).on('change', '.js-choices', function () {
             $('.js-attrs').empty();
             var html = '';
@@ -209,7 +240,7 @@ $(function () {
             $.each($('.js-var input'), function (idx, itm) {
                 if ($(itm).data('html') == html) {
                     $(itm).prop('checked', 'checked');
-                    $('.price-wrap').html($(itm).data('price'));
+                    $('.price-details').html($(itm).data('price'));
                 }
             })
             var json = JSON.parse(decodeURIComponent($('.js-var input:checked').data('attrs')));
@@ -220,6 +251,32 @@ $(function () {
         })
     }
 });
+
+
+//Owl carousel height solution
+// function updateSize($carousel) {
+//     var maxHeight = 0;
+    
+//     $('.owl-item', $carousel).each(function () {
+//     var $this = $(this);
+//     var $image = $this.find('img');
+
+//     //Max height
+//     var prevHeight = $this.height();
+//     var thisHeight = $this.height('auto').height();
+//     $this.height(prevHeight);
+//     maxHeight = (maxHeight > thisHeight ? maxHeight : thisHeight);
+
+//     //Set image as background
+//     var imageSource = $image.attr('src');
+//      $this.css('backgroundImage', 'url(' + imageSource + ')');
+//     });
+
+//     //Set equal height
+//     $('.owl-item', $carousel).height(maxHeight);
+
+//     $('#max-height').text(maxHeight + 'px');
+// }
 
 function startLoadContent(progress) {
     $('.dial').val(progress).trigger('change');
