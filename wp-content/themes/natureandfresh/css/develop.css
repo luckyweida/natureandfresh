@@ -974,6 +974,10 @@ footer .author a:hover {
 .related-products .item a .overlay h4 {
   color: #555555;
 }
+.related-products .carousel-prev,
+.related-products .carousel-next {
+  top: 130px !important;
+}
 .modal .modal-content .modal-header {
   border: none;
   background-color: #FEFBF3;

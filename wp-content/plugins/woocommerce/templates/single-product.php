@@ -17,16 +17,16 @@
  */
 
 if (!defined('ABSPATH')) {
-    exit; // Exit if accessed directly
+	exit; // Exit if accessed directly
 }
 
 function slugify($string, $replace = array(), $delimiter = '-')
 {
-    // https://github.com/phalcon/incubator/blob/master/Library/Phalcon/Utils/Slug.php
+	// https://github.com/phalcon/incubator/blob/master/Library/Phalcon/Utils/Slug.php
 	if (!extension_loaded('iconv')) {
 		throw new Exception('iconv module not loaded');
 	}
-    // Save the old locale and set the new locale to UTF-8
+	// Save the old locale and set the new locale to UTF-8
 	$oldLocale = setlocale(LC_ALL, '0');
 	setlocale(LC_ALL, 'en_US.UTF-8');
 	$clean = iconv('UTF-8', 'ASCII//TRANSLIT', $string);
@@ -37,36 +37,20 @@ function slugify($string, $replace = array(), $delimiter = '-')
 	$clean = strtolower($clean);
 	$clean = preg_replace("/[\/_|+ -]+/", $delimiter, $clean);
 	$clean = trim($clean, $delimiter);
-    // Revert back to the old locale
+	// Revert back to the old locale
 	setlocale(LC_ALL, $oldLocale);
 	return $clean;
 }
 
-require_once(get_template_directory() . '/lib/woocommerce-api.php');
-$options = array(
-	'debug' => true,
-	'return_as_array' => false,
-	'validate_url' => false,
-	'timeout' => 300,
-	'ssl_verify' => false,
-	);
-
 global $product;
-
 $current = null;
 $others = array();
-try {
-	$client = new WC_API_Client('http://natureandfresh.final.nz', WC_CONSUMER_KEY, WC_CONSUMER_SECRET, $options);
-	$result = $client->products->get();
-	foreach ($result->products as $itm) {
-		if (strpos($itm->permalink, '/' . $product . '/') !== false) {
-			$current = $itm;
-		} else {
-			$others[] = $itm;
-		}
+foreach ($myProducts->products as $itm) {
+	if (strpos($itm->permalink, '/' . $product . '/') !== false) {
+		$current = $itm;
+	} else {
+		$others[] = $itm;
 	}
-//    var_dump('<pre>', $result->products, '</pre>');exit;
-} catch (WC_API_Client_Exception $e) {
 }
 
 if (gettype($current) !== 'object') {
@@ -181,22 +165,39 @@ get_header('shop'); ?>
 
 
 		</div>
-	</p>
+	</div>
 </section>
 
 <section class="container related-products">
 	<h2>OH, AND YOU MIGHT LIKE THESE TOO</h2>
-	<div class="owl-carousel owl-theme">
+	<div class="row">
 		<?php foreach ($others as $other) { ?>
-		<div class="item">
-			<a href="<?php echo str_replace('final.nz', 'hopto.org', $other->permalink); ?>">
-				<div class="overlay">
-					<h4><?php echo $other->title; ?></h4>
-					<button class="btn btn-success">View detail</button>
+			<div class="col-md-3">
+				<div class="product-slider">
+					<div class="product-slider_inner">
+						<span class="carousel-prev">
+							<img class="svg loaded" src="<?php echo get_template_directory_uri(); ?>/images/icon-arrow_left.svg" data-class="carousel-prev"/>
+						</span>
+						<span class="carousel-next">
+							<img class="svg loaded" src="<?php echo get_template_directory_uri(); ?>/images/icon-arrow_right.svg" data-class="carousel-next"/>
+						</span>
+
+						<div class="owl-carousel owl-theme related">
+							<?php foreach ($other->images as $image) { ?>
+								<div class="item">
+									<a href="<?php echo str_replace(PRODUCT_FEED_URL, CURRENT_URL, $other->permalink); ?>">
+										<div class="overlay">
+											<h4><?php echo $other->title; ?></h4>
+											<button class="btn btn-success">View detail</button>
+										</div>
+										<img src="<?php echo $image->src; ?>"/>
+									</a>
+								</div>
+							<?php } ?>
+						</div>
+					</div>
 				</div>
-				<img src="<?php echo $other->images[0]->src; ?>"/>
-			</a>
-		</div>
+			</div>
 		<?php } ?>
 	</div>
 </section>
