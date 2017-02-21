@@ -102,7 +102,7 @@ get_header('shop'); ?>
 
 					<div class="owl-carousel owl-theme">
 						<?php foreach ($current->images as $image) { ?>
-						<div class="is-img item" style="width: 80%;">
+						<div class="is-img item" style="width: 100%;">
 							 <div class="owl-carousel-bgImg" style="background-image: url('<?php echo $image->src; ?>')"></div>
 						</div>
 						<?php } ?>

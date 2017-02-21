@@ -147,7 +147,7 @@ $(function () {
                 // dots: false,
                 singleItem: true,
                 center: true,
-                autoplay: true,
+                // autoplay: true,
                 autoplayHoverPause: true,
                 // autoplaySpeed: 1,
                 // navigation : true,

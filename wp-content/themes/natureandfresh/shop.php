@@ -34,9 +34,9 @@ Template Name: Shop
     </div>
 
     <div class="row row-centered products">
+    
         <?php foreach ($result->products as $product) { ?>
         <div class="col-md-4 col-sm-6 col-xs-12 col-centered">
-
             <div class="product-slider">
                 <div class="product-slider_inner">
 
@@ -52,7 +52,7 @@ Template Name: Shop
                         
                         <?php foreach ($product->images as $image) { ?>
                             <a href="<?php echo str_replace('final.nz', 'hopto.org', $product->permalink) ?>">
-                                <div class="is-img item">
+                                <div class="is-img item" style="width: 100%;">
                                     <div class="owl-carousel-bgImg" style="background-image: url('<?php echo $image->src; ?>')"></div>
                                     <!-- <img data-src="<?php //echo $image->src; ?>"/> -->
                                 </div>
