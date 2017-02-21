@@ -6,6 +6,7 @@ $items = $woocommerce->cart->get_cart();
 foreach ($items as $item) {
     $count += $item['quantity'];
 }
+
 ?>
 
 <!DOCTYPE html>

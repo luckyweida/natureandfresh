@@ -191,8 +191,7 @@ $(function () {
         })
     }
 
-
-    if ($('#shop').length) {
+    if ($('#shop').length || $('#homepage').length) {
         processImages();
         $.each($('.js-variation'), function (idx, itm) {
             $(itm).closest('form').find('.price-details').html($(itm).find('option:selected').data('price'));
@@ -228,10 +227,10 @@ $(function () {
         }
 
         $('.price-details').html($('.js-var input:checked').data('price'));
-        $(document).on('change', '.js-choices', function () {
+        $(document).on('change', '.js-choices :radio', function () {
             $('.js-attrs').empty();
             var html = '';
-            $.each($('.attrs .attr input:checked'), function (idx, itm) {
+            $.each($('.js-choices :radio:checked'), function (idx, itm) {
                 html += $(itm).val() + ' ';
             });
             html = html.trim();

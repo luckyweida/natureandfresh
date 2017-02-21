@@ -42,31 +42,15 @@ function slugify($string, $replace = array(), $delimiter = '-')
 	return $clean;
 }
 
-require_once(get_template_directory() . '/lib/woocommerce-api.php');
-$options = array(
-	'debug' => true,
-	'return_as_array' => false,
-	'validate_url' => false,
-	'timeout' => 300,
-	'ssl_verify' => false,
-	);
-
 global $product;
-
 $current = null;
 $others = array();
-try {
-	$client = new WC_API_Client('http://natureandfresh.final.nz', WC_CONSUMER_KEY, WC_CONSUMER_SECRET, $options);
-	$result = $client->products->get();
-	foreach ($result->products as $itm) {
-		if (strpos($itm->permalink, '/' . $product . '/') !== false) {
-			$current = $itm;
-		} else {
-			$others[] = $itm;
-		}
+foreach ($myProducts->products as $itm) {
+	if (strpos($itm->permalink, '/' . $product . '/') !== false) {
+		$current = $itm;
+	} else {
+		$others[] = $itm;
 	}
-//    var_dump('<pre>', $result->products, '</pre>');exit;
-} catch (WC_API_Client_Exception $e) {
 }
 
 if (gettype($current) !== 'object') {
@@ -102,9 +86,9 @@ get_header('shop'); ?>
 
 					<div class="owl-carousel owl-theme">
 						<?php foreach ($current->images as $image) { ?>
-						<div class="is-img item" style="width: 80%;">
-							 <div class="owl-carousel-bgImg" style="background-image: url('<?php echo $image->src; ?>')"></div>
-						</div>
+							<div class="is-img item" style="width: 80%;">
+								 <div class="owl-carousel-bgImg" style="background-image: url('<?php echo $image->src; ?>')"></div>
+							</div>
 						<?php } ?>
 					</div>
 
@@ -130,13 +114,13 @@ get_header('shop'); ?>
 
 			<div class="attrs js-choices">
 				<?php foreach ($current->attributes as $attrIdx => $attribute) { ?>
-				<div class="product-attr">
-					<h4 class="product-attr_title"><?php echo $attribute->name; ?></h4>
-					<?php foreach ($attribute->options as $optIdx => $option) { ?>
-					<input name="attr<?php echo $attrIdx; ?>" <?php if ($optIdx == 0) { ?>checked<?php } ?> id="opt-<?php echo $attrIdx . '-' . $optIdx; ?>" type="radio" autocomplete="off" value="<?php echo slugify($option); ?>"/>
-					<label for="opt-<?php echo $attrIdx . '-' . $optIdx; ?>" class="btn btn-sm btn-option"><?php echo $option; ?></label>
-					<?php } ?>
-				</div>
+					<div class="product-attr">
+						<h4 class="product-attr_title"><?php echo $attribute->name; ?></h4>
+						<?php foreach ($attribute->options as $optIdx => $option) { ?>
+							<input name="attr<?php echo $attrIdx; ?>" <?php if ($optIdx == 0) { ?>checked<?php } ?> id="opt-<?php echo $attrIdx . '-' . $optIdx; ?>" type="radio" autocomplete="off" value="<?php echo slugify($option); ?>"/>
+							<label for="opt-<?php echo $attrIdx . '-' . $optIdx; ?>" class="btn btn-sm btn-option"><?php echo $option; ?></label>
+						<?php } ?>
+					</div>
 				<?php } ?>
 			</div>
 
@@ -152,51 +136,70 @@ get_header('shop'); ?>
 
 					<button type="submit" class="btn btn-lg">Add to cart</button>
 					<div class="js-params" style="display: none;">
-						<?php foreach ($current->variations as $varIdx => $variation) { ?>
-						<?php
-						$optionsHtml = join(' ', array_map(function ($obj) {
-							return slugify($obj->option);
-						}, $variation->attributes));
-						$optionsJson = urlencode(json_encode(array_map(function ($obj) {
-							return array($obj->slug, $obj->option);
-						}, $variation->attributes)));
-						$priceHtml = '';
-						if ($variation->price != $variation->regular_price) {
-							$priceHtml .= "<span class='dollar regular'>$</span><span class='regular regular-price price'>{$variation->regular_price}</span><span class='regular-arrow'>&rsaquo;</span>";
-						}
-						$priceHtml .= "<span class='dollar'>$</span><span class='price'>{$variation->price}</span>";
-						?>
-						<div class="js-var">
-							<input id="var-<?php echo $varIdx ?>" <?php if ($varIdx == 0) { ?>checked<?php } ?> name="variation_id" data-price="<?php echo $priceHtml; ?>" data-attrs="<?php echo $optionsJson; ?>" data-html="<?php echo $optionsHtml; ?>" type="radio" value="<?php echo $variation->id; ?>"/>
-							<label for="var-<?php echo $varIdx ?>"><?php echo $optionsHtml; ?></label>
-						</div>
-						<?php } ?>
 
 						<input name="add-to-cart" value="<?php echo $current->id; ?>" type="text"><br/>
 						<input name="product_id" value="<?php echo $current->id; ?>" type="text"><br/>
+
+						<?php foreach ($current->variations as $varIdx => $variation) { ?>
+							<?php
+								$optionsHtml = join(' ', array_map(function ($obj) {
+									return slugify($obj->option);
+								}, $variation->attributes));
+
+								$optionsJson = urlencode(json_encode(array_map(function ($obj) {
+									return array($obj->slug, $obj->option);
+								}, $variation->attributes)));
+								$priceHtml = '';
+
+								if ($variation->price != $variation->regular_price) {
+									$priceHtml .= "<span class='dollar regular'>$</span><span class='regular regular-price price'>{$variation->regular_price}</span><span class='regular-arrow'>&rsaquo;</span>";
+								}
+								$priceHtml .= "<span class='dollar'>$</span><span class='price'>{$variation->price}</span>";
+							?>
+							<div class="js-var">
+								<input id="var-<?php echo $varIdx ?>" <?php if ($varIdx == 0) { ?>checked<?php } ?> name="variation_id" data-price="<?php echo $priceHtml; ?>" data-attrs="<?php echo $optionsJson; ?>" data-html="<?php echo $optionsHtml; ?>" type="radio" value="<?php echo $variation->id; ?>"/>
+								<label for="var-<?php echo $varIdx ?>"><?php echo $optionsHtml; ?></label>
+							</div>
+						<?php } ?>
+
 						<div class="js-attrs"></div>
 					</div>
 				</form>
 			</div>
-
-
 		</div>
-	</p>
+	</div>
 </section>
 
 <section class="container related-products">
 	<h2>OH, AND YOU MIGHT LIKE THESE TOO</h2>
-	<div class="owl-carousel owl-theme">
+	<div class="row">
 		<?php foreach ($others as $other) { ?>
-		<div class="item">
-			<a href="<?php echo str_replace('final.nz', 'hopto.org', $other->permalink); ?>">
-				<div class="overlay">
-					<h4><?php echo $other->title; ?></h4>
-					<button class="btn btn-success">View detail</button>
+			<div class="col-md-3">
+				<div class="product-slider">
+					<div class="product-slider_inner">
+						<span class="carousel-prev">
+							<img class="svg loaded" src="<?php echo get_template_directory_uri(); ?>/images/icon-arrow_left.svg" data-class="carousel-prev"/>
+						</span>
+						<span class="carousel-next">
+							<img class="svg loaded" src="<?php echo get_template_directory_uri(); ?>/images/icon-arrow_right.svg" data-class="carousel-next"/>
+						</span>
+
+						<div class="owl-carousel owl-theme related">
+							<?php foreach ($other->images as $image) { ?>
+								<div class="item">
+									<a href="<?php echo str_replace(PRODUCT_FEED_URL, CURRENT_URL, $other->permalink); ?>">
+										<div class="overlay">
+											<h4><?php echo $other->title; ?></h4>
+											<button class="btn btn-success">View detail</button>
+										</div>
+										<img src="<?php echo $image->src; ?>"/>
+									</a>
+								</div>
+							<?php } ?>
+						</div>
+					</div>
 				</div>
-				<img src="<?php echo $other->images[0]->src; ?>"/>
-			</a>
-		</div>
+			</div>
 		<?php } ?>
 	</div>
 </section>
