@@ -137,8 +137,8 @@ html {
 	text-align:left;
 	/* inline-block space fix */
 	margin-right:-4px;
-
 	vertical-align: top;
+	margin-bottom: 4em;
 }
 
 
@@ -771,7 +771,7 @@ footer {
 			transition: @transition;
 			opacity: 0;
 			z-index: 200;
-			top: 150px;
+			top: 230px;
 			cursor: pointer;
 			position: absolute;
 
@@ -856,8 +856,9 @@ footer {
 					.owl-carousel-bgImg{
 						transition: @transition;
 						margin: 0 auto;
-						width: 340px;
-						height: 340px;
+						width: 500px;
+						height: 400px;
+						max-width: 100%;
 						display: block;
 						background-size: contain;
 						background-position: center;
@@ -879,6 +880,12 @@ footer {
 	}
 
 	.owl-dots {
+		position: absolute;
+		margin-left: auto;
+		margin-right: auto;
+		left: 0;
+		right: 0;
+
 		.owl-dot {
 			span{
 				background-color: @gold-3;
@@ -904,7 +911,7 @@ footer {
 
 
 .control {
-	margin-top: 1em;
+	margin-top: 3em;
 
 	.control_quantity {
 		display: flex;

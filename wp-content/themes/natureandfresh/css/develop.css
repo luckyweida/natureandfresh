@@ -81,6 +81,7 @@ html {
   /* inline-block space fix */
   margin-right: -4px;
   vertical-align: top;
+  margin-bottom: 4em;
 }
 .noPadding {
   padding: 0 !important;
@@ -591,7 +592,7 @@ footer .author a:hover {
   transition: all 0.2s ease-in-out !important;
   opacity: 0;
   z-index: 200;
-  top: 150px;
+  top: 230px;
   cursor: pointer;
   position: absolute;
 }
@@ -657,8 +658,9 @@ footer .author a:hover {
 .product-slider .product-slider_inner .owl-carousel .owl-item .item .owl-carousel-bgImg {
   transition: all 0.2s ease-in-out !important;
   margin: 0 auto;
-  width: 340px;
-  height: 340px;
+  width: 500px;
+  height: 400px;
+  max-width: 100%;
   display: block;
   background-size: contain;
   background-position: center;
@@ -672,6 +674,13 @@ footer .author a:hover {
   justify-content: center;
   align-items: center;
 }
+.product-slider .owl-dots {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
 .product-slider .owl-dots .owl-dot span {
   background-color: #E0D9C9;
   margin: 5px 5px;
@@ -684,7 +693,7 @@ footer .author a:hover {
   background-color: #F9B916;
 }
 .control {
-  margin-top: 1em;
+  margin-top: 3em;
 }
 .control .control_quantity {
   display: flex;
