@@ -45,6 +45,10 @@ html {
 .menu-account .right-menu-item {
   float: right;
 }
+.menu-account .right-menu-item .dropdown-menu {
+  right: 0;
+  left: auto !important;
+}
 .menu-account .right-menu-item .cart-drop {
   background: #FEFBF3;
 }
