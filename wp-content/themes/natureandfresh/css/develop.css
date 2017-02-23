@@ -42,6 +42,31 @@ html {
   line-height: 1.8;
   margin-top: 0 !important;
 }
+.menu-account .right-menu-item {
+  float: right;
+}
+.menu-account .right-menu-item .cart-drop {
+  background: #FEFBF3;
+}
+.menu-account .right-menu-item .cart-drop img {
+  width: 100%;
+  height: 100%;
+}
+.menu-account .right-menu-item .cart-drop .variation dt {
+  display: none;
+}
+.menu-account .right-menu-item .cart-drop .variation dd {
+  display: inline-block;
+  height: 1.5em;
+  padding-right: .5em;
+}
+.menu-account .right-menu-item .cart-drop .variation dd:not(:nth-child(2)) {
+  padding-left: .5em;
+  border-left: 1px solid #ddd;
+}
+.menu-account .right-menu-item .cart-drop .qty {
+  width: 4em;
+}
 .btn {
   background: #7EB184;
   border: none;
