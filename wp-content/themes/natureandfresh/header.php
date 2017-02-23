@@ -203,24 +203,31 @@ foreach ($items as $item) {
                     <div class="cart-drop dropdown-menu" style="width: 30em;">
                         <form method="post" class="login">
 
+                            <?php do_action( 'woocommerce_login_form_start' ); ?>
+
                             <p class="woocommerce-FormRow woocommerce-FormRow--wide form-row form-row-wide">
-                                <label for="username">Username or email address <span class="required">*</span></label>
-                                <input class="woocommerce-Input woocommerce-Input--text input-text" name="username" id="username" value="" type="text">
+                                <label for="username"><?php _e( 'Username or email address', 'woocommerce' ); ?> <span class="required">*</span></label>
+                                <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="username" id="username" value="<?php if ( ! empty( $_POST['username'] ) ) echo esc_attr( $_POST['username'] ); ?>" />
                             </p>
                             <p class="woocommerce-FormRow woocommerce-FormRow--wide form-row form-row-wide">
-                                <label for="password">Password <span class="required">*</span></label>
-                                <input class="woocommerce-Input woocommerce-Input--text input-text" name="password" id="password" type="password">
+                                <label for="password"><?php _e( 'Password', 'woocommerce' ); ?> <span class="required">*</span></label>
+                                <input class="woocommerce-Input woocommerce-Input--text input-text" type="password" name="password" id="password" />
                             </p>
 
+                            <?php do_action( 'woocommerce_login_form' ); ?>
 
                             <p class="form-row">
-                                <input id="woocommerce-login-nonce" name="woocommerce-login-nonce" value="f0daa9bbcd" type="hidden"><input name="_wp_http_referer" value="/my-account/" type="hidden">				<input class="woocommerce-Button button" name="login" value="Login" type="submit">
+                                <?php wp_nonce_field( 'woocommerce-login', 'woocommerce-login-nonce' ); ?>
+                                <input type="submit" class="woocommerce-Button button" name="login" value="<?php esc_attr_e( 'Login', 'woocommerce' ); ?>" />
                                 <label for="rememberme" class="inline">
-                                    <input class="woocommerce-Input woocommerce-Input--checkbox" name="rememberme" id="rememberme" value="forever" type="checkbox"> Remember me				</label>
+                                    <input class="woocommerce-Input woocommerce-Input--checkbox" name="rememberme" type="checkbox" id="rememberme" value="forever" /> <?php _e( 'Remember me', 'woocommerce' ); ?>
+                                </label>
                             </p>
                             <p class="woocommerce-LostPassword lost_password">
-                                <a href="http://localhost:3007/my-account/lost-password/">Lost your password?</a>
+                                <a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?', 'woocommerce' ); ?></a>
                             </p>
+
+                            <?php do_action( 'woocommerce_login_form_end' ); ?>
 
                         </form>
                     </div>
