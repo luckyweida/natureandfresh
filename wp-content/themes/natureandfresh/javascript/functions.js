@@ -138,6 +138,7 @@ $(function () {
         processImages();
 
         $.each($(".owl-carousel"), function (idx, itm) {
+            // alert($(itm).find('.item:not(.cloned)').length);
             var owl = $(itm).owlCarousel({
                 items: 1,
                 loop: true,
@@ -149,6 +150,8 @@ $(function () {
                 center: true,
                 // autoplay: true,
                 autoplayHoverPause: true,
+                touchDrag: $(itm).find('.item:not(.cloned)').length > 1 ? true : false,
+                mouseDrag: $(itm).find('.item:not(.cloned)').length > 1 ? true : false,
                 // autoplaySpeed: 1,
                 // navigation : true,
                 // slideSpeed : 600,

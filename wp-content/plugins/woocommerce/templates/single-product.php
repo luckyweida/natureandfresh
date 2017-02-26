@@ -175,25 +175,16 @@ get_header('shop'); ?>
 			<div class="col-md-3 col-centered">
 				<div class="product-slider">
 					<div class="product-slider_inner">
-						<span class="carousel-prev">
-							<img class="svg loaded" src="<?php echo get_template_directory_uri(); ?>/images/icon-arrow_left.svg" data-class="carousel-prev"/>
-						</span>
-						<span class="carousel-next">
-							<img class="svg loaded" src="<?php echo get_template_directory_uri(); ?>/images/icon-arrow_right.svg" data-class="carousel-next"/>
-						</span>
-
 						<div class="owl-carousel owl-theme related">
-							<?php foreach ($other->images as $image) { ?>
-								<div class="item">
-									<a href="<?php echo str_replace(PRODUCT_FEED_URL, CURRENT_URL, $other->permalink); ?>">
-										<div class="overlay">
-											<h4><?php echo $other->title; ?></h4>
-											<button class="btn btn-success">View detail</button>
-										</div>
-										<img src="<?php echo $image->src; ?>"/>
-									</a>
-								</div>
-							<?php } ?>
+							<div class="item">
+								<a href="<?php echo str_replace(PRODUCT_FEED_URL, CURRENT_URL, $other->permalink); ?>">
+									<div class="overlay">
+										<h4><?php echo $other->title; ?></h4>
+										<button class="btn btn-success">View detail</button>
+									</div>
+									<img src="<?php echo $other->images[0]->src; ?>"/>
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -250,24 +241,3 @@ get_header('shop'); ?>
 
 <?php get_footer('shop'); ?>
 
-<script>
-	$(function () {
-		$('.owl-carousel').owlCarousel({
-			center: true,
-			loop: true,
-			margin: 10,
-			nav: true,
-			responsive: {
-				0: {
-					items: 1
-				},
-				600: {
-					items: 3
-				},
-				1000: {
-					items: 5
-				}
-			}
-		})
-	})
-</script>
