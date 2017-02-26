@@ -67,127 +67,154 @@ foreach ($items as $item) {
             </a>
 
             <div class="menu-account col-md-4 col-xs-4">
-
-
                 <div class="right-menu-item">
-
-
-                    <?php if (is_user_logged_in()) { ?>
-                    <a href="/my-account/" title="my account">my account</a>
-                    <?php } else { ?>
-
-                    <a class="dropdown-toggle" data-toggle="dropdown" title="sign in">
-                        sign in
-                        <!-- <span class="caret"></span> -->
-                    </a>
-                    
-                    <?php } ?>
-                    <div id="cart-drop" class="dropdown-menu dropdown-menu-right">
-
-                        <?php if (count(WC()->cart->get_cart())) { ?>
-
-                        <form action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
-
-                            <?php do_action( 'woocommerce_before_cart_table' ); ?>
-
-                            <?php do_action( 'woocommerce_before_cart_contents' );foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) { $_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key ); if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) { $product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );?>
-
-                            <div class="cart-drop_item">
-                                <div class="cart-drop__thumb">
-                                    <?php
-                                    $thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
-
-                                    if ( ! $product_permalink ) {
-                                        echo $thumbnail;
-                                    } else {
-                                        printf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $thumbnail );
-                                    }
-                                    ?>
-                                </div>
-
-                                <div class="cart-drop__desc">
-                                    <div class="cart-drop__title" data-title="<?php _e( 'Product', 'woocommerce' ); ?>">
-                                        <?php
-                                        if ( ! $product_permalink ) {
-                                            echo apply_filters( 'woocommerce_cart_item_name', $_product->get_title(), $cart_item, $cart_item_key ) . '&nbsp;';
-                                        } else {
-                                            echo apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $_product->get_title() ), $cart_item, $cart_item_key );
-                                        }
-
-                                        echo WC()->cart->get_item_data( $cart_item );
-                                        ?>
-                                    </div>
-
-                                    <div class="cart-drop__desc-details">
-                                        <div class="cart-drop__quantity" data-title="<?php _e( 'Quantity', 'woocommerce' ); ?>">
-                                            <?php
-                                            if ( $_product->is_sold_individually() ) {
-                                                $product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
-                                            } else {
-                                                $product_quantity = woocommerce_quantity_input( array(
-                                                    'input_name'  => "cart[{$cart_item_key}][qty]",
-                                                    'input_value' => $cart_item['quantity'],
-                                                    'max_value'   => $_product->backorders_allowed() ? '' : $_product->get_stock_quantity(),
-                                                    'min_value'   => '0'
-                                                    ), $_product, false );
-                                            }
-
-                                            echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item );
-                                            ?>
-                                        </div>
-
-                                        <div class="cart-drop__price" data-title="<?php _e( 'Price', 'woocommerce' ); ?>">
-                                            x <?php
-                                            echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
-                                            ?>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="cart-drop__delete">
-                                    <?php echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="remove" title="%s" data-product_id="%s" data-product_sku="%s">&times;</a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ),
-                                    __( 'Remove this item', 'woocommerce' ), esc_attr( $product_id ), esc_attr( $_product->get_sku() ) ), $cart_item_key ); ?>
-                                </div>
-                            </div>
-                            <?php }  } do_action( 'woocommerce_cart_contents' ); ?>
-
-                            <footer class="cart-drop_item">
-                                <div class="cart-drop__subtotal">
-                                    <span>Subtotal</span>
-                                    <span class="cartdrop___subtotalPrice">$1234.56</span>
-                                </div>
-                                <div class="cart-drop__checkout">
-                                    <a class="cart-drop__viewCart" href="/cart/" title="view cart">View Cart</a>
-
-                                    <div>
-                                        <input class="btn btn-sm btn-option" type="submit" name="update_cart" value="<?php esc_attr_e( 'Update', 'woocommerce' ); ?>" />
-                                        <a class="btn btn-sm" href="/checkout/" title="check out">Checkout</a>
-                                    </div>
-                                </div>
-                                
-                            </footer>
-
-                            <?php do_action( 'woocommerce_cart_actions' ); ?>
-
-                            <?php wp_nonce_field( 'woocommerce-cart' ); ?>
-                            <?php do_action( 'woocommerce_after_cart_contents' ); ?>
-
-                            <?php do_action( 'woocommerce_after_cart_table' ); ?>
-
-                        </form>
+                    <div class="dropdown">
+                        <?php if (is_user_logged_in()) { ?>
+                            <a href="/my-account/" title="my account">my account</a>
                         <?php } else { ?>
-                        <div class="empty-cart">Your cart is empty</div>
+                            <a class="dropdown-toggle" data-toggle="dropdown" title="sign in" id="dropdownMenu2">
+                                sign in
+                                <!-- <span class="caret"></span> -->
+                            </a>
                         <?php } ?>
+                        <div class="cart-drop dropdown-menu"  aria-labelledby="dropdownMenu2" style="width: 30em;">
+                            <form method="post" class="login">
 
-                    </div><!-- End .cart-drop -->
+                                <?php do_action( 'woocommerce_login_form_start' ); ?>
 
-                    <a class="dropdown" data-toggle="dropdown" title="cart">
-                        cart
-                        <small>(<?php echo $count; ?>)</small>
-                    </a>
+                                <p class="woocommerce-FormRow woocommerce-FormRow--wide form-row form-row-wide">
+                                    <label for="username"><?php _e( 'Username or email address', 'woocommerce' ); ?> <span class="required">*</span></label>
+                                    <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="username" id="username" value="<?php if ( ! empty( $_POST['username'] ) ) echo esc_attr( $_POST['username'] ); ?>" />
+                                </p>
+                                <p class="woocommerce-FormRow woocommerce-FormRow--wide form-row form-row-wide">
+                                    <label for="password"><?php _e( 'Password', 'woocommerce' ); ?> <span class="required">*</span></label>
+                                    <input class="woocommerce-Input woocommerce-Input--text input-text" type="password" name="password" id="password" />
+                                </p>
+
+                                <?php do_action( 'woocommerce_login_form' ); ?>
+
+                                <p class="form-row">
+                                    <?php wp_nonce_field( 'woocommerce-login', 'woocommerce-login-nonce' ); ?>
+                                    <input type="submit" class="woocommerce-Button button" name="login" value="<?php esc_attr_e( 'Login', 'woocommerce' ); ?>" />
+                                    <label for="rememberme" class="inline">
+                                        <input class="woocommerce-Input woocommerce-Input--checkbox" name="rememberme" type="checkbox" id="rememberme" value="forever" /> <?php _e( 'Remember me', 'woocommerce' ); ?>
+                                    </label>
+                                </p>
+                                <p class="woocommerce-LostPassword lost_password">
+                                    <a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?', 'woocommerce' ); ?></a>
+                                </p>
+
+                                <?php do_action( 'woocommerce_login_form_end' ); ?>
+
+                            </form>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <a class="dropdown" data-toggle="dropdown" title="cart">
+                            cart
+                            <small>(<?php echo $count; ?>)</small>
+                        </a>
+                        <div id="cart-drop" class="dropdown-menu dropdown-menu-right">
+
+                            <?php if (count(WC()->cart->get_cart())) { ?>
+
+                                <form action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
+
+                                    <?php do_action( 'woocommerce_before_cart_table' ); ?>
+
+                                    <?php do_action( 'woocommerce_before_cart_contents' );foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) { $_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key ); if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) { $product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );?>
+
+                                        <div class="cart-drop_item">
+                                            <div class="cart-drop__thumb">
+                                                <?php
+                                                $thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
+
+                                                if ( ! $product_permalink ) {
+                                                    echo $thumbnail;
+                                                } else {
+                                                    printf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $thumbnail );
+                                                }
+                                                ?>
+                                            </div>
+
+                                            <div class="cart-drop__desc">
+                                                <div class="cart-drop__title" data-title="<?php _e( 'Product', 'woocommerce' ); ?>">
+                                                    <?php
+                                                    if ( ! $product_permalink ) {
+                                                        echo apply_filters( 'woocommerce_cart_item_name', $_product->get_title(), $cart_item, $cart_item_key ) . '&nbsp;';
+                                                    } else {
+                                                        echo apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $_product->get_title() ), $cart_item, $cart_item_key );
+                                                    }
+
+                                                    echo WC()->cart->get_item_data( $cart_item );
+                                                    ?>
+                                                </div>
+
+                                                <div class="cart-drop__desc-details">
+                                                    <div class="cart-drop__quantity" data-title="<?php _e( 'Quantity', 'woocommerce' ); ?>">
+                                                        <?php
+                                                        if ( $_product->is_sold_individually() ) {
+                                                            $product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
+                                                        } else {
+                                                            $product_quantity = woocommerce_quantity_input( array(
+                                                                'input_name'  => "cart[{$cart_item_key}][qty]",
+                                                                'input_value' => $cart_item['quantity'],
+                                                                'max_value'   => $_product->backorders_allowed() ? '' : $_product->get_stock_quantity(),
+                                                                'min_value'   => '0'
+                                                            ), $_product, false );
+                                                        }
+
+                                                        echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item );
+                                                        ?>
+                                                    </div>
+
+                                                    <div class="cart-drop__price" data-title="<?php _e( 'Price', 'woocommerce' ); ?>">
+                                                        x <?php
+                                                        echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
+                                                        ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="cart-drop__delete">
+                                                <?php echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="remove" title="%s" data-product_id="%s" data-product_sku="%s">&times;</a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ),
+                                                    __( 'Remove this item', 'woocommerce' ), esc_attr( $product_id ), esc_attr( $_product->get_sku() ) ), $cart_item_key ); ?>
+                                            </div>
+                                        </div>
+                                    <?php }  } do_action( 'woocommerce_cart_contents' ); ?>
+
+                                    <footer class="cart-drop_item">
+                                        <div class="cart-drop__subtotal">
+                                            <span>Subtotal</span>
+                                            <span class="cartdrop___subtotalPrice">$1234.56</span>
+                                        </div>
+                                        <div class="cart-drop__checkout">
+                                            <a class="cart-drop__viewCart" href="/cart/" title="view cart">View Cart</a>
+
+                                            <div>
+                                                <input class="btn btn-sm btn-option" type="submit" name="update_cart" value="<?php esc_attr_e( 'Update', 'woocommerce' ); ?>" />
+                                                <a class="btn btn-sm" href="/checkout/" title="check out">Checkout</a>
+                                            </div>
+                                        </div>
+
+                                    </footer>
+
+                                    <?php do_action( 'woocommerce_cart_actions' ); ?>
+
+                                    <?php wp_nonce_field( 'woocommerce-cart' ); ?>
+                                    <?php do_action( 'woocommerce_after_cart_contents' ); ?>
+
+                                    <?php do_action( 'woocommerce_after_cart_table' ); ?>
+
+                                </form>
+                            <?php } else { ?>
+                                <div class="empty-cart">Your cart is empty</div>
+                            <?php } ?>
+
+                        </div><!-- End .cart-drop -->
+                    </div>
                 </div>
-
             </div>
         </header>
 
