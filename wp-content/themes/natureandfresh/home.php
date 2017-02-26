@@ -40,10 +40,10 @@ Template Name: Home page
                                 <div class="product-slider">
                                     <div class="product-slider_inner">
 
-                                        <!-- @Weida this needs to be dynamic -->
+                                        <!-- @Weida this needs to be dynamic
                                         <div class="product-slider__discount">
                                             <span>-20%</span>
-                                        </div>
+                                        </div> -->
 
                                         <span class="carousel-prev"><img class="svg loaded" src="<?php echo get_template_directory_uri(); ?>/images/icon-arrow_left.svg" data-class="carousel-prev"/></span>
                                         <span class="carousel-next"><img class="svg loaded" src="<?php echo get_template_directory_uri(); ?>/images/icon-arrow_right.svg" data-class="carousel-next"/></span>

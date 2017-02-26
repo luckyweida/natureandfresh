@@ -170,9 +170,9 @@ get_header('shop'); ?>
 
 <section class="container related-products">
 	<h2>OH, AND YOU MIGHT LIKE THESE TOO</h2>
-	<div class="row">
+	<div class="row row-centered">
 		<?php foreach ($others as $other) { ?>
-			<div class="col-md-3">
+			<div class="col-md-3 col-centered">
 				<div class="product-slider">
 					<div class="product-slider_inner">
 						<span class="carousel-prev">

@@ -144,7 +144,7 @@ $(function () {
                 lazyLoad: true,
                 animateIn: 'fadeIn',
                 animateOut: 'fadeOut',
-                // dots: false,
+                dots: true,
                 singleItem: true,
                 center: true,
                 // autoplay: true,
