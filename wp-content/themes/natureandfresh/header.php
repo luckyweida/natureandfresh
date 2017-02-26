@@ -1,6 +1,8 @@
 <?php
 $count = 0;
 
+$display_sum = WC()->cart->get_cart_subtotal( true );
+
 global $woocommerce;
 $items = $woocommerce->cart->get_cart();
 foreach ($items as $item) {
@@ -187,7 +189,7 @@ foreach ($items as $item) {
                                     <footer class="cart-drop_item">
                                         <div class="cart-drop__subtotal">
                                             <span>Subtotal</span>
-                                            <span class="cartdrop___subtotalPrice">$1234.56</span>
+                                            <span class="cartdrop___subtotalPrice"><?php echo $display_sum; ?></span>
                                         </div>
                                         <div class="cart-drop__checkout">
                                             <a class="cart-drop__viewCart" href="/cart/" title="view cart">View Cart</a>
