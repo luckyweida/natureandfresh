@@ -364,7 +364,7 @@ header {
 		}
 	}
 
-	.menu-account {
+	.right-menu-item {
 		text-align: right;
 
 		a {
@@ -384,7 +384,7 @@ header {
 					height: 16px;
 					display: inline-block;
 					background: @hr;
-					margin: 0 9px 0 4px;
+					margin: 0 4px 0 4px;
 					position: relative;
 					top: 3px;
 					visibility: hidden;
@@ -395,15 +395,40 @@ header {
 				}
 			}
 		}
+
+		.right-menu-item_account,
+		.right-menu-item_cart{
+			display: inline-block;
+			position: relative;
+		}
+
+
+	}
+
+	#cart-drop,
+	#account-drop{
+		background: @overlay-background;
+		padding: 1.5em 1em;
+		width: 300px;
+		border: none;
+		box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.25);
+	}
+
+	#account-drop{
+		footer{
+			display: flex;
+			justify-content: space-between; 
+			align-items: flex-end;
+			margin: 2rem 0 0 0;
+
+			a{
+				color: @grey-2;
+				font-size: 0.875rem;
+			}
+		}
 	}
 
 	#cart-drop {
-		background: @overlay-background;
-		padding: 1em;
-		max-width: 300px;
-		border: none;
-		box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.25);
-
 		.cart-drop_item{
 			display: flex;
 			align-items: center;
@@ -1026,7 +1051,6 @@ footer#footer {
 }
 
 .control {
-	margin-top: 3em;
 
 	.control_quantity {
 		display: flex;
@@ -1085,24 +1109,7 @@ footer#footer {
 		margin: 0 auto 1em;
 	}
 
-	select {
-		font-family: 'Roboto-Medium';
-		border: none;
-		-webkit-appearance: none;
-		-moz-appearance: none;
-		appearance: none;
-		padding: .3em 1.5em .3em .8em;
-		width: 8rem;
-		background: @input url("../images/icon-arrow_down.svg") 6.8rem center no-repeat;
-
-		&:after {
-			content: "▼";
-			display: inline-block;
-			position: absolute;
-			right: 0;
-			top: 0;
-		}
-	}
+	
 
 	.btn {
 		margin-top: 2em;
@@ -1111,7 +1118,7 @@ footer#footer {
 
 /* Price stylings*/
 .price-details {
-	margin-bottom: 1.5em;
+	margin-bottom: 1em;
 
 	.regular-arrow {
 		font-size: 1rem;
@@ -1401,59 +1408,57 @@ footer#footer {
 	}
 }
 
-/*
-@media screen and (min-width: 767px) {
-	#product {
-		.product-title.mobile {
-			display: none;
-		}
-		.product-title.desktop {
-			display: block;
+
+
+/*----------------Form fields-------------------*/
+
+/*Overwriting Chrome autocomplete input field yellow background | http://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete*/
+input:-webkit-autofill {
+	background-color: @input !important;
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+    -webkit-text-fill-color: @grey !important;
+}
+
+.form-group{
+	label{
+		color: @grey-2;
+	}
+
+	.form-control{
+		background-color: @input;
+		border: none;
+
+		&:focus{
+			box-shadow: none;
+			background: white;
 		}
 	}
 }
 
-@media screen and (max-width: 767px) {
-	#product {
-		.product-title.mobile {
-			display: block;
-		}
-		.product-title.desktop {
-			display: none;
-		}
-
-		.header {
-			text-align: center;
-			.control_quantity {
-				width: 6em;
-				margin: 0 auto;
-			}
-		}
-		.related-products {
-			padding: 2em 0 0 0 !important;
-		}
+#account-drop{
+	.form-control{
+		background-color: white;
 	}
 }
 
-@media screen and (min-width: 1500px) {
-	#product {
-		.vertical-text.mobile {
-			display: none;
-		}
-		.vertical-text.desktop {
-			display: block;
-		}
+
+
+.custom-select {
+	font-family: 'Roboto-Medium';
+	border: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	padding: .3em 1.5em .3em .8em;
+	width: 8rem;
+	background: @input url("../images/icon-arrow_down.svg") 6.8rem center no-repeat;
+
+	&:after {
+		content: "▼";
+		display: inline-block;
+		position: absolute;
+		right: 0;
+		top: 0;
 	}
 }
 
-@media screen and (max-width: 1499px) {
-	#product {
-		.vertical-text.desktop {
-			display: none;
-		}
-		.vertical-text.mobile {
-			display: block;
-		}
-	}
-}
-*/

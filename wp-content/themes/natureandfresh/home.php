@@ -34,7 +34,7 @@ Template Name: Home page
                 <!--@Weida Please update to show one product only-->
                 <div class="row">
                     <?php foreach ($myProducts->products as $idx => $product) { ?>
-                        <?php if ($product->title === 'Macadamia Nuts | Original') { ?>
+                        <?php if ($product->title === 'Macadamia Nuts - Original') { ?>
                             <div class="product-slider col-md-6 col-md-offset-3 text-center">
 
                                 <div class="product-slider">
@@ -68,7 +68,7 @@ Template Name: Home page
 
                                                 <div class="price-details"></div>
 
-                                                <select class="variation js-variation">
+                                                <select class="variation js-variation custom-select">
                                                     <?php foreach ($product->variations as $variation) { ?>
                                                         <?php
                                                         $optionsHtml = join(' ', array_map(function($obj) { return $obj->option; }, $variation->attributes));

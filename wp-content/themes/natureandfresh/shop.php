@@ -53,7 +53,7 @@ Template Name: Shop
 
                                 <div class="price-details"></div>
 
-                                <select class="variation js-variation">
+                                <select class="variation js-variation custom-select">
                                     <?php foreach ($product->variations as $variation) { ?>
                                         <?php
                                             $optionsHtml = join(' ', array_map(function($obj) { return $obj->option; }, $variation->attributes));

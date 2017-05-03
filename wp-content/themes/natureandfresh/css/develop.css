@@ -285,42 +285,58 @@ header .main-nav #nav-icon1.open span:nth-child(3) {
   -o-transform: rotate(-135deg);
   transform: rotate(-135deg);
 }
-header .menu-account {
+header .right-menu-item {
   text-align: right;
 }
-header .menu-account a {
+header .right-menu-item a {
   display: block;
   clear: both;
   cursor: pointer;
 }
 @media (min-width: 768px) {
-  header .menu-account a {
+  header .right-menu-item a {
     display: inline-block;
     clear: none;
   }
 }
-header .menu-account a.dropdown:before {
+header .right-menu-item a.dropdown:before {
   content: "";
   width: 2px;
   height: 16px;
   display: inline-block;
   background: #ebe1cd;
-  margin: 0 9px 0 4px;
+  margin: 0 4px 0 4px;
   position: relative;
   top: 3px;
   visibility: hidden;
 }
 @media (min-width: 768px) {
-  header .menu-account a.dropdown:before {
+  header .right-menu-item a.dropdown:before {
     visibility: visible;
   }
 }
-header #cart-drop {
+header .right-menu-item .right-menu-item_account,
+header .right-menu-item .right-menu-item_cart {
+  display: inline-block;
+  position: relative;
+}
+header #cart-drop,
+header #account-drop {
   background: #f0eade;
-  padding: 1em;
-  max-width: 300px;
+  padding: 1.5em 1em;
+  width: 300px;
   border: none;
   box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.25);
+}
+header #account-drop footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 2rem 0 0 0;
+}
+header #account-drop footer a {
+  color: #9e9e9e;
+  font-size: 0.875rem;
 }
 header #cart-drop .cart-drop_item {
   display: flex;
@@ -809,9 +825,6 @@ footer#footer .author a:hover {
 .product-slider .owl-dots .owl-dot.active span {
   background-color: #f9b916;
 }
-.control {
-  margin-top: 3em;
-}
 .control .control_quantity {
   display: flex;
 }
@@ -862,29 +875,12 @@ footer#footer .author a:hover {
   font-size: 0.75rem;
   margin: 0 auto 1em;
 }
-.control select {
-  font-family: 'Roboto-Medium';
-  border: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  padding: .3em 1.5em .3em .8em;
-  width: 8rem;
-  background: #f2eee3 url("../images/icon-arrow_down.svg") 6.8rem center no-repeat;
-}
-.control select:after {
-  content: "▼";
-  display: inline-block;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
 .control .btn {
   margin-top: 2em;
 }
 /* Price stylings*/
 .price-details {
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
 }
 .price-details .regular-arrow {
   font-size: 1rem;
@@ -1108,59 +1104,41 @@ footer#footer .author a:hover {
 .modal .modal-content .modal-body h2 {
   margin-top: 0;
 }
-/*
-@media screen and (min-width: 767px) {
-	#product {
-		.product-title.mobile {
-			display: none;
-		}
-		.product-title.desktop {
-			display: block;
-		}
-	}
+/*----------------Form fields-------------------*/
+/*Overwriting Chrome autocomplete input field yellow background | http://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete*/
+input:-webkit-autofill {
+  background-color: #f2eee3 !important;
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  -webkit-text-fill-color: #555555 !important;
 }
-
-@media screen and (max-width: 767px) {
-	#product {
-		.product-title.mobile {
-			display: block;
-		}
-		.product-title.desktop {
-			display: none;
-		}
-
-		.header {
-			text-align: center;
-			.control_quantity {
-				width: 6em;
-				margin: 0 auto;
-			}
-		}
-		.related-products {
-			padding: 2em 0 0 0 !important;
-		}
-	}
+.form-group label {
+  color: #9e9e9e;
 }
-
-@media screen and (min-width: 1500px) {
-	#product {
-		.vertical-text.mobile {
-			display: none;
-		}
-		.vertical-text.desktop {
-			display: block;
-		}
-	}
+.form-group .form-control {
+  background-color: #f2eee3;
+  border: none;
 }
-
-@media screen and (max-width: 1499px) {
-	#product {
-		.vertical-text.desktop {
-			display: none;
-		}
-		.vertical-text.mobile {
-			display: block;
-		}
-	}
+.form-group .form-control:focus {
+  box-shadow: none;
+  background: white;
 }
-*/
+#account-drop .form-control {
+  background-color: white;
+}
+.custom-select {
+  font-family: 'Roboto-Medium';
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: .3em 1.5em .3em .8em;
+  width: 8rem;
+  background: #f2eee3 url("../images/icon-arrow_down.svg") 6.8rem center no-repeat;
+}
+.custom-select:after {
+  content: "▼";
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
