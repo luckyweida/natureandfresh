@@ -261,11 +261,11 @@ foreach ($items as $item) {
             <div class="container">
                 <div class="row">
                     <nav class="col-sm-4">
-                        <a class="menu-item" href="#">shop</a>
-                        <a class="menu-item" href="#">about</a>
-                        <a class="menu-item" href="#">the photo</a>
-                        <a class="menu-item" href="#">wholesale</a>
-                        <a class="menu-item" href="#">get in touch</a>
+                        <a class="menu-item" href="/shop/">shop</a>
+                        <a class="menu-item" href="/about/">about</a>
+                        <a class="menu-item" href="/the-photo/">the photo</a>
+                        <a class="menu-item" href="/wholesale/">wholesale</a>
+                        <a class="menu-item" href="/get-in-touch/">get in touch</a>
                     </nav>
                     <div class="col-md-6 hidden-xs" id="instafeed"></div>
                     <div class="col-md-2 overlay-menu_facebook">

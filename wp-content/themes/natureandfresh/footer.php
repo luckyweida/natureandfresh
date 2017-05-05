@@ -3,11 +3,11 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 ft-menu">
-				<a class="mi" href="#">Home</a>
-				<a class="mi" href="#">Shop</a>
-				<a class="mi" href="#">About</a>
-				<a class="mi" href="#">Wholesale</a>
-				<a href="#">Get in touch</a>
+				<a class="mi" href="/">Home</a>
+				<a class="mi" href="/shop/">Shop</a>
+				<a class="mi" href="/about/">About</a>
+				<a class="mi" href="/wholesale/">Wholesale</a>
+				<a href="/get-in-touch/">Get in touch</a>
 
 				<a class="fb" target="_blank" href="https://www.facebook.com/Nature-Fresh-409725865782785/?fref=ts">
 					<img class="svg" src="<?php echo get_template_directory_uri(); ?>/images/ft_facebook.svg">

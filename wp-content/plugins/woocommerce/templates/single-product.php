@@ -151,7 +151,7 @@ get_header('shop'); ?>
 						$priceHtml .= "<span class='dollar'>$</span><span class='price'>{$variation->price}</span>";
 						?>
 						<div class="js-var">
-							<input id="var-<?php echo $varIdx ?>" <?php if ($varIdx == 0) { ?>checked<?php } ?> name="variation_id" data-price="<?php echo $priceHtml; ?>" data-attrs="<?php echo $optionsJson; ?>" data-html="<?php echo $optionsHtml; ?>" type="radio" value="<?php echo $variation->id; ?>"/>
+							<input id="var-<?php echo $varIdx ?>" <?php if ((count($current->attributes) > 0 && $current->attributes[0]->options[0] == $optionsHtml ) ||$varIdx == 0) { ?>checked<?php } ?> name="variation_id" data-price="<?php echo $priceHtml; ?>" data-attrs="<?php echo $optionsJson; ?>" data-html="<?php echo $optionsHtml; ?>" type="radio" value="<?php echo $variation->id; ?>"/>
 							<label for="var-<?php echo $varIdx ?>"><?php echo $optionsHtml; ?></label>
 						</div>
 						<?php } ?>

@@ -21,6 +21,37 @@ function closeNav() {
     $('#nav-menu').html('menu');
 };
 
+function instImgLoad() {
+    $.each($('.inst-photo:not(.animated)'), function (key, val) {
+        if (elementInViewport2(val)) {
+            setTimeout(function () {
+                $(val).css('visibility', 'visible');
+                $(val).addClass('animated fadeIn');
+            }, key * 50)
+        }
+    });
+};
+
+function elementInViewport2(el) {
+    var top = el.offsetTop;
+    var left = el.offsetLeft;
+    var width = el.offsetWidth;
+    var height = el.offsetHeight;
+
+    while(el.offsetParent) {
+        el = el.offsetParent;
+        top += el.offsetTop;
+        left += el.offsetLeft;
+    }
+
+    return (
+        top < (window.pageYOffset + window.innerHeight) &&
+        left < (window.pageXOffset + window.innerWidth) &&
+        (top + height) > window.pageYOffset &&
+        (left + width) > window.pageXOffset
+    );
+};
+
 $(function () {
     var pageLoadingEnabled = 0;
 
@@ -36,15 +67,52 @@ $(function () {
 
     var feed = new Instafeed({
         get: 'user',
-        limit: 15,
+        limit: 20,
         resolution: 'standard_resolution',
         userId: '4266168427',
         accessToken: '4266168427.1677ed0.bf4887a85d5d48d3828b1fa66f8ea871',
-        template: '<img style="display: none;" src="{{image}}"></img>',
+        template: '<img style="display: none;" src="{{image}}" />',
         after: function() {
         }
     });
     feed.run();
+
+    if ($('#the-photo').length) {
+
+        var html = '<div class="col-md-6 col-xs-6 image-box">';
+        html += '<a target="_blank" href="{{link}}" class="container">';
+        html += '<div class="middle"><div class="text">{{caption}}</div></div>';
+        html += '<img class="inst-photo image" src="{{image}}" style="visibility: hidden"/>';
+        html += '</a>';
+        html += '</div>';
+
+        var galleryFeed = new Instafeed({
+            target: 'my-photos',
+            get: 'user',
+            limit: 8,
+            resolution: 'standard_resolution',
+            userId: '4266168427',
+            accessToken: '4266168427.1677ed0.bf4887a85d5d48d3828b1fa66f8ea871',
+            template: html,
+            after: function() {
+                instImgLoad();
+                if (!this.hasNext()) {
+                    $('.load-more').hide();
+                } else {
+                    $('.load-more').fadeIn();
+                }
+            }
+        });
+        $(window).scroll(function () {
+            instImgLoad();
+        })
+        $('.load-more').click(function () {
+            $('.load-more').fadeOut();
+            galleryFeed.next();
+        });
+        galleryFeed.run();
+    };
+
 
     $('#nav-icon1').click(function () {
         if ($('#nav-icon1').hasClass('open')) {
