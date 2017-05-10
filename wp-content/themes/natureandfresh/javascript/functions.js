@@ -1,4 +1,3 @@
-
 /* Open when someone clicks on the span element */
 function openNav() {
     $('#instafeed').find('img').hide();
@@ -38,7 +37,7 @@ function elementInViewport2(el) {
     var width = el.offsetWidth;
     var height = el.offsetHeight;
 
-    while(el.offsetParent) {
+    while (el.offsetParent) {
         el = el.offsetParent;
         top += el.offsetTop;
         left += el.offsetLeft;
@@ -66,8 +65,58 @@ $(function () {
             zoom: 15,
             center: myLatlng,
             scrollwheel: false,
-            styles: [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"visibility":"on"}]},{"featureType":"landscape.man_made","elementType":"geometry.fill","stylers":[{"hue":"#ffd100"},{"saturation":"44"}]},{"featureType":"landscape.man_made","elementType":"geometry.stroke","stylers":[{"saturation":"-1"},{"hue":"#ff0000"}]},{"featureType":"landscape.natural","elementType":"geometry","stylers":[{"saturation":"-16"}]},{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"hue":"#ffd100"},{"saturation":"44"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":"-30"},{"lightness":"12"},{"hue":"#ff8e00"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"},{"saturation":"-26"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#c0b78d"},{"visibility":"on"},{"saturation":"4"},{"lightness":"40"}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffe300"}]},{"featureType":"water","elementType":"geometry.fill","stylers":[{"hue":"#ffe300"},{"saturation":"-3"},{"lightness":"-10"}]},{"featureType":"water","elementType":"labels","stylers":[{"hue":"#ff0000"},{"saturation":"-100"},{"lightness":"-5"}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels.text.stroke","stylers":[{"visibility":"off"}]}]
+            styles: [{"featureType": "administrative", "elementType": "labels.text.fill", "stylers": [{"color": "#444444"}]}, {"featureType": "landscape", "elementType": "all", "stylers": [{"color": "#f2f2f2"}]}, {"featureType": "landscape", "elementType": "geometry.fill", "stylers": [{"visibility": "on"}]}, {"featureType": "landscape.man_made", "elementType": "geometry.fill", "stylers": [{"hue": "#ffd100"}, {"saturation": "44"}]}, {"featureType": "landscape.man_made", "elementType": "geometry.stroke", "stylers": [{"saturation": "-1"}, {"hue": "#ff0000"}]}, {"featureType": "landscape.natural", "elementType": "geometry", "stylers": [{"saturation": "-16"}]}, {"featureType": "landscape.natural", "elementType": "geometry.fill", "stylers": [{"hue": "#ffd100"}, {"saturation": "44"}]}, {"featureType": "poi", "elementType": "all", "stylers": [{"visibility": "off"}]}, {
+                "featureType": "road",
+                "elementType": "all",
+                "stylers": [{"saturation": "-30"}, {"lightness": "12"}, {"hue": "#ff8e00"}]
+            }, {"featureType": "road.highway", "elementType": "all", "stylers": [{"visibility": "simplified"}, {"saturation": "-26"}]}, {"featureType": "road.arterial", "elementType": "labels.icon", "stylers": [{"visibility": "off"}]}, {"featureType": "transit", "elementType": "all", "stylers": [{"visibility": "off"}]}, {"featureType": "water", "elementType": "all", "stylers": [{"color": "#c0b78d"}, {"visibility": "on"}, {"saturation": "4"}, {"lightness": "40"}]}, {"featureType": "water", "elementType": "geometry", "stylers": [{"hue": "#ffe300"}]}, {"featureType": "water", "elementType": "geometry.fill", "stylers": [{"hue": "#ffe300"}, {"saturation": "-3"}, {"lightness": "-10"}]}, {"featureType": "water", "elementType": "labels", "stylers": [{"hue": "#ff0000"}, {"saturation": "-100"}, {"lightness": "-5"}]}, {"featureType": "water", "elementType": "labels.text.fill", "stylers": [{"visibility": "off"}]}, {
+                "featureType": "water",
+                "elementType": "labels.text.stroke",
+                "stylers": [{"visibility": "off"}]
+            }]
         });
+        var image = window._baseurl + '/images/marker.png';
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            icon: image
+        });
+        marker.setMap(map);
+
+        var contentString = '<div id="content">' +
+            '<div id="info-image">' +
+                '<img src="' + window._baseurl + '/images/pages/contact_img.png' + '"/>' +
+            '</div>' +
+            '<div id="info-text">' +
+                '<div class="title">Nature & Fresh</div>' +
+                '<div class="text">1340C Glenbrook Road, Rd1, Waiuku 2681, New Zealand</div>' +
+            '</div>' +
+            '</div>';
+
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString,
+            maxWidth: 230
+        });
+        marker.addListener('click', function () {
+            infowindow.open(map, marker);
+        });
+        infowindow.open(map, marker);
+
+        google.maps.event.addListener(infowindow, 'domready', function() {
+
+            var iwOuter = $('.gm-style-iw');
+            var iwBackground = iwOuter.prev();
+            var last = iwBackground.children().last();
+            last.css('opacity', 0);
+            last.prev().find(' > div > div').css('background', '#666');
+            last.prev().prev().css('opacity', 0);
+            iwOuter.next().remove();
+            iwOuter.parent().css('padding', 0)
+            iwOuter.parent().css('margin', 0)
+
+            iwOuter.css('left', parseInt(iwOuter.css('left'), 10) + 9 + 'px');
+            iwOuter.css('top', parseInt(iwOuter.css('top'), 10) + 10 + 'px');
+        });
+
     }
 
 
@@ -84,7 +133,7 @@ $(function () {
         userId: '4266168427',
         accessToken: '4266168427.1677ed0.bf4887a85d5d48d3828b1fa66f8ea871',
         template: '<img style="display: none;" src="{{image}}" />',
-        after: function() {
+        after: function () {
         }
     });
     feed.run();
@@ -106,7 +155,7 @@ $(function () {
             userId: '4266168427',
             accessToken: '4266168427.1677ed0.bf4887a85d5d48d3828b1fa66f8ea871',
             template: html,
-            after: function() {
+            after: function () {
                 instImgLoad();
                 if (!this.hasNext()) {
                     $('.load-more').hide();
@@ -123,7 +172,8 @@ $(function () {
             galleryFeed.next();
         });
         galleryFeed.run();
-    };
+    }
+    ;
 
 
     $('#nav-icon1').click(function () {
@@ -156,23 +206,23 @@ $(function () {
         $(this).parent().find('.amount').val(Math.max(value - 1, 1));
     });
 
-    jQuery('img.svg').each(function(){
+    jQuery('img.svg').each(function () {
         var $img = jQuery(this);
         var imgID = $img.attr('id');
         var imgClass = $img.attr('class');
         var imgURL = $img.attr('src');
 
-        jQuery.get(imgURL, function(data) {
+        jQuery.get(imgURL, function (data) {
             // Get the SVG tag, ignore the rest
             var $svg = jQuery(data).find('svg');
 
             // Add replaced image's ID to the new SVG
-            if(typeof imgID !== 'undefined') {
+            if (typeof imgID !== 'undefined') {
                 $svg = $svg.attr('id', imgID);
             }
             // Add replaced image's classes to the new SVG
-            if(typeof imgClass !== 'undefined') {
-                $svg = $svg.attr('class', imgClass+' replaced-svg');
+            if (typeof imgClass !== 'undefined') {
+                $svg = $svg.attr('class', imgClass + ' replaced-svg');
             }
 
             // Remove any invalid XML tags as per http://validator.w3.org
@@ -257,7 +307,6 @@ $(function () {
             });
 
 
-
             //Owl carousel height solution
             // var $this = $(this);
 
@@ -338,7 +387,7 @@ $(function () {
 //Owl carousel height solution
 // function updateSize($carousel) {
 //     var maxHeight = 0;
-    
+
 //     $('.owl-item', $carousel).each(function () {
 //     var $this = $(this);
 //     var $image = $this.find('img');

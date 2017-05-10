@@ -39,6 +39,10 @@
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/instafeed.js/1.4.1/instafeed.min.js" type="text/javascript"></script>
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyA3k8z9j-zoMl3jq4ooPUMIHPjUXwhxxLk"></script>
+
+<script>
+	window._baseurl = '<?php echo get_template_directory_uri(); ?>';
+</script>
 <script src="<?php echo get_template_directory_uri(); ?>/javascript/functions.js?v=5"></script>
 
 
