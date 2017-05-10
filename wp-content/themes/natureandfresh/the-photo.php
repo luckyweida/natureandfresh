@@ -23,7 +23,7 @@ Template Name: The photo
 
         <div class="row">
             <div class="col-lg-12 col-centered">
-                <button class="load-more btn btn-lg btn-block btn-primary" style="display: none;">Load more</button>
+                <button class="load-more btn btn-block btn-primary" style="display: none;">Load more</button>
             </div>
         </div>
     </div>

@@ -24,6 +24,7 @@
 	</div>
 </footer>
 
+<?php wp_footer(); ?>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -37,6 +38,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.0/owl.carousel.min.js"></script>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/instafeed.js/1.4.1/instafeed.min.js" type="text/javascript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyA3k8z9j-zoMl3jq4ooPUMIHPjUXwhxxLk"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/javascript/functions.js?v=5"></script>
 
 

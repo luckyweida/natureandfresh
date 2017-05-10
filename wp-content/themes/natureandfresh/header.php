@@ -14,7 +14,7 @@ foreach ($items as $item) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?php //wp_title( '|', true, 'right' ); ?></title>
+    <title><?php wp_title(); ?></title>
     <!-- <title>Nature &amp; Fresh</title> -->
     <link rel="icon" href="<?php echo get_template_directory_uri(); ?>/images/favicon.ico">
 

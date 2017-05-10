@@ -1222,5 +1222,18 @@ input:-webkit-autofill {
 }
 #the-photo .col-centered {
   text-align: center !important;
-  font-size: 130%;
+}
+#get-in-touch .textbox-container,
+#get-in-touch .email-container {
+  width: 48%;
+  display: inline-block;
+}
+#get-in-touch .btn-git {
+  width: 100%;
+}
+.map-container {
+  padding: 2em 0;
+}
+.map-container #google-map {
+  height: 30em;
 }
