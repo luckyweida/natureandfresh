@@ -91,9 +91,9 @@ $(function () {
 
     if ($('#the-photo').length) {
 
-        var html = '<div class="col-md-6 col-xs-6 image-box">';
-        html += '<a target="_blank" href="{{link}}" class="container">';
-        html += '<div class="middle"><div class="text">{{caption}}</div></div>';
+        var html = '<div class="col-md-6 col-xs-12 insta_container mb-1">';
+        html += '<a target="_blank" href="{{link}}">';
+        html += '<div class="insta_msg"><div class="text">{{caption}}</div></div>';
         html += '<img class="inst-photo image" src="{{image}}" style="visibility: hidden"/>';
         html += '</a>';
         html += '</div>';

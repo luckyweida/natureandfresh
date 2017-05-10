@@ -128,7 +128,7 @@ Template Name: Home page
             </div>
             <article class="col-md-6 col-xs-12">
                 <div class="article-offset_heading">
-                    <h2>Title to be placed here, lorem our farm is spray and pesticide free.</h2>
+                    <h2 class="article-title">Title to be placed here, lorem our farm is spray and pesticide free.</h2>
                 </div>
                 <p>Introduction copy to be placed here, we try our best not to use machines in the orchard. Instead, we use natural fertilizers such as Agrissentials Rok Solid and comfrey. We use comfrey as a liquid fertilizer on our trees for the nutrients and minerals it brings up from deep in the ground.</p>
                 <p>We are out on the farm daily picking the macadamia nuts which are then husked and dried at a low temperature for eight weeks. The cracked nuts are then vacuum packed to preserve that fresh, original macadamia taste that we love. From growing to harvesting, drying and packaging, you can enjoy natural quality foods that have been grown and prepared with care.</p>
@@ -137,6 +137,7 @@ Template Name: Home page
             </article>
         </div>
     </div>
+    
 </section><!--Ends #homepage-->
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>
