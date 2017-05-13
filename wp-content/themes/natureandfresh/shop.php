@@ -69,9 +69,9 @@ Template Name: Shop
                                 </select>
 
                                 <div class="control_quantity">
-                                    <div class="remove"></div>
+                                    <div class="icon-minus remove"></div>
                                     <input value="1" name="quantity" class="amount" type="text"/>
-                                    <div class="add"></div>
+                                    <div class="icon-add add"></div>
                                 </div>
 
                                 <button type="submit" class="btn btn-sm">Add to cart</button>

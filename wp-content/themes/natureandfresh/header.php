@@ -217,7 +217,7 @@ foreach ($items as $item) {
 
 
                                         <div class="cart-drop__delete">
-                                            <?php echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="remove" title="%s" data-product_id="%s" data-product_sku="%s">&times;</a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ),
+                                            <?php echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="icon-x" title="%s" data-product_id="%s" data-product_sku="%s"></a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ),
                                                 __( 'Remove this item', 'woocommerce' ), esc_attr( $product_id ), esc_attr( $_product->get_sku() ) ), $cart_item_key ); ?>
                                         </div>
                                     </div>

@@ -82,13 +82,13 @@ $(function () {
         });
         marker.setMap(map);
 
-        var contentString = '<div id="content">' +
-            '<div id="info-image">' +
+        var contentString = '<div id="google-tooltip">' +
+            '<div id="google-tooltip_img">' +
                 '<img src="' + window._baseurl + '/images/pages/contact_img.png' + '"/>' +
             '</div>' +
-            '<div id="info-text">' +
-                '<div class="title">Nature & Fresh</div>' +
-                '<div class="text">1340C Glenbrook Road, Rd1, Waiuku 2681, New Zealand</div>' +
+            '<div id="google-tooltip_info">' +
+                '<div class="google-tooltip_info_title">Nature & Fresh</div>' +
+                '<div class="google-tooltip_info_text">1340C Glenbrook Road, Rd1, Waiuku 2681, New Zealand</div>' +
             '</div>' +
             '</div>';
 

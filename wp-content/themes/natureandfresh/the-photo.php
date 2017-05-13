@@ -22,7 +22,7 @@ Template Name: The photo
     </div>
 
     <div class="row">
-        <div class="col-lg-12 col-centered">
+        <div class="col-lg-12 text-center">
             <button class="load-more btn btn-sm" style="display: none;">Load more</button>
         </div>
     </div>
