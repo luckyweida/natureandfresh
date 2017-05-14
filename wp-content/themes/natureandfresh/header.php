@@ -104,7 +104,7 @@ foreach ($items as $item) {
                             </div>
 
                             <footer class="form-group woocommerce-LostPassword lost_password">
-                                <a href="#" title="signup">
+                                <a href="/registration/" title="signup">
                                     New here? Sign up
                                 </a>
                                 <a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?', 'woocommerce' ); ?></a>
