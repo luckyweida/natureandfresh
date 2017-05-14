@@ -36,7 +36,7 @@ foreach ($items as $item) {
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/develop.css?v=3.5" type="text/css"/>
 
 </head>
-<body>
+<body <?php body_class(); ?>>
 
     <div class="preload-loading">
         <div class="loading-widgets">

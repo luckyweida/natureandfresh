@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-wc_print_notices();
+//wc_print_notices();
 
 do_action( 'woocommerce_before_cart' ); ?>
 
