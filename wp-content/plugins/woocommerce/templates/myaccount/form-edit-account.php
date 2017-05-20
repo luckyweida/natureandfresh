@@ -22,6 +22,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 do_action( 'woocommerce_before_edit_account_form' ); ?>
 
+<h2 class="myaccount-title">Account details</h2>
+
 <form class="woocommerce-EditAccountForm edit-account" action="" method="post">
 
 	<?php do_action( 'woocommerce_edit_account_form_start' ); ?>
@@ -42,7 +44,7 @@ do_action( 'woocommerce_before_edit_account_form' ); ?>
 	</p>
 
 	<fieldset>
-		<legend><?php _e( 'Password Change', 'woocommerce' ); ?></legend>
+		<h3><?php _e( 'Password Change', 'woocommerce' ); ?></h3>
 
 		<p class="woocommerce-FormRow woocommerce-FormRow--wide form-row form-row-wide">
 			<label for="password_current"><?php _e( 'Current Password (leave blank to leave unchanged)', 'woocommerce' ); ?></label>
@@ -63,7 +65,7 @@ do_action( 'woocommerce_before_edit_account_form' ); ?>
 
 	<p>
 		<?php wp_nonce_field( 'save_account_details' ); ?>
-		<input type="submit" class="woocommerce-Button button" name="save_account_details" value="<?php esc_attr_e( 'Save changes', 'woocommerce' ); ?>" />
+		<input type="submit" class="woocommerce-Button btn btn-sm" name="save_account_details" value="<?php esc_attr_e( 'Save changes', 'woocommerce' ); ?>" />
 		<input type="hidden" name="action" value="save_account_details" />
 	</p>
 

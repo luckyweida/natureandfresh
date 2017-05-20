@@ -37,6 +37,8 @@ $oldcol = 1;
 $col    = 1;
 ?>
 
+<h2 class="myaccount-title">Addresses</h2>
+
 <p>
 	<?php echo apply_filters( 'woocommerce_my_account_my_address_description', __( 'The following addresses will be used on the checkout page by default.', 'woocommerce' ) ); ?>
 </p>
@@ -48,7 +50,7 @@ $col    = 1;
 	<div class="u-column<?php echo ( ( $col = $col * -1 ) < 0 ) ? 1 : 2; ?> col-<?php echo ( ( $oldcol = $oldcol * -1 ) < 0 ) ? 1 : 2; ?> woocommerce-Address">
 		<header class="woocommerce-Address-title title">
 			<h3><?php echo $title; ?></h3>
-			<a href="<?php echo esc_url( wc_get_endpoint_url( 'edit-address', $name ) ); ?>" class="edit"><?php _e( 'Edit', 'woocommerce' ); ?></a>
+			<a href="<?php echo esc_url( wc_get_endpoint_url( 'edit-address', $name ) ); ?>" class="edit btn btn-sm btn-option"><?php _e( 'Edit', 'woocommerce' ); ?></a>
 		</header>
 		<address>
 			<?php

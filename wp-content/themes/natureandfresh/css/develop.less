@@ -39,7 +39,9 @@
 @dark-green: #5B7543;
 @transition: all 0.2s ease-in-out !important;
 @border-radius: 5px;
-@btn-sm_font-size: 0.8125rem;
+@btn-sm_font-size: 13px;
+/* @btn-sm_height: 32px;*/
+@price-checkout: 1.2rem;
 
 @black: #000;
 @grey: #555555;
@@ -71,6 +73,8 @@
 
 @box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.1);
 
+@btnPadding: .4rem .6rem; 
+
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
 
@@ -96,29 +100,41 @@ html {
 	margin-top: 0 !important;
 }
 
+#cart-box .wc-proceed-to-checkout a.checkout-button,
+.woocommerce #respond input#submit, 
+.woocommerce a.button, .woocommerce button.button, 
+.woocommerce input.button,
+#place_order,
+input.btn,
 .btn {
 	background: @green;
 	border: none;
 	text-shadow: none;
 	box-shadow: none;
 	border-radius: @border-radius;
-	font-size: 1em;
+	font-size: 1rem;
+	line-height: 1;
 	color: white;
 	transition: @transition;
 	font-family: 'Roboto-Medium';
+	padding: @btnPadding;
+	border: 1px solid @green;
 
 	&:hover,
 	&:focus {
 		background: @dark-green;
+		border: 1px solid @dark-green;
 		color: white;
 	}
 
 	&.btn-sm {
 		font-size: @btn-sm_font-size;
 		color: white;
+		/* height: @btn-sm_height;*/
 	}
 
-	&.btn-lg {
+	&.btn-lg,
+	&.btn-primary {
 		font-size: 1rem;
 	}
 
@@ -188,6 +204,17 @@ h1, h2, h3, h4, h5, h6 {
 	margin-top: 0;
 }
 
+
+
+input::placeholder{
+	color: @grey-2;
+}
+
+label, 
+.ninja-forms-req-symbol{
+	color: @grey !important; /*overwrite wordpress label styles*/
+}
+
 .article-title {
 	font-family: 'PlayfairDisplay-Regular';
 	font-size: 2rem;
@@ -198,6 +225,16 @@ h1, h2, h3, h4, h5, h6 {
 	@media (min-width: @screen-sm-min) {
 		font-size: 3.125rem;
 		line-height: 4rem;
+	}
+}
+
+.entry-header{
+	margin:0 0 1rem 0;
+	padding: 0;
+
+	.entry-title{/*The page title, center aligned*/
+		width: 100%;
+		text-align: center;
 	}
 }
 
@@ -434,6 +471,13 @@ header {
 		width: 300px;
 		border: none;
 		box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.25);
+		
+		.cart-drop__desc{
+			input{ /*Cart dropdown quantity input field*/
+				background: white;
+				padding: .2rem;
+			}
+		}
 	}
 
 	#account-drop {
@@ -579,7 +623,7 @@ header {
 .icon-add,
 .icon-minus,
 .icon-x
- {
+{
 	display: inline-block;
 	border-radius: 50%;
 	width: 20px;
@@ -592,6 +636,7 @@ header {
 	&:hover {
 		background-color: @green;
 		fill: white;
+		color: white;
 	}
 
 	img {
@@ -611,7 +656,7 @@ header {
 }
 
 .icon-x {
-	background: url('../images/icon-x.svg') center center no-repeat @gold-1;
+	background: url('../images/icon-x.svg') 5px 5px no-repeat @gold-1;
 }
 
 
@@ -943,25 +988,245 @@ footer#footer {
 	/*text-align: left; */
 	/*width: 100%;*/ 
 	/* border-collapse: separate; */
-	border-radius: 0 !important; 
+	/*border-radius: 0 !important; */
 }
 
-.woocommerce table.shop_table .cart-view_remove, .cart-view .cart-view_remove{
+.woocommerce table.shop_table .cart-view_remove, 
+.cart-view .cart-view_remove{
 	display: table-cell !important;
 	font-size: 0 !important;
 	height: auto !important;
 	width: auto !important;
 	text-align: right !important;
 	line-height: 1 !important;
-	border-radius: none !important;
 	color: inherit !important;
 	text-decoration: none;
 	font-weight: inherit !important;
-	border: inherit !important;
 	background: none !important;
 }
 
-/*End Overwrite woocommerce default cart tables*/
+.woocommerce table.shop_table tbody td.actions, 
+.cart-view tbody td.actions{
+	text-align: right; /*Align the view cart page coupon & Update button*/
+
+	.ccart-view_coupon{
+		float: left; /*Align the view cart page coupon input buttons*/
+	}
+}
+
+
+.woocommerce-info{ /*Overwriting the drodpown section (Returning customer?/Have a coupon?)*/
+	border-top: none !important;
+	background: @input !important;
+	border-radius: @border-radius;
+
+	&:before{
+		color: @grey;
+	}
+
+	a{
+		text-decoration: underline;
+	}
+}
+
+.woocommerce .col2-set .col-1, 
+.woocommerce-page .col2-set .col-1{
+	
+}
+
+/*Checkout page, billing details/ shipping address input fields.*/
+.checkout.woocommerce-checkout #customer_details .col-1 .woocommerce-billing-fields, 
+.checkout.woocommerce-checkout #customer_details .col-2 .woocommerce-shipping-fields 
+{
+	padding: 1.5rem 1rem !important;
+	background: @gold-2 !important;
+	clear: both;
+	border-radius: @border-radius;
+}
+
+/*A wrapper for messages when order received*/
+.box-msg{
+	padding: 2rem 2rem 3rem!important;
+	background: @input !important;
+	border-radius: @border-radius;
+	margin-bottom: 2rem;
+
+	.woocommerce-thankyou-order-received{ /*Msg in 'Order received' page*/
+		font-family: 'Roboto-Bold';
+		font-size: 1.6rem;
+		color: @green;
+		text-align: center;
+		margin-bottom: 2rem;
+	}
+
+	h2.wc-bacs-bank-details-heading{
+		margin: 2rem 0 1rem 0;
+	}
+
+	h3{
+	    font-family: "Roboto-Bold", serif;
+	    font-size: 1rem;
+	}
+
+}
+
+.woocommerce-thankyou-order-details.order_details,
+.wc-bacs-bank-details.order_details.bacs_details{ /*Msg(list style) in 'Order received' page*/
+	margin: 0;
+	padding: 1rem;
+	background: @gold-2;
+	border-radius: @border-radius;
+}
+
+.woocommerce-thankyou-order-details.order_details{
+	margin-bottom: 1rem;
+}
+
+/*Order summary table in checkout page*/
+#order_review,
+.woocommerce .my_account_orders.account-orders-table,
+.woocommerce .shop_table.order_details,
+.woocommerce .shop_table.customer_details{ 
+	padding: 1.5rem 1rem !important;
+	border: 1px solid @gold-2 !important;
+	margin-top: 2rem;
+	border-radius: @border-radius;
+
+	.cart_item,
+	.cart-subtotal,
+	.order-total{
+		th,
+		td{
+			padding: 1rem 0;
+
+			&.product-name{
+			}
+		}
+
+	}
+}
+
+/*
+.woocommerce .shop_table.shop_table_responsive{
+	th{
+		font-family: 'Roboto-Bold';
+		font-size: @price-checkout; 
+	}
+}
+*/
+
+.cart-subtotal,
+.order-total{
+
+	th,
+	.woocommerce-Price-amount{ /*Total amount style*/
+		font-size: @price-checkout;
+		font-family: 'Roboto-Bold';
+	}
+}
+
+
+/*------------------------------------My account dashboard styles------------------------------------------*/
+
+.page-id-8{
+	.entry-header{
+		display: none;
+	}
+
+	.myaccount-title{
+		border-bottom: 1px solid @hr;
+		padding-bottom: .5rem;
+		margin-bottom: 2rem;
+	}
+}
+
+/*My account page left navigation*/
+nav.woocommerce-MyAccount-navigation{
+	border: 1px solid @hr;
+	width: 20% !important; 
+	border-radius: @border-radius;
+
+	h3{
+		padding: .5rem;
+		border-bottom: 1px solid @hr;
+		margin: 0;
+		font-size: 1rem;
+		background: @input;
+	}
+
+	ul{
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		li{
+			margin: 0;
+			padding: .5rem;
+			border-bottom: 1px solid @hr;
+
+			&:first-child{
+				
+				display: none;
+			}
+
+			&:last-child{
+				border-bottom: none;
+			}
+
+			&.is-active{
+				background: @green;
+
+				a{
+					color: white;
+				}
+			}
+
+			a{
+				font-size: .875rem;
+			}
+		}
+	}
+}
+
+/*My account content wrapper*/
+.woocommerce-MyAccount-content{
+	width: 74% !important; 
+}
+
+
+/*Account details*/
+.woocommerce-EditAccountForm.edit-account{
+	fieldset{
+		margin: 2rem 0 2rem 0rem;
+	}
+}
+/*Addresses*/
+.woocommerce-Address{
+	/*border: 1px solid @hr;*/
+	background: @input;
+	border-radius: @border-radius;
+	padding: 1.5rem 1rem !important;
+	min-height: 180px;
+    /*
+    
+    background: @gold-2 !important;
+    */
+
+    .woocommerce-Address-title.title{
+    	padding: 0;
+    }
+
+    address{
+    	margin-bottom: 0;
+    	font-size: .875rem;
+    	line-height: 1.4;
+    }
+}
+
+
+
+
+/*------------------------------------End My account dashboard styles------------------------------------------*/
 
 
 .woocommerce table.shop_table,
@@ -972,7 +1237,7 @@ footer#footer {
 			font-size: .8rem;
 			border: none;
 			margin-bottom: 2rem;
-
+			border-bottom: 1px solid @hr;
 			
 			&:first-child{
 				padding-left: 0;/* To counter left padding on the table */
@@ -1022,29 +1287,85 @@ footer#footer {
 	.cart-view_name{
 		a.cart-view_name_title{
 			font-family: 'PlayfairDisplay-Bold';
-			font-size: 2.375rem;
+			font-size: 1.25rem;
 		}
 
 		dt{
 			display: none; /*Hide variation title*/
 		} 
+
+		dd{
+			p{
+				margin: 0;
+				font-size: .9rem;
+			}
+		}
 	}
 
 	.cart-view_remove{
 		display: block;
-	    font-size: 1.5em;
-	    height: 1em;
-	    width: 1em;
-	    text-align: center;
-	    line-height: 1;
-	    border-radius: 100%;
-	    color: red!important;
-	    text-decoration: none;
-	    font-weight: 700;
-	    border: 0;
-	    color: #fff!important;
-    	background: red;
+		font-size: 1.5em;
+		height: 1em;
+		width: 1em;
+		text-align: center;
+		line-height: 1;
+		color: red!important;
+		text-decoration: none;
+		font-weight: 700;
+		color: #fff!important;
+		background: red;
 	}
+}
+
+/*End Overwrite woocommerce default cart tables*/
+
+
+
+
+/*Overwrite woocommerce default cart style with owon prefix #cart-box.nf-box*/
+/*Code reference https://www.fluffyguy.com/checkout/*/
+
+
+#cart-box.nf-box{
+	h2{
+		display: none; /*Hide "Cart Total" text*/
+	}
+
+	.order-total{
+		display: none; /*Hide order total in view cart page, they should see the total in checkout process*/
+	}
+
+	.cart_totals{
+		width: 100%;
+		
+
+		th{
+			padding-top: 1rem;
+			padding-left: 0;
+		}
+
+		td:last-child{
+			padding-top: 1rem;
+
+			text-align: right;
+			border: none;
+		}
+
+		
+
+	}
+
+	.wc-proceed-to-checkout{ /*Proceed to checkout button in View cart*/
+		text-align: right;
+	}
+
+}
+
+
+
+.wc-proceed-to-checkout a{
+	display: inline-block !important;
+	padding: 1em !important;
 }
 
 /*----------------Discount label styles-------------------*/
@@ -1574,57 +1895,68 @@ input:-webkit-autofill {
 	-webkit-text-fill-color: @grey !important;
 }
 
-.form-group,
-.nf-form-cont {
-
-	.nf-form-title{
-		h3{
-			margin-bottom: 2rem;
-		}
-	}
-
-	label,
-	.ninja-forms-req-symbol {
-		color: @grey-2;
-		font-size: .875rem;
-		color: @grey-2;
-		font-family: 'Roboto-Regular';
-		margin: 0;
-		padding: 0;
-	}
-
-	.nf-field-label{
-		margin: 0 !important;
-		padding: 0 !important;
-	}
-
-	.nf-fail{
-		input{
-			border: 1px solid @red !important;
-		}
-	}
-
-	.nf-after-field{ 
-		display: none; /*hide msg 'this is a required field'*/
-	}
-
-	.nf-field-container{
+.nf-form-title{ /*contact form*/
+	h3{
 		margin-bottom: 2rem;
-	}
-
-	.form-control,
-	input {
-		background-color: @input;
-		border: none;
-
-		&:focus {
-			box-shadow: none;
-			background: white;
-		}
 	}
 }
 
-#get-in-touch-form {
+label,
+.ninja-forms-req-symbol {/*contact form*/
+	color: @grey-2;
+	font-size: .875rem;
+	color: @grey-2;
+	font-family: 'Roboto-Regular';
+	margin: 0;
+	padding: 0;
+}
+
+.nf-field-label{/*contact form*/
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.nf-fail{/*contact form*/
+	input{
+		border: 1px solid @red !important;
+	}
+}
+
+.nf-after-field{ /*contact form*/
+	display: none; /*hide msg 'this is a required field'*/
+}
+
+.nf-field-container{/*contact form*/
+	margin-bottom: 2rem;
+}
+
+.form-control,
+input,
+.input-text,
+textarea,
+.select2-container .select2-choice {
+	border-radius: @border-radius;
+	background-color: @input;
+	border: 1px solid @input;
+	outline: none;
+	padding: @btnPadding;
+	color: inherit;
+	line-height: 1;
+	font-family: 'Roboto-Regular';
+	font-size: @btn-sm_font-size;
+	/*height: @btn-sm_height;*/
+
+	&:focus {
+		box-shadow: none;
+		background: white;
+	}
+}
+
+.select2-container{
+	line-height: 1.2; /* so the heigh tof this input is the same as others, not sure why*/
+}
+
+#get-in-touch-form {/*contact form*/
 	.textbox-container, .email-container {
 		width: 48%;
 		display: inline-block;
@@ -1632,10 +1964,7 @@ input:-webkit-autofill {
 	.textbox-container input,
 	.email-container input,
 	.textarea-container textarea {
-		border-radius: 5px;
-		background-color: #F1EDE3;
-		border: 1px solid #F1EDE3;
-		padding: .5em 1em;
+		
 	}
 	.nf-after-form-content, .nf-before-form-content {
 		display: none;

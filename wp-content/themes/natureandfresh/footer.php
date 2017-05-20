@@ -14,7 +14,7 @@
 				</a>
 			</div>
 			<div class="col-md-8">
-				<p class="ft-contact">Tel. <a href="tell:021-079-0102">021 079 0102</a>&nbsp;&nbsp;|&nbsp;&nbsp;Email. <a href="mailto:info@natureandfresh.co.nz">info@natureandfresh.co.nz</a>&nbsp;&nbsp;|&nbsp;&nbsp;Addrress. 1340C Glenbrook Road, RD1, Waiuku 2681, New Zealand</p>
+				<p class="ft-contact">Tel. <a href="tell:021-079-0102">021 079 0102</a>&nbsp;&nbsp;|&nbsp;&nbsp;Email. <a href="mailto:info@natureandfresh.co.nz">info@natureandfresh.co.nz</a>&nbsp;&nbsp;|&nbsp;&nbsp;Addrress. 1340C Glenbrook Road, RD1, Waiuku 2681, New Zealand. <a href="#" title="Terms">Terms and Conditions</a></p>
 			</div>
 			<div class="col-md-4">
 				<p class="author">©2016 Nature & Fresh.  website By <a href="http://francisthedesigner.co.nz/" target="_blank" title="Francis The Designer">Francis The Designer</a></p>
