@@ -52,6 +52,8 @@ foreach ($myProducts->products as $itm) {
 		$others[] = $itm;
 	}
 }
+shuffle($others);
+$others = array_slice($others, 0, 4);
 
 if (gettype($current) !== 'object') {
 	global $wp_query;
@@ -61,13 +63,25 @@ if (gettype($current) !== 'object') {
 	exit();
 }
 
+if ($current->type == 'variable' && count($current->variations) == 0) {
+	global $wp_query;
+	$wp_query->set_404();
+	status_header(404);
+	get_template_part(404);
+	exit();
+}
+//while (@ob_end_clean());
+//var_dump(json_encode($current));exit;
+
 //var_dump('<pre>', $current, '</pre>');exit;
 
 get_header('shop'); ?>
 
-<div class="tab-benefit btn btn-sm desktop js-product-overlay hidden-xs" data-toggle="modal" data-target="#myModal">
-	<div class="tab-benefit_title">Health Benefits</div>
-</div>
+<?php if ($current->short_description) { ?>
+	<div class="tab-benefit btn btn-sm desktop js-product-overlay hidden-xs" data-toggle="modal" data-target="#myModal">
+		<div class="tab-benefit_title">Health Benefits</div>
+	</div>
+<?php } ?>
 
 <section id="product" class="container">
 
@@ -77,18 +91,38 @@ get_header('shop'); ?>
 			<div class="product-slider">
 				<div class="product-slider_inner">
 
-					<span class="carousel-prev">
-                        <img class="svg loaded" src="<?php echo get_template_directory_uri(); ?>/images/icon-arrow_left.svg" data-class="carousel-prev"/>
-                    </span>
-                    <span class="carousel-next">
-                        <img class="svg loaded" src="<?php echo get_template_directory_uri(); ?>/images/icon-arrow_right.svg" data-class="carousel-next"/>
-                    </span>
+					<?php if (($current->type == 'simple' && count($current->images) > 1) || ($current->type == 'variable' && count($current->variations) > 1)) { ?>
+						<span class="carousel-prev"><img class="svg loaded" src="<?php echo get_template_directory_uri(); ?>/images/icon-arrow_left.svg" data-class="carousel-prev"/></span>
+                    	<span class="carousel-next"><img class="svg loaded" src="<?php echo get_template_directory_uri(); ?>/images/icon-arrow_right.svg" data-class="carousel-next"/></span>
+					<?php } ?>
 
 					<div class="owl-carousel owl-theme">
-						<?php foreach ($current->images as $image) { ?>
-						<div class="is-img item" style="width: 100%;">
-							 <div class="owl-carousel-bgImg" style="background-image: url('<?php echo $image->src; ?>')"></div>
-						</div>
+						<?php if ($current->type == 'variable') { ?>
+							<?php foreach ($current->variations as $variation) { ?>
+								<?php
+								$optionsHtml = join(' ', array_map(function($obj) { return $obj->option; }, $variation->attributes));
+								if (count($variation->image) > 0) {
+									$image = $variation->image[0];
+								} else {
+									$image = $current->images[0];
+								}
+//                                    var_dump($image);exit;
+								?>
+								<div class="is-img item" style="width: 100%;" data-var="<?php echo $optionsHtml; ?>">
+									<a data-fancybox href="<?php echo $image->src; ?>">
+										<textarea style="display: none;"><?php echo json_encode($variation->attributes); ?></textarea>
+										<div class="owl-carousel-bgImg" style="background-image: url('<?php echo $image->src; ?>')"></div>
+									</a>
+								</div>
+							<?php } ?>
+						<?php } else { ?>
+							<?php foreach ($current->images as $image) { ?>
+								<div class="is-img item" style="width: 100%;">
+									<a data-fancybox href="<?php echo $image->src; ?>">
+										<div class="owl-carousel-bgImg" style="background-image: url('<?php echo $image->src; ?>')"></div>
+									</a>
+								</div>
+							<?php } ?>
 						<?php } ?>
 					</div>
 
@@ -104,29 +138,44 @@ get_header('shop'); ?>
 
 			<div class="product-details__price">
 				<div class="price-details">
-					
+					<?php if ($current->type == 'simple') { ?>
+						<?php if ($current->sale_price) { ?>
+							<span class="dollar regular">$</span>
+							<span class="regular regular-price price"><?php echo $current->regular_price; ?></span>
+							<span class="regular-arrow">›</span>
+							<span class="dollar">$</span>
+							<span class="price"><?php echo $current->price; ?></span>
+						<?php } else { ?>
+							<span class="dollar">$</span>
+							<span class="price"><?php echo $current->regular_price; ?></span>
+						<?php } ?>
+					<?php } ?>
 				</div>
-				<!-- @Weida this needs to be dynamic -->
-	            <div class="product-slider__discount">
-	                <span>-20%</span>
-	            </div>
+
+				<div class="product-slider__discount js-discount" <?php if ($current->type == 'simple' && !$current->sale_price) { ?>style="display: none;"<?php } ?>>
+					<span>
+						<?php if ($current->type == 'simple' && $current->sale_price) { ?>
+							-<?php echo (int)(($current->regular_price - $current->sale_price) / $current->regular_price * 100) ?>%
+						<?php } ?>
+					</span>
+				</div>
             </div>
 
 			<div class="attrs js-choices">
 				<?php foreach ($current->attributes as $attrIdx => $attribute) { ?>
-				<div class="product-attr">
-					<h4 class="product-attr_title"><?php echo $attribute->name; ?></h4>
-					<?php foreach ($attribute->options as $optIdx => $option) { ?>
-					<input name="attr<?php echo $attrIdx; ?>" <?php if ($optIdx == 0) { ?>checked<?php } ?> id="opt-<?php echo $attrIdx . '-' . $optIdx; ?>" type="radio" autocomplete="off" value="<?php echo slugify($option); ?>"/>
-					<label for="opt-<?php echo $attrIdx . '-' . $optIdx; ?>" class="btn btn-sm btn-option"><?php echo $option; ?></label>
-					<?php } ?>
-				</div>
+					<div class="product-attr">
+						<h4 class="product-attr_title"><?php echo $attribute->name; ?></h4>
+						<?php foreach ($attribute->options as $optIdx => $option) { ?>
+							<input name="attr<?php echo $attrIdx; ?>" <?php if ($optIdx == 0) { ?>checked<?php } ?> id="opt-<?php echo $attrIdx . '-' . $optIdx; ?>" type="radio" autocomplete="off" value="<?php echo slugify($option); ?>"/>
+							<label for="opt-<?php echo $attrIdx . '-' . $optIdx; ?>" class="btn btn-sm btn-option"><?php echo $option; ?></label>
+						<?php } ?>
+					</div>
 				<?php } ?>
 			</div>
 
 
 			<div class="control">
-				<form enctype="multipart/form-data" autocomplete="off" novalidate method="post">
+				<form class="js-add-cart-form" enctype="multipart/form-data" autocomplete="off" novalidate method="post">
 					<h4 class="product-attr_title">Quantity</h4>
 					<div class="control_quantity">
 						<div class="icon-minus remove"></div>
@@ -134,26 +183,26 @@ get_header('shop'); ?>
 						<div class="icon-add add"></div>
 					</div>
 
-					<button type="submit" class="btn btn-lg">Add to cart</button>
+					<button type="submit" class="btn btn-lg" data-toggle="modal" data-target="#cartModal">Add to cart</button>
 					<div class="js-params" style="display: none;">
 						<?php foreach ($current->variations as $varIdx => $variation) { ?>
-						<?php
-						$optionsHtml = join(' ', array_map(function ($obj) {
-							return slugify($obj->option);
-						}, $variation->attributes));
-						$optionsJson = urlencode(json_encode(array_map(function ($obj) {
-							return array($obj->slug, $obj->option);
-						}, $variation->attributes)));
-						$priceHtml = '';
-						if ($variation->price != $variation->regular_price) {
-							$priceHtml .= "<span class='dollar regular'>$</span><span class='regular regular-price price'>{$variation->regular_price}</span><span class='regular-arrow'>&rsaquo;</span>";
-						}
-						$priceHtml .= "<span class='dollar'>$</span><span class='price'>{$variation->price}</span>";
-						?>
-						<div class="js-var">
-							<input id="var-<?php echo $varIdx ?>" <?php if ((count($current->attributes) > 0 && $current->attributes[0]->options[0] == $optionsHtml ) ||$varIdx == 0) { ?>checked<?php } ?> name="variation_id" data-price="<?php echo $priceHtml; ?>" data-attrs="<?php echo $optionsJson; ?>" data-html="<?php echo $optionsHtml; ?>" type="radio" value="<?php echo $variation->id; ?>"/>
-							<label for="var-<?php echo $varIdx ?>"><?php echo $optionsHtml; ?></label>
-						</div>
+							<?php
+								$optionsHtml = join(' ', array_map(function ($obj) {
+									return slugify($obj->option);
+								}, $variation->attributes));
+								$optionsJson = urlencode(json_encode(array_map(function ($obj) {
+									return array($obj->slug, $obj->option);
+								}, $variation->attributes)));
+								$priceHtml = '';
+								if ($variation->price != $variation->regular_price) {
+									$priceHtml .= "<span class='dollar regular'>$</span><span class='regular regular-price price'>{$variation->regular_price}</span><span class='regular-arrow'>&rsaquo;</span>";
+								}
+								$priceHtml .= "<span class='dollar'>$</span><span class='price'>{$variation->price}</span>";
+							?>
+							<div class="js-var">
+								<input data-regular="<?php echo $variation->regular_price; ?>" data-sale="<?php echo $variation->sale_price; ?>" data-now="<?php echo $variation->price; ?>" id="var-<?php echo $varIdx ?>" <?php if ((count($current->attributes) > 0 && $current->attributes[0]->options[0] == $optionsHtml ) ||$varIdx == 0) { ?>checked<?php } ?> name="variation_id" data-price="<?php echo $priceHtml; ?>" data-attrs="<?php echo $optionsJson; ?>" data-html="<?php echo $optionsHtml; ?>" type="radio" value="<?php echo $variation->id; ?>"/>
+								<label for="var-<?php echo $varIdx ?>"><?php echo $optionsHtml; ?></label>
+							</div>
 						<?php } ?>
 
 						<input name="add-to-cart" value="<?php echo $current->id; ?>" type="text"><br/>
@@ -171,8 +220,8 @@ get_header('shop'); ?>
 <section class="container related-products">
 	<h2>OH, AND YOU MIGHT LIKE THESE TOO</h2>
 	<div class="row row-centered">
-		<?php foreach ($others as $other) { ?>
-			<div class="col-md-3 col-centered">
+		<?php foreach ($others as $other) { if ($other->type == 'variable' && count($other->variations) == 0) continue; ?>
+			<div class="col-md-3 col-xs-12 col-centered">
 				<div class="product-slider">
 					<div class="product-slider_inner">
 						<div class="owl-carousel owl-theme related">
@@ -234,6 +283,20 @@ get_header('shop'); ?>
 			-->
 			<div class="modal-body">
 				<?php echo $current->short_description; ?>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body js-add-cart-info"></div>
+			<div class="modal-footer js-cart-dismiss" style="display: none;">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close & keep shopping</button>
 			</div>
 		</div>
 	</div>

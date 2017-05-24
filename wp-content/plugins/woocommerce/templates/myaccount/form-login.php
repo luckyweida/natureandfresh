@@ -30,13 +30,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div class="u-columns col2-set" id="customer_login">
 
-	<div class="u-column1 col-1">
+	<div class="col-md-6 col-xs-12">
 
 <?php endif; ?>
 
 		<h2><?php _e( 'Login', 'woocommerce' ); ?></h2>
 
-		<form method="post" class="login">
+		<form method="post" class="login nf-login">
 
 			<?php do_action( 'woocommerce_login_form_start' ); ?>
 
@@ -53,29 +53,45 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			<p class="form-row">
 				<?php wp_nonce_field( 'woocommerce-login', 'woocommerce-login-nonce' ); ?>
-				<input type="submit" class="woocommerce-Button button" name="login" value="<?php esc_attr_e( 'Login', 'woocommerce' ); ?>" />
+				<input type="submit" class="woocommerce-Button button btn-lg w-100" name="login" value="<?php esc_attr_e( 'Login', 'woocommerce' ); ?>" />
+
+				<!-- francis wu, moved this in the footer below
 				<label for="rememberme" class="inline">
-					<input class="woocommerce-Input woocommerce-Input--checkbox" name="rememberme" type="checkbox" id="rememberme" value="forever" /> <?php _e( 'Remember me', 'woocommerce' ); ?>
+					<input class="woocommerce-Input woocommerce-Input--checkbox" name="rememberme" type="checkbox" id="rememberme" value="forever" /> <?php //_e( 'Remember me', 'woocommerce' ); ?>
 				</label>
+				-->
 			</p>
+			<!-- francis wu, moved this in the footer below
 			<p class="woocommerce-LostPassword lost_password">
-				<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?', 'woocommerce' ); ?></a>
+				<a href="<?php //echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?', 'woocommerce' ); ?></a>
 			</p>
+			-->
+
+
+			<footer class="form-group">
+				<div>
+                <input class="woocommerce-Input woocommerce-Input--checkbox" name="rememberme" type="checkbox" id="rememberme" value="forever" />
+                <?php _e( 'Remember me', 'woocommerce' ); ?>
+                </div>
+                <div>
+               	 <a class="woocommerce-LostPassword lost_password" href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?', 'woocommerce' ); ?></a>
+                </div>
+            </footer>
 
 			<?php do_action( 'woocommerce_login_form_end' ); ?>
 
 		</form>
 
-<?php /**
+
 <?php if ( get_option( 'woocommerce_enable_myaccount_registration' ) === 'yes' ) : ?>
 
 </div>
 
-<div class="u-column2 col-2">
+<div class="col-md-6 col-xs-12">
 
 <h2><?php _e( 'Register', 'woocommerce' ); ?></h2>
 
-<form method="post" class="register">
+<form method="post" class="register nf-register">
 
 <?php do_action( 'woocommerce_register_form_start' ); ?>
 
@@ -110,7 +126,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <p class="woocomerce-FormRow form-row">
 <?php wp_nonce_field( 'woocommerce-register', 'woocommerce-register-nonce' ); ?>
-<input type="submit" class="woocommerce-Button button" name="register" value="<?php esc_attr_e( 'Register', 'woocommerce' ); ?>" />
+<input type="submit" class="woocommerce-Button button btn btn-lg w-100" name="register" value="<?php esc_attr_e( 'Register', 'woocommerce' ); ?>" />
 </p>
 
 <?php do_action( 'woocommerce_register_form_end' ); ?>
@@ -122,6 +138,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 </div>
 <?php endif; ?>
 
- */ ?>
+
 
 <?php do_action( 'woocommerce_after_customer_login_form' ); ?>

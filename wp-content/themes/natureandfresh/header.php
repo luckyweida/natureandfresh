@@ -9,6 +9,7 @@ foreach ($items as $item) {
     $count += $item['quantity'];
 }
 
+$classes = get_body_class();
 ?>
 
 <!DOCTYPE html>
@@ -32,8 +33,9 @@ foreach ($items as $item) {
     
     <?php wp_head(); ?>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.css" />
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css" type="text/css"/>
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/develop.css?v=3.5" type="text/css"/>
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/develop.css?v=3.6" type="text/css"/>
 
 </head>
 <body <?php body_class(); ?>>
@@ -61,7 +63,7 @@ foreach ($items as $item) {
                     menu
                 </a>
 
-                <a class="hidden-xs" href="/shop" title="shop">shop</a>
+                <a class="hidden-xs <?php if (in_array('page-template-shop', $classes) || in_array('single-product', $classes)) { ?>active<?php } ?>" href="/shop" title="shop">shop</a>
             </nav>
 
             <a id="logo" class="col-md-4 col-xs-4"  href="/" title="Nature & Fresh">
@@ -71,53 +73,74 @@ foreach ($items as $item) {
             <div class="right-menu-item col-md-4 col-xs-4">
                 <div class="right-menu-item_account">
                     <?php if (is_user_logged_in()) { ?>
-                        <a href="/my-account/" title="my account">my account</a>
+                        <a title="my account"  class="dropdown-toggle" data-toggle="dropdown" id="account-manage" >my account</a>
+                        <div id="account-manage-drop" class="dropdown-menu dropdown-menu-right"  aria-labelledby="account-manage">
+                            <nav>
+                                <ul>
+                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard">
+                                        <a href="/my-account/">Dashboard</a>
+                                    </li>
+                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders">
+                                        <a href="/my-account/orders/">Orders</a>
+                                    </li>
+                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-address is-active">
+                                        <a href="/my-account/edit-address/">Addresses</a>
+                                    </li>
+                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account">
+                                        <a href="/my-account/edit-account/">Account Details</a>
+                                    </li>
+                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout">
+                                        <a href="/my-account/customer-logout/">Logout</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
                     <?php } else { ?>
                         <a class="dropdown-toggle" data-toggle="dropdown" title="sign in" id="signin">
                             sign in
                             <!-- <span class="caret"></span> -->
                         </a>
-                    <?php } ?>
-                    <div id="account-drop" class="dropdown-menu dropdown-menu-right"  aria-labelledby="signin">
+                        <div id="account-drop" class="dropdown-menu dropdown-menu-right"  aria-labelledby="signin">
 
-                         <form method="post" class="login">
+                            <form method="post" class="login">
 
-                            <?php do_action( 'woocommerce_login_form_start' ); ?>
+                                <?php do_action( 'woocommerce_login_form_start' ); ?>
 
-                            <div class="form-group">
-                                <!-- <label for="username"><?php// _e( 'Username/ email address', 'woocommerce' ); ?> <span class="required">*</span></label> -->
-                                <input placeholder="Enter username or email address" type="text" class="form-control" name="username" id="username" value="<?php if ( ! empty( $_POST['username'] ) ) echo esc_attr( $_POST['username'] ); ?>" />
-                            </div>
-                            <div class="form-group">
-                               <!--  <label for="password"><?php //_e( 'Password', 'woocommerce' ); ?> <span class="required">*</span></label> -->
-                                <input placeholder="Enter password" class="form-control" type="password" name="password" id="password" />
-                            </div>
+                                <div class="form-group">
+                                    <!-- <label for="username"><?php// _e( 'Username/ email address', 'woocommerce' ); ?> <span class="required">*</span></label> -->
+                                    <input placeholder="Enter username or email address" type="text" class="form-control" name="username" id="username" value="<?php if ( ! empty( $_POST['username'] ) ) echo esc_attr( $_POST['username'] ); ?>" />
+                                </div>
+                                <div class="form-group">
+                                    <!--  <label for="password"><?php //_e( 'Password', 'woocommerce' ); ?> <span class="required">*</span></label> -->
+                                    <input placeholder="Enter password" class="form-control" type="password" name="password" id="password" />
+                                </div>
 
-                            <?php do_action( 'woocommerce_login_form' ); ?>
+                                <?php do_action( 'woocommerce_login_form' ); ?>
 
-                            <div class="form-group">
-                                <?php wp_nonce_field( 'woocommerce-login', 'woocommerce-login-nonce' ); ?>
-                                <input type="submit" class="btn btn-md" style="width: 100%;" name="login" value="<?php esc_attr_e( 'Login', 'woocommerce' ); ?>" />
-                                <!-- <label class="form-check-label">
+                                <div class="form-group">
+                                    <?php wp_nonce_field( 'woocommerce-login', 'woocommerce-login-nonce' ); ?>
+                                    <input type="submit" class="btn btn-sm w-100" name="login" value="<?php esc_attr_e( 'Login', 'woocommerce' ); ?>" />
+                                    <!-- <label class="form-check-label">
                                     <input id="rememberme" class="form-check-input" name="rememberme" type="checkbox" value="forever"> <?php //_e( 'Remember me', 'woocommerce' ); ?>
                                 </label> -->
-                            </div>
+                                </div>
 
-                            <footer class="form-group woocommerce-LostPassword lost_password">
-                                <a href="/registration/" title="signup">
-                                    New here? Sign up
-                                </a>
-                                <a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?', 'woocommerce' ); ?></a>
-                                
-                            </footer>
+                                <footer class="form-group woocommerce-LostPassword lost_password">
+                                    <a href="/registration/" title="signup">
+                                        New here? Sign up
+                                    </a>
+                                    <a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?', 'woocommerce' ); ?></a>
 
-                            <?php do_action( 'woocommerce_login_form_end' ); ?>
+                                </footer>
 
-                        </form>
+                                <?php do_action( 'woocommerce_login_form_end' ); ?>
+
+                            </form>
 
 
-                        <!-- Comment out for now, recompiled to boostrap style -->
-                        <!-- <form method="post" class="login">
+                            <!-- Comment out for now, recompiled to boostrap style -->
+                            <!-- <form method="post" class="login">
 
                             <?php //do_action( 'woocommerce_login_form_start' ); ?>
 
@@ -146,14 +169,17 @@ foreach ($items as $item) {
                             <?php //do_action( 'woocommerce_login_form_end' ); ?>
 
                         </form> -->
-                    </div>
+                        </div>
+                    <?php } ?>
                 </div>
                 <div class="right-menu-item_cart">
                     <a class="dropdown" data-toggle="dropdown" title="cart">
                         cart
                         <small>(<?php echo $count; ?>)</small>
                     </a>
-                    <div id="cart-drop" class="dropdown-menu dropdown-menu-right">
+
+                    <?php if (!in_array('woocommerce-cart', $classes)) { ?>
+                        <div id="cart-drop" class="dropdown-menu dropdown-menu-right">
 
                         <?php if (count(WC()->cart->get_cart())) { ?>
 
@@ -252,6 +278,7 @@ foreach ($items as $item) {
                         <?php } ?>
 
                     </div><!-- End .cart-drop -->
+                    <?php } ?>
                 </div>
             </div>
         </header>
@@ -261,17 +288,32 @@ foreach ($items as $item) {
             <div class="container">
                 <div class="row">
                     <nav class="col-sm-4">
-                        <a class="menu-item" href="/shop/">shop</a>
-                        <a class="menu-item" href="/about/">about</a>
-                        <a class="menu-item" href="/the-photo/">the photo</a>
-                        <a class="menu-item" href="/wholesale/">wholesale</a>
-                        <a class="menu-item" href="/get-in-touch/">get in touch</a>
+                        <a class="menu-item <?php if (in_array('page-template-shop', $classes) || in_array('single-product', $classes)) { ?>active<?php } ?>" href="/shop/">shop</a>
+                        <a class="menu-item <?php if (in_array('page-template-about', $classes)) { ?>active<?php } ?>" href="/about/">about</a>
+                        <a class="menu-item <?php if (in_array('page-template-the-photo', $classes)) { ?>active<?php } ?>" href="/the-photo/">the photo</a>
+                        <a class="menu-item <?php if (in_array('page-template-wholesale', $classes)) { ?>active<?php } ?>" href="/wholesale/">wholesale</a>
+                        <a class="menu-item <?php if (in_array('page-template-get-in-touch', $classes)) { ?>active<?php } ?>" href="/get-in-touch/">get in touch</a>
                     </nav>
                     <div class="col-md-6 hidden-xs" id="instafeed"></div>
                     <div class="col-md-2 overlay-menu_facebook">
-                        <a target="_blank" href="https://www.facebook.com/Nature-Fresh-409725865782785/?fref=ts">
-                            <img class="svg" src="<?php echo get_template_directory_uri(); ?>/images/ft_facebook.svg">
-                        </a>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <a class="fb" target="_blank" href="https://www.facebook.com/Nature-Fresh-409725865782785/?fref=ts">
+                                    <img class="svg" src="<?php echo get_template_directory_uri(); ?>/images/ft_facebook.svg">
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <a class="insta" target="_blank" href="https://www.instagram.com/natureandfresh/">
+                                    <img class="svg" src="<?php echo get_template_directory_uri(); ?>/images/icon-instagram.svg">
+                                </a>
+                            </div>
+                        </div>
+                       
+
+                        
                     </div>
                 </div>
             </div>

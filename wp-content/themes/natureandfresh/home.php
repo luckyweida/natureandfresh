@@ -67,26 +67,28 @@ Template Name: Home page
                                                 </h2>
 
                                                 <div class="price-details"></div>
+                                                
+                                                <div class="product-variables">
+                                                    <select class="variation js-variation custom-select">
+                                                        <?php foreach ($product->variations as $variation) { ?>
+                                                            <?php
+                                                            $optionsHtml = join(' ', array_map(function($obj) { return $obj->option; }, $variation->attributes));
+                                                            $optionsJson = urlencode(json_encode(array_map(function($obj) { return array($obj->slug, $obj->option); }, $variation->attributes)));
+                                                            $priceHtml = '';
+                                                            if ($variation->price != $variation->regular_price) {
+                                                                $priceHtml .= "<span class='dollar regular'>$</span><span class='regular regular-price price'>{$variation->regular_price}</span><span class='regular-arrow'>&rsaquo;</span>";
+                                                            }
+                                                            $priceHtml .= "<span class='dollar'>$</span><span class='price'>{$variation->price}</span>";
+                                                            ?>
+                                                            <option data-attrs="<?php echo $optionsJson; ?>" data-id="<?php echo $variation->id; ?>" data-price="<?php echo $priceHtml; ?>"><?php echo $optionsHtml; ?></option>
+                                                        <?php } ?>
+                                                    </select>
 
-                                                <select class="variation js-variation custom-select">
-                                                    <?php foreach ($product->variations as $variation) { ?>
-                                                        <?php
-                                                        $optionsHtml = join(' ', array_map(function($obj) { return $obj->option; }, $variation->attributes));
-                                                        $optionsJson = urlencode(json_encode(array_map(function($obj) { return array($obj->slug, $obj->option); }, $variation->attributes)));
-                                                        $priceHtml = '';
-                                                        if ($variation->price != $variation->regular_price) {
-                                                            $priceHtml .= "<span class='dollar regular'>$</span><span class='regular regular-price price'>{$variation->regular_price}</span><span class='regular-arrow'>&rsaquo;</span>";
-                                                        }
-                                                        $priceHtml .= "<span class='dollar'>$</span><span class='price'>{$variation->price}</span>";
-                                                        ?>
-                                                        <option data-attrs="<?php echo $optionsJson; ?>" data-id="<?php echo $variation->id; ?>" data-price="<?php echo $priceHtml; ?>"><?php echo $optionsHtml; ?></option>
-                                                    <?php } ?>
-                                                </select>
-
-                                                <div class="control_quantity">
-                                                    <div class="icon-minus remove"></div>
-                                                    <input value="1" name="quantity" class="amount" type="text"/>
-                                                    <div class="icon-add add"></div>
+                                                    <div class="control_quantity">
+                                                        <div class="icon-minus remove"></div>
+                                                        <input value="1" name="quantity" class="amount" type="text"/>
+                                                        <div class="icon-add add"></div>
+                                                    </div>
                                                 </div>
 
                                                 <button type="submit" class="btn btn-sm">Add to cart</button>

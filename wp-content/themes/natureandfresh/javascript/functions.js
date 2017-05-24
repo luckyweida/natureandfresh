@@ -299,7 +299,6 @@ $(function () {
             // $(itm).fadeIn();
 
             $(itm).parent().find('.carousel-next').on('click', function () {
-                console.log(1);
                 owl.trigger('next.owl.carousel');
             });
             $(itm).parent().find('.carousel-prev').on('click', function () {
@@ -323,6 +322,47 @@ $(function () {
         })
     }
 
+    if ($('body').hasClass('woocommerce-cart')) {
+        $(document).on('mousedown', '.right-menu-item_cart', function (ev) {
+            $('html, body').animate({
+                scrollTop: $(".shop_table_responsive").offset().top
+            }, 500);
+            ev.preventDefault();
+            return false;
+        })
+    }
+
+    if ($.support.pjax) {
+        $.pjax.defaults.timeout = 600000;
+        $.pjax.defaults.scrollTo = false;
+
+        $(document).on('submit', 'form.js-address-form', function (event) {
+            $('.woocommerce-MyAccount-content').html('<div class="pjax-loading product-loading"><h3 class="text">We are processing your request. <br /><small>Please wait...</small></h3><div class="spinner"></div></div>');
+            $.pjax.submit(event, '.woocommerce-MyAccount-content', {
+                fragment: '.woocommerce-MyAccount-content'
+            });
+        });
+        $('.woocommerce-MyAccount-content').on('pjax:success', function(e) {
+            var html = '<h3>Your changes have been made</h3>';
+            html += '<p><a href="/my-account/edit-address/">Click here to go back to your addresses</a></p>';
+            $('.woocommerce-MyAccount-content').html(html);
+        });
+
+        $(document).on('submit', 'form.js-add-cart-form', function (event) {
+            $('.js-cart-dismiss').hide();
+            $('.js-add-cart-info').html('<div class="pjax-loading product-loading"><span class="text">We are processing your request. <br /><small>Please wait...</small></span><div class="spinner"></div></div>');
+            $.pjax.submit(event, '.right-menu-item_cart', {
+                fragment: '.right-menu-item_cart'
+            });
+        });
+        $('.right-menu-item_cart').on('pjax:success', function(e) {
+            $('.js-cart-dismiss').show();
+            var html = '<h4>The item(s) have been added to cart</h4>';
+            html += '<p><a href="/cart/">Click here to view your shopping cart now</a></p>';
+            $('.js-add-cart-info').html(html);
+        });
+    }
+
     if ($('#shop').length || $('#homepage').length) {
         processImages();
         $.each($('.js-variation'), function (idx, itm) {
@@ -330,35 +370,107 @@ $(function () {
             $(itm).closest('form').find('.variation_id').val($(itm).find('option:selected').data('id'));
             $(itm).closest('form').find('.js-attrs').empty();
 
-            var json = JSON.parse(decodeURIComponent($(itm).find('option:selected').data('attrs')));
-            for (var key in json) {
-                var val = json[key];
-                $(itm).closest('form').find('.js-attrs').append('<input type="text" name="attribute_' + val[0] + '" value="' + val[1] + '">');
+            if ($(itm).find('option:selected').length) {
+                var json = JSON.parse(decodeURIComponent($(itm).find('option:selected').data('attrs')));
+                for (var key in json) {
+                    var val = json[key];
+                    $(itm).closest('form').find('.js-attrs').append('<input type="text" name="attribute_' + val[0] + '" value="' + val[1] + '">');
+                }
+
+                if ($(itm).find('option:selected').data('sale')) {
+                    $(itm).closest('.product-slider').find('.js-discount').html('<span>-' + parseInt((($(itm).find('option:selected').data('regular') - $(itm).find('option:selected').data('sale')) / $(itm).find('option:selected').data('regular') * 100), 10) + '%</span>');
+                    $(itm).closest('.product-slider').find('.js-discount').show();
+                } else {
+                    $(itm).closest('.product-slider').find('.js-discount').hide();
+                }
             }
         });
         $(document).on('change', '.js-variation', function () {
             $(this).closest('form').find('.price-details').html($(this).find('option:selected').data('price'));
             $(this).closest('form').find('.variation_id').val($(this).find('option:selected').data('id'));
             $(this).closest('form').find('.js-attrs').empty();
+            if ($(this).find('option:selected').data('sale')) {
+                $(this).closest('.product-slider').find('.js-discount').html('<span>-' + parseInt((($(this).find('option:selected').data('regular') - $(this).find('option:selected').data('sale')) / $(this).find('option:selected').data('regular') * 100), 10) + '%</span>');
+                $(this).closest('.product-slider').find('.js-discount').show();
+            } else {
+                $(this).closest('.product-slider').find('.js-discount').hide();
+            }
 
             var json = JSON.parse(decodeURIComponent($(this).find('option:selected').data('attrs')));
             for (var key in json) {
                 var val = json[key];
                 $(this).closest('form').find('.js-attrs').append('<input type="text" name="attribute_' + val[0] + '" value="' + val[1] + '">');
             }
+        });
+
+        $.each($('.owl-carousel'), function (idx, itm) {
+            $(itm).on('changed.owl.carousel', function(property) {
+                if (!window._selLock) {
+                    window._carLock = 1;
+                    var val = $(property.target).find('.owl-item:nth-child(' + (property.item.index + 1) + ')').find('a').data('var');
+                    if (val) {
+                        $(property.target).closest('.product-slider').find('form').find('select').val(val).change();
+                    }
+                    window._carLock = 0;
+                }
+            })
+        });
+
+        $.each($('form'), function (idx, itm) {
+            $(itm).find('select').change(function (ev) {
+                if (!window._carLock) {
+                    window._selLock = 1;
+                    var elm = $(this).closest('.product-slider').find('.owl-carousel').find('.owl-item:not(.cloned)').find('[data-var="' + $(this).val() + '"]');
+                    $(this).closest('.product-slider').find('.owl-carousel').trigger('to.owl.carousel', elm.parent().index() + 2)
+                    window._selLock = 0;
+                }
+            });
         })
     }
 
     if ($('#product').length) {
         processImages();
+        $(document).on('change', '.js-var input', function () {
+            if (!window._carLock) {
+                window._selLock = 1;
+                var elm = $(this).closest('.product-details').find('.owl-carousel').find('.owl-item:not(.cloned)').find('[data-var="' + $(this).data('html') + '"]');
+                $(this).closest('.product-details').find('.owl-carousel').trigger('to.owl.carousel', elm.parent().index() + 2)
+                window._selLock = 0;
+            }
+        });
+
+        $('.product-details .owl-carousel').on('changed.owl.carousel', function(property) {
+            if (!window._selLock) {
+                window._carLock = 1;
+                var val = $(property.target).find('.owl-item:nth-child(' + (property.item.index + 1) + ')').find('textarea').val();
+                if (val) {
+                    var val = JSON.parse(val);
+                    for (var idx in val) {
+                        var itm = val[idx];
+                        $('input[value="' + itm.option + '"]').prop('checked', 'checked').change();
+                    }
+                    window._carLock = 0;
+                }
+            }
+        })
+
         $('.js-attrs').empty();
-        var json = JSON.parse(decodeURIComponent($('.js-var input:checked').data('attrs')));
-        for (var key in json) {
-            var val = json[key];
-            $('.js-attrs').append('<input type="text" name="attribute_' + val[0] + '" value="' + val[1] + '"><br />');
+        if ($('.js-var input:checked').length) {
+            var json = JSON.parse(decodeURIComponent($('.js-var input:checked').data('attrs')));
+            for (var key in json) {
+                var val = json[key];
+                $('.js-attrs').append('<input type="text" name="attribute_' + val[0] + '" value="' + val[1] + '"><br />');
+            }
+
+            $('.price-details').html($('.js-var input:checked').data('price'));
+            if ($('.js-var input:checked').data('sale')) {
+                $('.js-discount').html('<span>-' + parseInt((($('.js-var input:checked').data('regular') - $('.js-var input:checked').data('sale')) / $('.js-var input:checked').data('regular') * 100), 10) + '%</span>');
+                $('.js-discount').show();
+            } else {
+                $('.js-discount').hide();
+            }
         }
 
-        $('.price-details').html($('.js-var input:checked').data('price'));
         $(document).on('change', '.js-choices :radio', function () {
             $('.js-attrs').empty();
             var html = '';
@@ -370,8 +482,14 @@ $(function () {
             $('.js-var input').removeAttr('checked')
             $.each($('.js-var input'), function (idx, itm) {
                 if ($(itm).data('html') == html) {
-                    $(itm).prop('checked', 'checked');
+                    $(itm).prop('checked', 'checked').change();
                     $('.price-details').html($(itm).data('price'));
+                    if ($(itm).data('sale')) {
+                        $('.js-discount').html('<span>-' + parseInt((($(itm).data('regular') - $(itm).data('sale')) / $(itm).data('regular') * 100), 10) + '%</span>');
+                        $('.js-discount').show();
+                    } else {
+                        $('.js-discount').hide();
+                    }
                 }
             })
             var json = JSON.parse(decodeURIComponent($('.js-var input:checked').data('attrs')));
