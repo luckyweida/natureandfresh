@@ -478,6 +478,7 @@ header {
 
 #cart-drop,
 #account-drop,
+#account-manage-drop,
 .woocommerce-account form.nf-login,
 .woocommerce-account form.nf-register{
 	background: @overlay-background;
@@ -490,7 +491,35 @@ header {
 		background: white;
 
 	}
+}
 
+#account-manage-drop{
+	font-size: .875rem;
+	padding: 0;
+	width: auto;
+
+	ul{
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		li{
+			list-style: none;
+			margin: 0;
+			border-bottom: 1px solid @hr;
+
+			a{
+				padding: .5rem;
+				width: 100%;
+				display: block;
+
+				&:hover{
+					background: @green;
+					color: white;
+				}
+			}
+		}
+	}
 }
 
 .woocommerce-account form.nf-login,
@@ -1114,13 +1143,13 @@ footer#footer {
 	}
 }
 
-/*Hide green message box with message so it doesn't display during checkout process screens,  'Item's been added to cart/ Item's been removed' etc.*/
+/*Hide green message box with message so it doesn't display during checkout process screens,  'Item's been added to cart/ Item's been removed' etc.
 .woocommerce-checkout .woocommerce .woocommerce-message,
 .woocommerce-checkout .woocommerce .woocommerce-error {
 	display: none !important;
 	visibility: collapse !important;
 	opacity: 0 !important;
-}
+}*/
 
 /*A wrapper for messages when order received*/
 .box-msg{
@@ -1245,7 +1274,7 @@ nav.woocommerce-MyAccount-navigation{
 
 			&:first-child{
 
-				display: none;
+				display: none; /*Hide my account 'Dashboard' menu item*/
 			}
 
 			&:last-child{
@@ -1411,7 +1440,7 @@ nav.woocommerce-MyAccount-navigation{
 	}
 
 	.order-total{
-		display: none; /*Hide order total in view cart page, they should see the total in checkout process*/
+		/*display: none; Hide order total in view cart page, they should see the total in checkout process*/
 	}
 
 	.cart_totals{
