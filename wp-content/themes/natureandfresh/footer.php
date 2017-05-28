@@ -46,7 +46,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
-
 <script>
 	window._baseurl = '<?php echo get_template_directory_uri(); ?>';
 </script>

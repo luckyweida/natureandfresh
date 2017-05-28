@@ -109,6 +109,7 @@ html {
 #place_order,
 input.btn,
 #register.submit.button,
+.shipping-calculator-button,
 .btn {
 	background: @green;
 	border: none;
@@ -156,7 +157,22 @@ input.btn,
 			color: @grey;
 		}
 	}
+}
 
+.shipping-calculator-button{
+	font-size: @btn-sm_font-size;
+	color: @light-grey !important;
+	border: 1px solid @gold-3;
+	background: transparent;
+	display: inline-block;
+	margin-top: .5rem;
+
+	&:hover,
+	&:focus {
+		background-color: @gold-3 !important;
+		border: 1px solid @gold-3 !important;
+		color: @grey !important;
+	}
 }
 
 /* centered columns styles */
@@ -217,8 +233,12 @@ input::placeholder{
 }
 
 label,
-.ninja-forms-req-symbol{
+.ninja-forms-req-symbol,
+.woocommerce form .form-row .required{
 	color: @grey !important; /*overwrite wordpress label styles*/
+	border: none;
+	cursor: pointer;
+	text-decoration: none;
 }
 
 .article-title {
@@ -294,7 +314,10 @@ html, body {
 		color: @grey;
 		text-decoration: none;
 	}
-	a:hover {
+
+	#main-nav a,
+	a:hover,
+	a:focus {
 		transition: @transition;
 		color: @green;
 		text-decoration: none;
@@ -798,13 +821,6 @@ header {
 				a {
 					display: inline-block;
 
-					path {
-						transition: @transition;
-					}
-					&:hover path {
-						fill: @green;
-						transition: @transition;
-					}
 				}
 
 				.fb{
@@ -841,6 +857,19 @@ header {
 
 .content {
 	flex: 1;
+}
+
+.fb,
+.insta {
+
+	path {
+		transition: @transition;
+	}
+
+	&:hover path {
+		fill: @green;
+		transition: @transition;
+	}
 }
 
 /*----------------Footer-------------------*/
@@ -888,11 +917,6 @@ footer#footer {
 			}
 
 			path {
-				transition: @transition;
-			}
-
-			&:hover path {
-				fill: @green;
 				transition: @transition;
 			}
 		}
@@ -1116,9 +1140,8 @@ footer#footer {
 	}
 }
 
-.woocommerce .col2-set .col-1,
-.woocommerce-page .col2-set .col-1{
-
+#calc_shipping_postcode{ /*Hide calculate shipping postcode field*/
+	display: none;
 }
 
 /*Checkout page, billing details/ shipping address input fields/ Registration form*/
@@ -2057,7 +2080,7 @@ input:-webkit-autofill {
 
 .nf-form-title{ /*contact form*/
 	h3{
-		margin-bottom: 2rem;
+		margin-bottom: 1rem !important;
 	}
 }
 
@@ -2086,8 +2109,20 @@ label,
 	display: none; /*hide msg 'this is a required field'*/
 }
 
-.nf-field-container{/*contact form*/
-	margin-bottom: 2rem;
+
+.nf-field-container, #ninja_forms_required_items{
+	margin-bottom: 1rem !important;
+}
+
+.nf-response-msg{ /*contact form email sent msg*/
+	background: @input;
+	padding: 1rem;
+	border-radius: @border-radius;
+	p{
+		font-family: 'Roboto-Bold';
+		font-size: 1rem;
+		margin: 0;
+	}
 }
 
 .form-control,
@@ -2095,7 +2130,9 @@ input,
 .input-text,
 textarea,
 .select2-container .select2-choice,
-#wppb-register-user input {
+#wppb-register-user input,
+#calc_shipping_state,
+#calc_shipping_country{
 	border-radius: @border-radius;
 	background-color: @input;
 	border: 1px solid @input;
@@ -2113,11 +2150,18 @@ textarea,
 	}
 }
 
+#calc_shipping_state,
+#calc_shipping_country{
+	width: 11rem;
+}
+
 .select2-container{
 	line-height: 1.2; /* so the heigh tof this input is the same as others, not sure why*/
 }
 
 #get-in-touch-form {/*contact form*/
+	margin-bottom: 2rem;
+
 	.textbox-container, .email-container {
 		width: 48%;
 		display: inline-block;
@@ -2180,12 +2224,18 @@ textarea,
 
 	.contact-info {
 		margin-top: 2rem;
+
+
 	}
 }
 
 .contact-info {
 	p {
 		margin-bottom: 2rem;
+	}
+
+	.fb{
+		margin-right: .5rem;
 	}
 }
 

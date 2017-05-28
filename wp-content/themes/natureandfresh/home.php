@@ -34,7 +34,7 @@ Template Name: Home page
                 <!--@Weida Please update to show one product only-->
                 <div class="row">
                     <?php foreach ($myProducts->products as $idx => $product) { ?>
-                        <?php if ($product->title === 'Macadamia Nuts - Original') { ?>
+                        <?php if ($product->title === 'Macadamia Nuts – Original | 185g') { ?>
                             <div class="product-slider col-md-6 col-md-offset-3 text-center">
 
                                 <div class="product-slider">
