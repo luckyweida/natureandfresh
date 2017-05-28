@@ -37,6 +37,7 @@ $classes = get_body_class();
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/develop.css?v=3.6" type="text/css"/>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
 </head>
 <body <?php body_class(); ?>>
 

@@ -100,7 +100,7 @@ get_header('shop'); ?>
 						<?php if ($current->type == 'variable') { ?>
 							<?php foreach ($current->variations as $variation) { ?>
 								<?php
-								$optionsHtml = join(' ', array_map(function($obj) { return $obj->option; }, $variation->attributes));
+								$optionsHtml = join(' ', array_map(function($obj) { return strtolower($obj->option); }, $variation->attributes));
 								if (count($variation->image) > 0) {
 									$image = $variation->image[0];
 								} else {
