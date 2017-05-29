@@ -162,7 +162,7 @@ get_header('shop'); ?>
             </div>
 
 			<div class="attrs js-choices">
-				<?php foreach ($current->attributes as $attrIdx => $attribute) { ?>
+				<?php foreach ($current->attributes as $attrIdx => $attribute) { if (!$attribute->visible) continue; ?>
 					<div class="product-attr">
 						<h4 class="product-attr_title"><?php echo $attribute->name; ?></h4>
 						<?php foreach ($attribute->options as $optIdx => $option) { ?>
@@ -288,19 +288,7 @@ get_header('shop'); ?>
 	</div>
 </div>
 
-<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			</div>
-			<div class="modal-body js-add-cart-info"></div>
-			<div class="modal-footer js-cart-dismiss" style="display: none;">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close & keep shopping</button>
-			</div>
-		</div>
-	</div>
-</div>
+
 
 <?php get_footer('shop'); ?>
 

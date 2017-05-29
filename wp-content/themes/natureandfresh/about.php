@@ -39,11 +39,11 @@ Template Name: About
 
 			<article class="col-md-6 col-xs-12">
 				<div class="article-offset_heading">
-					<h2 class="article-title">We’re all about growing the perfect macadamia nuts lorem ipsum.</h2>
+					<h2 class="article-title">Organic &amp; Natural from groud upin Franklin, Waiuku</h2>
 				</div>
-				<p>Introduction copy to be placed here, we try our best not to use machines in the orchard. Instead, we use natural fertilizers such as Agrissentials Rok Solid and comfrey. We use comfrey as a liquid fertilizer on our trees for the nutrients and minerals it brings up from deep in the ground.</p>
-				<p>We are out on the farm daily picking the macadamia nuts which are then husked and dried at a low temperature for eight weeks. The cracked nuts are then vacuum packed to preserve that fresh, original macadamia taste that we love. From growing to harvesting, drying and packaging, you can enjoy natural quality foods that have been grown and prepared with care.</p>
-				<p>With more products to come, it is an exciting time for everyone at Nature & Fresh! Stay tuned to our website for more updates and information as we continue to work on bringing you more of the fresh, natural taste you love.</p>
+				<p>Nature &amp; Fresh’s twelve acre orchard is 6 years old and situated in the Franklin suburb of Waiuku. With 700 peak age macadamia trees, over 150 feijoa trees, 100 chestnut trees, and 200 freshly planted Manuka, we are diverse yet focussed on our greatest prize: the macadamia.</p>
+				<p>We have a strong organic approach, which includes the way we raise and utilise our animals.  Over 100 chickens, ducks and geese roam the farm, keeping the number of insects and weeds in the soil to a minimum. Also among the Nature &amp; Fresh family are sheep and pigs, who eat the macadamia nuts that have fallen to the ground. This keeps the farm tidy in a cheap and environmentally friendly way while maintaining healthy animals and a positive, natural cycle.</p>
+				
 			</article>
 
 		</div>
@@ -57,10 +57,11 @@ Template Name: About
 
 			<article class="col-md-6 col-xs-12">
 				
-				<h2 class="article-title">Another title to be placed here, lorem ipsum lorem ipsum.</h2>
-				<p>Currently, other than fruit trees and animals, we also have organic vegetables. However, we do not have enough stock to provide for the public but to provide a healthy and organic environment is and will always be our goal. We hope our customers will also be interested in organic products once they come into contacts with them.</p>
-				<p>Our farm is spray free and we use the traditional procedures to dry our nuts. We dry our nuts by baking them at low temperature. To preserve the freshness and the original taste of our nuts we use vacuum packs to store our macadamias without seasoning. This is to ensure our products are as natural as possible.</p>
-				<p>We take care of our farm from growing to harvesting, drying and packaging. Our customers can experience the natural quality foods with only a small price. There are a huge variety of nuts out in the market, but it is rare to find New Zealand grown and spray free nuts. It is our goal to provide good quality product with natural freshness to our customers. We hope customers and friends who visit our website can give us support and recognition. Your opinions and advice is what motivates us to improve.</p>
+				<h2 class="article-title">We're all about growing the perfect macadamia nuts</h2>
+				<p>Our farm is spray-free and we try our best not to use machines or pesticides in our orchard. Instead, we use natural fertilizers such as Agrissentials Rok Solid and comfrey. We use comfrey as a liquid fertilizer on our trees for the nutrients and minerals it brings up from deep in the ground.</p>
+				<p>We are out on the farm daily picking the macadamia nuts which are then husked and dried for eight weeks. The cracked nuts are baked at a low temperature then vacuum packed to preserve that fresh, original macadamia taste that we love. From growing to harvesting, drying and packaging, you can enjoy natural quality foods that have been grown and prepared with care.</p>
+				<p>With more products to come, it is an exciting time for everyone at Nature &amp; Fresh! Stay tuned to our website for more updates and information as we continue to work on bringing you more of the fresh, natural taste you love.
+				</p>
 			</article>
 
 			<div class="article-offset_img col-md-6 col-xs-12 noPadding">

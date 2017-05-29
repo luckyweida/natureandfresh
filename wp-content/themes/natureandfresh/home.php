@@ -34,55 +34,95 @@ Template Name: Home page
                 <!--@Weida Please update to show one product only-->
                 <div class="row">
                     <?php foreach ($myProducts->products as $idx => $product) { ?>
-                        <?php if ($product->title === 'Macadamia Nuts – Original | 185g') { ?>
+                        <?php if ($product->id === 161) { ?>
                             <div class="product-slider col-md-6 col-md-offset-3 text-center">
-
                                 <div class="product-slider">
                                     <div class="product-slider_inner">
-
-                                        <!-- @Weida this needs to be dynamic
-                                        <div class="product-slider__discount">
-                                            <span>-20%</span>
-                                        </div> -->
-
-                                        <span class="carousel-prev"><img class="svg loaded" src="<?php echo get_template_directory_uri(); ?>/images/icon-arrow_left.svg" data-class="carousel-prev"/></span>
-                                        <span class="carousel-next"><img class="svg loaded" src="<?php echo get_template_directory_uri(); ?>/images/icon-arrow_right.svg" data-class="carousel-next"/></span>
+                                        <?php if (($product->type == 'simple' && count($product->images) > 1) || ($product->type == 'variable' && count($product->variations) > 1)) { ?>
+                                            <span class="carousel-prev"><img class="svg loaded" src="<?php echo get_template_directory_uri(); ?>/images/icon-arrow_left.svg" data-class="carousel-prev"/></span>
+                                            <span class="carousel-next"><img class="svg loaded" src="<?php echo get_template_directory_uri(); ?>/images/icon-arrow_right.svg" data-class="carousel-next"/></span>
+                                        <?php } ?>
 
                                         <div class="owl-carousel owl-theme">
-
-                                            <?php foreach ($product->images as $image) { ?>
-                                                <a href="<?php echo str_replace(PRODUCT_FEED_URL, CURRENT_URL, $product->permalink) ?>">
-                                                    <div class="is-img item">
-                                                        <div class="owl-carousel-bgImg" style="background-image: url('<?php echo $image->src; ?>')"></div>
-                                                        <!-- <img data-src="<?php //echo $image->src; ?>"/> -->
-                                                    </div>
-                                                </a>
+                                            <?php if ($product->type == 'variable') { ?>
+                                                <?php foreach ($product->variations as $variation) { ?>
+                                                    <?php
+                                                    $optionsHtml = join(' ', array_map(function($obj) { return $obj->option; }, $variation->attributes));
+                                                    if (count($variation->image) > 0) {
+                                                        $image = $variation->image[0];
+                                                    } else {
+                                                        $image = $product->images[0];
+                                                    }
+//                                    var_dump($image);exit;
+                                                    ?>
+                                                    <a href="<?php echo str_replace(PRODUCT_FEED_URL, CURRENT_URL, $product->permalink) ?>" data-var="<?php echo $optionsHtml; ?>">
+                                                        <div class="is-img item" style="width: 100%;">
+                                                            <div class="owl-carousel-bgImg" style="background-image: url('<?php echo $image->src; ?>')"></div>
+                                                            <!-- <img data-src="<?php //echo $image->src; ?>"/> -->
+                                                        </div>
+                                                    </a>
+                                                <?php } ?>
+                                            <?php } else { ?>
+                                                <?php foreach ($product->images as $image) { ?>
+                                                    <a href="<?php echo str_replace(PRODUCT_FEED_URL, CURRENT_URL, $product->permalink) ?>">
+                                                        <div class="is-img item" style="width: 100%;">
+                                                            <div class="owl-carousel-bgImg" style="background-image: url('<?php echo $image->src; ?>')"></div>
+                                                            <!-- <img data-src="<?php //echo $image->src; ?>"/> -->
+                                                        </div>
+                                                    </a>
+                                                <?php } ?>
                                             <?php } ?>
                                         </div>
 
                                         <div class="control">
-                                            <form class="text-center" enctype="multipart/form-data" autocomplete="off" novalidate method="post">
+                                            <form class="text-center js-add-cart-form" enctype="multipart/form-data" autocomplete="off" novalidate method="post">
                                                 <h2 class="product-slider-title_sm">
                                                     <a href="<?php echo str_replace(PRODUCT_FEED_URL, CURRENT_URL, $product->permalink) ?>"><?php echo $product->title; ?></a>
                                                 </h2>
 
-                                                <div class="price-details"></div>
-                                                
-                                                <div class="product-variables">
-                                                    <select class="variation js-variation custom-select">
-                                                        <?php foreach ($product->variations as $variation) { ?>
-                                                            <?php
-                                                            $optionsHtml = join(' ', array_map(function($obj) { return $obj->option; }, $variation->attributes));
-                                                            $optionsJson = urlencode(json_encode(array_map(function($obj) { return array($obj->slug, $obj->option); }, $variation->attributes)));
-                                                            $priceHtml = '';
-                                                            if ($variation->price != $variation->regular_price) {
-                                                                $priceHtml .= "<span class='dollar regular'>$</span><span class='regular regular-price price'>{$variation->regular_price}</span><span class='regular-arrow'>&rsaquo;</span>";
-                                                            }
-                                                            $priceHtml .= "<span class='dollar'>$</span><span class='price'>{$variation->price}</span>";
-                                                            ?>
-                                                            <option data-attrs="<?php echo $optionsJson; ?>" data-id="<?php echo $variation->id; ?>" data-price="<?php echo $priceHtml; ?>"><?php echo $optionsHtml; ?></option>
+                                                <div class="price-container">
+                                                    <div class="price-details">
+                                                        <?php if ($product->type == 'simple') { ?>
+                                                            <?php if ($product->sale_price) { ?>
+                                                                <span class="dollar regular">$</span>
+                                                                <span class="regular regular-price price"><?php echo $product->regular_price; ?></span>
+                                                                <span class="regular-arrow">›</span>
+                                                                <span class="dollar">$</span>
+                                                                <span class="price"><?php echo $product->price; ?></span>
+                                                            <?php } else { ?>
+                                                                <span class="dollar">$</span>
+                                                                <span class="price"><?php echo $product->regular_price; ?></span>
+                                                            <?php } ?>
                                                         <?php } ?>
-                                                    </select>
+                                                    </div>
+
+                                                    <div class="product-slider__discount js-discount" <?php if ($product->type == 'simple' && !$product->sale_price) { ?>style="display: none;"<?php } ?>>
+                                        <span>
+                                            <?php if ($product->type == 'simple' && $product->sale_price) { ?>
+                                                -<?php echo (int)(($product->regular_price - $product->sale_price) / $product->regular_price * 100) ?>%
+                                            <?php } ?>
+                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="product-variables">
+                                                    <?php if (count($product->variations) > 0) { ?>
+                                                        <select class="variation js-variation custom-select">
+                                                            <?php foreach ($product->variations as $variation) { ?>
+                                                                <?php
+                                                                $optionsHtml = join(' ', array_map(function($obj) { return $obj->option; }, $variation->attributes));
+                                                                $optionsJson = urlencode(json_encode(array_map(function($obj) { return array($obj->slug, $obj->option); }, $variation->attributes)));
+                                                                $priceHtml = '';
+                                                                if ($variation->price != $variation->regular_price) {
+                                                                    $priceHtml .= "<span class='dollar regular'>$</span><span class='regular regular-price price'>{$variation->regular_price}</span><span class='regular-arrow'>&rsaquo;</span>";
+                                                                }
+                                                                $priceHtml .= "<span class='dollar'>$</span><span class='price'>{$variation->price}</span>";
+                                                                ?>
+                                                                <option data-regular="<?php echo $variation->regular_price; ?>" data-sale="<?php echo $variation->sale_price; ?>" data-now="<?php echo $variation->price; ?>" data-attrs="<?php echo $optionsJson; ?>" data-id="<?php echo $variation->id; ?>" data-price="<?php echo $priceHtml; ?>"><?php echo $optionsHtml; ?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    <?php } ?>
+
 
                                                     <div class="control_quantity">
                                                         <div class="icon-minus remove"></div>
@@ -91,18 +131,17 @@ Template Name: Home page
                                                     </div>
                                                 </div>
 
-                                                <button type="submit" class="btn btn-sm">Add to cart</button>
+                                                <a class="btn btn-sm btn-option" href="<?php echo str_replace(PRODUCT_FEED_URL, CURRENT_URL, $product->permalink) ?>">Tell me more</a>
+                                                <button type="submit" class="btn btn-sm" data-toggle="modal" data-target="#cartModal">Add to cart</button>
+
                                                 <div class="js-params" style="display: none;">
                                                     <input name="add-to-cart" value="<?php echo $product->id; ?>" type="text">
                                                     <input name="product_id" value="<?php echo $product->id; ?>" type="text">
                                                     <input name="variation_id" class="variation_id" type="text">
                                                     <div class="js-attrs"></div>
                                                 </div>
-
-
                                             </form>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>

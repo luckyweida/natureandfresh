@@ -1,7 +1,7 @@
 <?php
 $count = 0;
 
-$display_sum = WC()->cart->get_cart_subtotal( true );
+$display_sum = WC()->cart->get_cart_total();
 
 global $woocommerce;
 $items = $woocommerce->cart->get_cart();
@@ -50,9 +50,23 @@ $classes = get_body_class();
     <div class="preload-content">
     </div>
 
+    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body js-add-cart-info"></div>
+                <div class="modal-footer js-cart-dismiss" style="display: none;">
+                    <button type="button" class="btn btn-sm btn-option" onclick="location.href='/cart/'">View cart</button>
+                    <button type="button" class="btn btn-sm" data-dismiss="modal">keep shopping</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <section class="container">
-        <header class="row">
+        <header class="row header-nav">
             <nav class="main-nav col-md-4 col-xs-4">
                 <a id="nav-icon1" href="javascript:void(0)" class="closebtn">
                     <span></span>
@@ -64,7 +78,7 @@ $classes = get_body_class();
                     menu
                 </a>
 
-                <a class="hidden-xs <?php if (in_array('page-template-shop', $classes) || in_array('single-product', $classes)) { ?>active<?php } ?>" href="/shop" title="shop">shop</a>
+                <a class="hidden-xs <?php if (in_array('page-template-shop', $classes) || in_array('single-product', $classes)) { ?>active<?php } ?>" href="<?php echo get_site_url(); ?>/shop" title="shop">shop</a>
             </nav>
 
             <a id="logo" class="col-md-4 col-xs-4"  href="/" title="Nature & Fresh">
@@ -96,11 +110,11 @@ $classes = get_body_class();
                             <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard">
                                 <a href="<?php echo get_site_url(); ?>/my-account/">Dashboard</a>
                             </li>
-                            <!--
+                            
                             <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders">
-                                <a href="<?php echo get_site_url(); ?>my-account/orders/">Orders</a>
+                                <a href="<?php echo get_site_url(); ?>/my-account/orders/">Orders</a>
                             </li>
-
+                            <!--
                             <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-address is-active">
                                 <a href="<?php echo get_site_url(); ?>/my-account/edit-address/">Addresses</a>
                             </li>
@@ -201,7 +215,7 @@ $classes = get_body_class();
 
                         <?php if (count(WC()->cart->get_cart())) { ?>
 
-                        <form action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
+                        <form action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post" class="js-dropdown-cart-form">
 
                             <?php do_action( 'woocommerce_before_cart_table' ); ?>
 
@@ -292,7 +306,10 @@ $classes = get_body_class();
 
                         </form>
                         <?php } else { ?>
-                        <div class="empty-cart text-center">Your cart is empty</div>
+                        <div class="empty-cart text-center">
+                           <p>Opps, your cart is empty.</p>
+                           <a class="btn btn-sm" href="<?php echo get_site_url(); ?>/shop/" title="Go to shop page">Let's shop!</a>
+                        </div>
                         <?php } ?>
 
                     </div><!-- End .cart-drop -->
@@ -306,7 +323,7 @@ $classes = get_body_class();
             <div class="container">
                 <div class="row">
                     <nav class="col-sm-4">
-                        <a class="menu-item <?php if (in_array('page-template-shop', $classes) || in_array('single-product', $classes)) { ?>active<?php } ?>" href="/shop/">shop</a>
+                        <a class="menu-item <?php if (in_array('page-template-shop', $classes) || in_array('single-product', $classes)) { ?>active<?php } ?>" href="<?php echo get_site_url(); ?>/shop/">shop</a>
                         <a class="menu-item <?php if (in_array('page-template-about', $classes)) { ?>active<?php } ?>" href="/about/">about</a>
                         <a class="menu-item <?php if (in_array('page-template-the-photo', $classes)) { ?>active<?php } ?>" href="/the-photo/">the photo</a>
                         <!--

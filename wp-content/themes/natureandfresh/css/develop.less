@@ -42,6 +42,7 @@
 @btn-sm_font-size: 13px;
 /* @btn-sm_height: 32px;*/
 @price-checkout: 1.2rem;
+@price-checkout-total: 1.6rem;
 
 @black: #000;
 @grey: #555555;
@@ -68,6 +69,7 @@
 @hr: @gold-1;
 @default-background: @gold;
 @overlay-background: #F0EADE;
+@quantity-input-background: white;
 
 @paragraph: 1.125rem; //18px
 @paragraph: .875rem; //14px 
@@ -110,7 +112,8 @@ html {
 input.btn,
 #register.submit.button,
 .shipping-calculator-button,
-.btn {
+.btn,
+.ninja-forms-field.btn/*This is the ninja form button in contact page*/ {
 	background: @green;
 	border: none;
 	text-shadow: none;
@@ -131,22 +134,24 @@ input.btn,
 		color: white;
 	}
 
-	&.btn-sm {
+	&.btn-sm,
+	&.btn-primary {
 		font-size: @btn-sm_font-size;
 		color: white;
 		/* height: @btn-sm_height;*/
 	}
 
 	&.btn-lg,
-	&.btn-primary {
+	&.btn-primary/*This is the ninja form button in contact page*/ {
 		font-size: 1rem;
+		color: white;
 	}
 
 	&.btn-success {
 
 	}
 
-	&.btn-option {
+	&.btn-option{
 		color: @light-grey;
 		border: 1px solid @gold-3;
 		background: transparent;
@@ -158,6 +163,7 @@ input.btn,
 		}
 	}
 }
+
 
 .shipping-calculator-button{
 	font-size: @btn-sm_font-size;
@@ -252,6 +258,10 @@ label,
 		font-size: 3.125rem;
 		line-height: 4rem;
 	}
+
+	.page-template-about .article-offset:last-child &{ /*The second article title in About page*/
+			padding-top: 2rem;
+	}
 }
 
 .entry-header{
@@ -339,7 +349,7 @@ html, body {
 
 /*----------------Header-------------------*/
 
-header {
+header.header-nav {
 	padding-top: 2em;
 	padding-bottom: 2.5em;
 	display: flex;
@@ -545,6 +555,10 @@ header {
 	}
 }
 
+.empty-cart{
+
+}
+
 .woocommerce-account form.nf-login,
 .woocommerce-account form.nf-register{
 	margin: 0;
@@ -623,6 +637,7 @@ header {
 
 			.cart-drop__title {
 				line-height: 1.2;
+				margin-bottom: .2rem;
 
 				a {
 					font-size: .75rem;
@@ -634,7 +649,7 @@ header {
 				display: inline-block;
 
 				input {
-					width: 40px;
+					width: 4em;
 				}
 			}
 
@@ -862,11 +877,13 @@ header {
 .fb,
 .insta {
 
-	path {
+	path,
+	ellipse {
 		transition: @transition;
 	}
 
-	&:hover path {
+	&:hover path,
+	&:hover ellipse {
 		fill: @green;
 		transition: @transition;
 	}
@@ -1155,6 +1172,14 @@ footer#footer {
 	border-radius: @border-radius;
 }
 
+#ship-to-different-address{
+	.checkbox,
+	#ship-to-different-address-checkbox{
+		display: inline-block;
+		margin: 0;
+	}
+}
+
 /*User registration form, center and narrow width*/
 .wppb-register-user{
 	width: 50%;
@@ -1250,13 +1275,29 @@ footer#footer {
 
 .cart-subtotal,
 .order-total{
+	font-family: 'Roboto-Bold';
 
-	th,
-	.woocommerce-Price-amount{ /*Total amount style*/
+	th{
 		font-size: @price-checkout;
-		font-family: 'Roboto-Bold';
 	}
 }
+
+.cart-subtotal{
+	
+
+	.woocommerce-Price-amount{ /*Total amount style*/
+		font-size: @price-checkout;
+	}
+}
+
+
+.order-total{
+
+	.woocommerce-Price-amount{ /*Total amount style*/
+		font-size: @price-checkout-total;
+	}
+}
+
 
 
 /*------------------------------------My account dashboard styles------------------------------------------*/
@@ -1294,7 +1335,6 @@ nav.woocommerce-MyAccount-navigation{
 
 		li{
 			margin: 0;
-			padding: .5rem;
 			border-bottom: 1px solid @hr;
 
 			&:first-child{
@@ -1315,7 +1355,19 @@ nav.woocommerce-MyAccount-navigation{
 			}
 
 			a{
+				
+			}
+
+			a{
 				font-size: .875rem;
+				padding: .5rem;
+				width: 100%;
+				display: block;
+
+				&:hover{
+					background: @green;
+					color: white;
+				}
 			}
 		}
 	}
@@ -1324,6 +1376,17 @@ nav.woocommerce-MyAccount-navigation{
 /*My account content wrapper*/
 .woocommerce-MyAccount-content{
 	width: 74% !important;
+
+	table.shop_table{
+		margin-bottom: 2rem !important;
+
+		tr:last-child{
+			th,
+			td{
+				border: none;
+			}
+		}
+	}
 }
 
 
@@ -1363,7 +1426,8 @@ nav.woocommerce-MyAccount-navigation{
 
 
 .woocommerce table.shop_table,
-.cart-view{
+.cart-view,
+#cart-box.nf-box{
 	thead{
 		th{
 			font-family: 'PlayfairDisplay-Regular';
@@ -1371,6 +1435,8 @@ nav.woocommerce-MyAccount-navigation{
 			border: none;
 			margin-bottom: 2rem;
 			border-bottom: 1px solid @hr;
+			padding-top: 0;
+			padding-bottom: .5rem;
 
 			&:first-child{
 				padding-left: 0;/* To counter left padding on the table */
@@ -1383,21 +1449,19 @@ nav.woocommerce-MyAccount-navigation{
 		}
 	}
 
-	tbody{
+	th,
+	td{
+		border-top: none;
+		border-bottom: 1px solid @hr;
+		padding-top: 2rem;
+		padding-bottom: 2rem;
 
-		td{
-			border-top: none;
-			border-bottom: 1px solid @hr;
-			padding-top: 2rem;
-			padding-bottom: 2rem;
+		&:first-child{
+			padding-left: 0; /* To counter left padding on the table */
+		}
 
-			&:first-child{
-				padding-left: 0; /* To counter left padding on the table */
-			}
-
-			&:last-child{
-				padding-right: 0; /* To counter right padding on the table */
-			}
+		&:last-child{
+			padding-right: 0; /* To counter right padding on the table */
 		}
 	}
 
@@ -1466,25 +1530,31 @@ nav.woocommerce-MyAccount-navigation{
 
 	.order-total{
 		/*display: none; Hide order total in view cart page, they should see the total in checkout process*/
+		th,
+		td{
+			border: none;
+		}
 	}
+	
+	.cart_totals.calculated_shipping{
+		width: 100%; /*view cart, total section width*/
 
-	.cart_totals{
-		width: 100%;
+		@media (min-width: @screen-sm-min) {
+			width: 50%; /*view cart, total section width*/
+		}
 
-
-		th{
+		th,
+		td{
 			padding-top: 1rem;
-			padding-left: 0;
+			padding-bottom: 1rem;
 		}
 
 		td:last-child{
-			padding-top: 1rem;
-
 			text-align: right;
-			border: none;
 		}
 
-
+		form.woocommerce-shipping-calculator{
+		}
 
 	}
 
@@ -1492,6 +1562,14 @@ nav.woocommerce-MyAccount-navigation{
 		text-align: right;
 	}
 
+}
+
+.woocommerce-checkout-review-order-table,
+#cart-box.nf-box{
+	
+	td:last-child{
+		text-align: right;
+	}
 }
 
 
@@ -1715,13 +1793,13 @@ nav.woocommerce-MyAccount-navigation{
 		[type=text] {
 			font-family: "Roboto-Bold", serif;
 			font-size: .9rem;
-			width: 2em;
+			width: 3em;
 			text-align: center;
-			border: none;
-			/*background: none;*/
+			background: @quantity-input-background;
 			outline: none;
 			padding: .2rem 0;
 			margin: 0 .2em;
+
 
 			&:focus {
 				background: @gold-1;
@@ -1737,7 +1815,7 @@ nav.woocommerce-MyAccount-navigation{
 	}
 
 	.btn {
-		margin-top: .7rem;
+		margin-top: 2rem;
 	}
 }
 
@@ -1880,7 +1958,7 @@ nav.woocommerce-MyAccount-navigation{
 /*----------------Page descriptions-------------------*/
 
 .page-description {
-	margin-bottom: 4em;
+	margin-bottom: 2em;
 
 	h4 {
 		margin-top: 0;
@@ -2096,6 +2174,7 @@ label,
 	padding: 0;
 }
 
+
 .nf-field-label{/*contact form*/
 	margin: 0 !important;
 	padding: 0 !important;
@@ -2150,6 +2229,12 @@ textarea,
 		box-shadow: none;
 		background: white;
 	}
+}
+
+.input-text.qty.text{ /*quantity input box*/
+	background: @quantity-input-background;
+	min-width: 4em;
+	text-align: left;
 }
 
 #calc_shipping_state,

@@ -336,6 +336,12 @@ $(function () {
         $.pjax.defaults.timeout = 600000;
         $.pjax.defaults.scrollTo = false;
 
+        $(document).on('submit', 'form.js-dropdown-cart-form', function (event) {
+            // $.pjax.submit(event, '.js-dropdown-cart-form div.cart-drop_item', {
+            //     fragment: '.js-dropdown-cart-form div.cart-drop_item'
+            // });
+        });
+
         $(document).on('submit', 'form.js-address-form', function (event) {
             $('.woocommerce-MyAccount-content').html('<div class="pjax-loading product-loading"><h3 class="text">We are processing your request. <br /><small>Please wait...</small></h3><div class="spinner"></div></div>');
             $.pjax.submit(event, '.woocommerce-MyAccount-content', {
@@ -344,7 +350,7 @@ $(function () {
         });
         $('.woocommerce-MyAccount-content').on('pjax:success', function(e) {
             var html = '<h3>Your changes have been made</h3>';
-            html += '<p><a href="/my-account/edit-address/">Click here to go back to your addresses</a></p>';
+            html += '<p><a class="btn btn-sm" href="/my-account/edit-address/">Click here to go back to your addresses</a></p>';
             $('.woocommerce-MyAccount-content').html(html);
         });
 
@@ -358,7 +364,7 @@ $(function () {
         $('.right-menu-item_cart').on('pjax:success', function(e) {
             $('.js-cart-dismiss').show();
             var html = '<h4>The item(s) have been added to cart</h4>';
-            html += '<p><a href="/cart/">Click here to view your shopping cart now</a></p>';
+            // html += '<p><a href="/cart/">Click here to view your shopping cart now</a></p>';
             $('.js-add-cart-info').html(html);
         });
     }
@@ -447,7 +453,7 @@ $(function () {
                     var val = JSON.parse(val);
                     for (var idx in val) {
                         var itm = val[idx];
-                        $('input[value="' + itm.option + '"]').prop('checked', 'checked').change();
+                        $('input[value="' + itm.option.toLowerCase() + '"]').prop('checked', 'checked').change();
                     }
                     window._carLock = 0;
                 }
