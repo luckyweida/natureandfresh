@@ -72,7 +72,16 @@ $col    = 1;
 					_e( 'You have not set up this type of address yet.', 'woocommerce' );
 				else
 					echo $formatted_address;
+
+				$region = '';
+				$states = WC()->countries->states;
+				$country = get_user_meta( $customer_id, $name . '_country', true );
+				$state = get_user_meta( $customer_id, $name . '_state', true );
+				if (isset($states[$country])) {
+					$region = isset($states[$country][$state]) ? $states[$country][$state] : '';
+				}
 			?>
+			<strong><?php echo $region; ?></strong>
 		</address>
 	</div>
 

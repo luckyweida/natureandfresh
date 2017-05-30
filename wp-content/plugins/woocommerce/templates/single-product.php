@@ -183,7 +183,7 @@ get_header('shop'); ?>
 						<div class="icon-add add"></div>
 					</div>
 
-					<button type="submit" class="btn btn-lg" data-toggle="modal" data-target="#cartModal">Add to cart</button>
+					<button type="submit" class="btn btn-sm" data-toggle="modal" data-target="#cartModal">Add to cart</button>
 					<div class="js-params" style="display: none;">
 						<?php foreach ($current->variations as $varIdx => $variation) { ?>
 							<?php
@@ -217,8 +217,8 @@ get_header('shop'); ?>
 	</div>
 </section>
 
-<section class="container related-products">
-	<h2>OH, AND YOU MIGHT LIKE THESE TOO</h2>
+<section class="container related-products hidden-xs">
+	<h2>Oh, and you might like these too</h2>
 	<div class="row row-centered">
 		<?php foreach ($others as $other) { if ($other->type == 'variable' && count($other->variations) == 0) continue; ?>
 			<div class="col-md-3 col-xs-12 col-centered">

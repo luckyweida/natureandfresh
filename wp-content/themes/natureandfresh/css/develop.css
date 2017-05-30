@@ -281,7 +281,7 @@ label,
   text-align: center;
 }
 p {
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   line-height: 1.5em;
 }
 @media (min-width: 768px) {
@@ -495,7 +495,7 @@ header.header-nav .right-menu-item .right-menu-item_cart {
 #account-manage-drop,
 .woocommerce-account form.nf-login,
 .woocommerce-account form.nf-register {
-  background: #f0eade;
+  background: rgba(240, 234, 222, 0.95);
   padding: 1.5em 1em;
   width: 300px;
   border: none;
@@ -527,6 +527,9 @@ header.header-nav .right-menu-item .right-menu-item_cart {
   margin: 0;
   border-bottom: 1px solid #ebe1cd;
 }
+#account-manage-drop ul li:last-child {
+  border: none;
+}
 #account-manage-drop ul li a {
   padding: .5rem;
   width: 100%;
@@ -535,6 +538,18 @@ header.header-nav .right-menu-item .right-menu-item_cart {
 #account-manage-drop ul li a:hover {
   background: #7eb184;
   color: white;
+}
+#cart-drop,
+.woocommerce.single-product {
+  /*Overwrite woocommerce styles*/
+
+}
+#cart-drop form.login,
+.woocommerce.single-product form.login {
+  border: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
 }
 .woocommerce-account form.nf-login,
 .woocommerce-account form.nf-register {
@@ -545,7 +560,9 @@ header.header-nav .right-menu-item .right-menu-item_cart {
 #cart-drop,
 #account-drop {
   box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.25);
-  background: #f0eade;
+  background: rgba(240, 234, 222, 0.95);
+  z-index: 900;
+  border-radius: 5px;
 }
 #account-drop footer,
 .woocommerce-account form.nf-login footer {
@@ -712,7 +729,7 @@ header.header-nav .right-menu-item .right-menu-item_cart {
   z-index: 999;
   left: 0;
   top: 0;
-  background-color: #f0eade;
+  background: rgba(240, 234, 222, 0.95);
   overflow-y: hidden;
   transition: all 0.2s ease-in-out;
   text-align: center;
@@ -1070,10 +1087,8 @@ footer#footer .author a:hover {
 .wppb-register-user .wppb-form-field input {
   width: 100%;
 }
-/*Hide green message box with message so it doesn't display during checkout process screens,  'Item's been added to cart/ Item's been removed' etc.*/
-.woocommerce-checkout .woocommerce .woocommerce-message,
-.woocommerce-checkout .woocommerce .woocommerce-error,
-.woocommerce-checkout .woocommerce .woocommerce-info {
+/*Hide green message box with message so it doesn't display during checkout process screens, 'Item's been added to cart/ Item's been removed' etc.*/
+.woocommerce-checkout .woocommerce .woocommerce-message {
   display: none !important;
   visibility: collapse !important;
   opacity: 0 !important;
@@ -1147,6 +1162,27 @@ footer#footer .author a:hover {
 .woocommerce .shop_table.customer_details .order-total td {
   padding: 1rem 0;
 }
+/*Payment box styles*/
+.woocommerce-checkout #order_review .order-total th,
+.woocommerce-checkout #order_review .order-total td {
+  border-bottom: none;
+}
+.woocommerce-checkout #payment.woocommerce-checkout-payment {
+  background: #dbe7ef;
+  border-radius: 5px;
+}
+.woocommerce-checkout #payment div.payment_box {
+  background: white;
+}
+.woocommerce-checkout #payment div.payment_box:before {
+  border: 1em solid white;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+.terms.wc-terms-and-conditions a {
+  text-decoration: underline;
+}
 /*
 .woocommerce .shop_table.shop_table_responsive{
 	th{
@@ -1187,6 +1223,7 @@ nav.woocommerce-MyAccount-navigation {
   border: 1px solid #ebe1cd;
   width: 20% !important;
   border-radius: 5px;
+  margin-top: 2.6rem;
 }
 nav.woocommerce-MyAccount-navigation h3 {
   padding: .5rem;
@@ -1347,8 +1384,8 @@ nav.woocommerce-MyAccount-navigation ul li a:hover {
 .woocommerce table.shop_table .cart-view_name a.cart-view_name_title,
 .cart-view .cart-view_name a.cart-view_name_title,
 #cart-box.nf-box .cart-view_name a.cart-view_name_title {
-  font-family: 'PlayfairDisplay-Bold';
-  font-size: 1.25rem;
+  font-family: "Roboto-Medium", serif;
+  font-size: 0.875rem;
 }
 .woocommerce table.shop_table .cart-view_name dt,
 .cart-view .cart-view_name dt,
@@ -1611,7 +1648,7 @@ nav.woocommerce-MyAccount-navigation ul li a:hover {
   margin: 0 auto 0rem;
 }
 .control .btn {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 .product-variables .variation,
 .product-variables .control_quantity {
@@ -1643,15 +1680,17 @@ nav.woocommerce-MyAccount-navigation ul li a:hover {
 }
 .price-details .regular.regular-price {
   font-size: 1rem;
+  font-family: 'Roboto-Medium', serif;
 }
 .price-details .price {
-  font-family: 'Roboto-Medium', serif;
+  font-family: 'Roboto-Bold', serif;
   font-size: 1rem;
 }
 .price-details .dollar {
   font-size: 0.6rem;
   line-height: 15px;
   vertical-align: text-top;
+  font-family: 'Roboto-Bold', serif;
 }
 /*----------------Article with image and offset title-------------------*/
 .article-offset {
@@ -1720,13 +1759,25 @@ nav.woocommerce-MyAccount-navigation ul li a:hover {
 /*----------------Page descriptions-------------------*/
 .page-description {
   margin-bottom: 2em;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .page-description {
+    text-align: inherit;
+  }
 }
 .page-description h4 {
   margin-top: 0;
   font-family: "Playfair Display";
-  font-size: 88px;
+  font-size: 58px;
   font-weight: bold;
   color: #555555;
+}
+@media (min-width: 768px) {
+  .page-description h4 {
+    text-align: inherit;
+    font-size: 88px;
+  }
 }
 .page-description .text {
   margin-top: 10px;
@@ -1764,22 +1815,34 @@ nav.woocommerce-MyAccount-navigation ul li a:hover {
 /*Product detail page*/
 #product .product-details__title {
   font-family: "PlayfairDisplay-Bold", serif;
-  font-size: 3rem;
   color: #555555;
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+#product .product-details {
+  text-align: center;
+}
+@media (min-width: 768px) {
+  #product .product-details {
+    text-align: inherit;
+  }
 }
 #product .product-details .product-details_contents .product-details_description {
   font-size: 1.125rem;
-  margin-bottom: .5em;
+  margin-bottom: 1em;
 }
-#product .product-details .product-details_contents .product-details__price {
-  display: flex;
-  align-items: center;
-  margin-bottom: 2rem;
+@media (min-width: 768px) {
+  #product .product-details .product-details_contents .product-details__price {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
 }
 #product .product-details .product-details_contents .product-details__price .price-details {
   display: inline-block;
   margin-bottom: 0;
-  margin-right: 1.5rem;
+  margin-right: 1rem;
 }
 #product .product-details .product-details_contents .product-details__price .product-slider__discount {
   display: inline-block;
@@ -1801,6 +1864,9 @@ nav.woocommerce-MyAccount-navigation ul li a:hover {
   border: 1px solid #e0d9c9;
   color: #555555;
 }
+.fancybox-placeholder {
+  background: #fefbf3 !important;
+}
 .related-products {
   padding: 8em 0 0 0;
   text-align: center;
@@ -1815,6 +1881,24 @@ nav.woocommerce-MyAccount-navigation ul li a:hover {
   text-align: center;
   line-height: 19px;
   color: #555555;
+  display: inline-block;
+  position: relative;
+}
+.related-products h2:before,
+.related-products h2:after {
+  content: "";
+  width: 18px;
+  height: 1px;
+  display: block;
+  position: absolute;
+  background: #555555;
+  top: 9px;
+}
+.related-products h2:before {
+  left: -30px;
+}
+.related-products h2:after {
+  right: -30px;
 }
 .related-products .item {
   position: relative;
@@ -2012,6 +2096,17 @@ textarea:focus,
 #wholesale .contact-info {
   margin-top: 2rem;
 }
+/*----------------End Wholesale page-------------------*/
+.page-template-get-in-touch .contact-info {
+  margin-bottom: 4rem;
+  text-align: center;
+}
+@media (min-width: 992px) {
+  .page-template-get-in-touch .contact-info {
+    margin-bottom: 0;
+    text-align: inherit;
+  }
+}
 .contact-info p {
   margin-bottom: 2rem;
 }
@@ -2089,4 +2184,32 @@ textarea:focus,
 #get-in-touch #google-map #google-tooltip #google-tooltip_info .google-tooltip_info_text {
   font-family: 'Roboto-Light';
   line-height: 1.3;
+}
+/*----------------Wordpress Admin Edit content styles-------------------*/
+footer.entry-footer {
+  margin-top: 5rem;
+}
+footer.entry-footer .post-edit-link {
+  /*background: @yellow;*/
+
+  border: 1px solid #f9b916;
+  text-shadow: none;
+  box-shadow: none;
+  border-radius: 5px;
+  font-size: 13px;
+  line-height: 1;
+  /*color: white;*/
+
+  font-family: 'Roboto-Medium';
+  padding: 0.4rem 0.6rem;
+}
+footer.entry-footer .post-edit-link:hover,
+footer.entry-footer .post-edit-link:focus {
+  background: #f9b916;
+  border: 1px solid #f9b916;
+  /*background: @dark-green;*/
+
+  /*border: 1px solid @dark-green;*/
+
+  color: white;
 }

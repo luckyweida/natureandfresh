@@ -78,7 +78,7 @@ $classes = get_body_class();
                     menu
                 </a>
 
-                <a class="hidden-xs <?php if (in_array('page-template-shop', $classes) || in_array('single-product', $classes)) { ?>active<?php } ?>" href="<?php echo get_site_url(); ?>/shop" title="shop">shop</a>
+                <a class="hidden-xs <?php if (in_array('page-template-shop', $classes) || in_array('single-product', $classes)) { ?>active<?php } ?>" href="/shop" title="shop">shop</a>
             </nav>
 
             <a id="logo" class="col-md-4 col-xs-4"  href="/" title="Nature & Fresh">
@@ -108,22 +108,22 @@ $classes = get_body_class();
                         
                         <ul>
                             <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard">
-                                <a href="<?php echo get_site_url(); ?>/my-account/">Dashboard</a>
+                                <a href="/my-account/">Dashboard</a>
                             </li>
                             
                             <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders">
-                                <a href="<?php echo get_site_url(); ?>/my-account/orders/">Orders</a>
+                                <a href="/my-account/orders/">Orders</a>
                             </li>
                             <!--
                             <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-address is-active">
-                                <a href="<?php echo get_site_url(); ?>/my-account/edit-address/">Addresses</a>
+                                <a href="/my-account/edit-address/">Addresses</a>
                             </li>
                             <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account">
-                                <a href="<?php echo get_site_url(); ?>/my-account/edit-account/">Account Details</a>
+                                <a href="/my-account/edit-account/">Account Details</a>
                             </li>
                             -->
                             <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout">
-                                <a href="<?php echo get_site_url(); ?>/my-account/customer-logout/">Logout</a>
+                                <a href="/my-account/customer-logout/">Logout</a>
                             </li>
                         </ul>
                     </nav>
@@ -308,7 +308,7 @@ $classes = get_body_class();
                         <?php } else { ?>
                         <div class="empty-cart text-center">
                            <p>Opps, your cart is empty.</p>
-                           <a class="btn btn-sm" href="<?php echo get_site_url(); ?>/shop/" title="Go to shop page">Let's shop!</a>
+                           <a class="btn btn-sm" href="/shop/" title="Go to shop page">Let's shop!</a>
                         </div>
                         <?php } ?>
 
@@ -323,7 +323,7 @@ $classes = get_body_class();
             <div class="container">
                 <div class="row">
                     <nav class="col-sm-4">
-                        <a class="menu-item <?php if (in_array('page-template-shop', $classes) || in_array('single-product', $classes)) { ?>active<?php } ?>" href="<?php echo get_site_url(); ?>/shop/">shop</a>
+                        <a class="menu-item <?php if (in_array('page-template-shop', $classes) || in_array('single-product', $classes)) { ?>active<?php } ?>" href="/shop/">shop</a>
                         <a class="menu-item <?php if (in_array('page-template-about', $classes)) { ?>active<?php } ?>" href="/about/">about</a>
                         <a class="menu-item <?php if (in_array('page-template-the-photo', $classes)) { ?>active<?php } ?>" href="/the-photo/">the photo</a>
                         <!--

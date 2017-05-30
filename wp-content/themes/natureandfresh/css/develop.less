@@ -68,11 +68,10 @@
 
 @hr: @gold-1;
 @default-background: @gold;
-@overlay-background: #F0EADE;
+@overlay-background: rgba(240, 234, 222, 0.95);;
 @quantity-input-background: white;
 
-@paragraph: 1.125rem; //18px
-@paragraph: .875rem; //14px 
+@paragraph: .9375rem; //15px 
 @small-copy: 0.8125rem;
 
 @box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.1);
@@ -541,6 +540,10 @@ header.header-nav {
 			margin: 0;
 			border-bottom: 1px solid @hr;
 
+			&:last-child{
+				border: none;
+			}
+
 			a{
 				padding: .5rem;
 				width: 100%;
@@ -555,8 +558,14 @@ header.header-nav {
 	}
 }
 
-.empty-cart{
-
+#cart-drop,
+.woocommerce.single-product{ /*Overwrite woocommerce styles*/
+	form.login{
+		border: none;
+		padding: 0;
+		margin: 0;
+		border-radius: 0;
+	}
 }
 
 .woocommerce-account form.nf-login,
@@ -570,7 +579,8 @@ header.header-nav {
 #account-drop{
 	box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.25);
 	background: @overlay-background;
-	
+	z-index: 900;
+	border-radius: @border-radius;
 }
 
 #account-drop,
@@ -777,7 +787,7 @@ header.header-nav {
 	z-index: 999;
 	left: 0;
 	top: 0;
-	background-color: @overlay-background;
+	background: @overlay-background;
 	overflow-y: hidden;
 	transition: @transition;
 	text-align: center;
@@ -1192,10 +1202,8 @@ footer#footer {
 }
 
 
-/*Hide green message box with message so it doesn't display during checkout process screens,  'Item's been added to cart/ Item's been removed' etc.*/
-.woocommerce-checkout .woocommerce .woocommerce-message,
-.woocommerce-checkout .woocommerce .woocommerce-error,
-.woocommerce-checkout .woocommerce .woocommerce-info {
+/*Hide green message box with message so it doesn't display during checkout process screens, 'Item's been added to cart/ Item's been removed' etc.*/
+.woocommerce-checkout .woocommerce .woocommerce-message{
 	display: none !important;
 	visibility: collapse !important;
 	opacity: 0 !important;
@@ -1264,6 +1272,40 @@ footer#footer {
 	}
 }
 
+/*Payment box styles*/
+
+.woocommerce-checkout{
+	#order_review .order-total{
+		th,td{
+			border-bottom: none;
+		}
+	}
+
+	#payment{
+		&.woocommerce-checkout-payment{
+			background: #dbe7ef;
+			border-radius: @border-radius;
+		}
+
+		div.payment_box{
+			background: white;
+
+			&:before{
+				border: 1em solid white;
+				border-right-color: transparent;
+				border-left-color: transparent;
+				border-top-color: transparent;
+			}
+		}
+	}
+}
+
+.terms.wc-terms-and-conditions{
+	a{
+		text-decoration: underline;
+	}
+}
+
 /*
 .woocommerce .shop_table.shop_table_responsive{
 	th{
@@ -1319,6 +1361,7 @@ nav.woocommerce-MyAccount-navigation{
 	border: 1px solid @hr;
 	width: 20% !important;
 	border-radius: @border-radius;
+	margin-top: 2.6rem;
 
 	h3{
 		padding: .5rem;
@@ -1483,8 +1526,8 @@ nav.woocommerce-MyAccount-navigation{
 
 	.cart-view_name{
 		a.cart-view_name_title{
-			font-family: 'PlayfairDisplay-Bold';
-			font-size: 1.25rem;
+			font-family: "Roboto-Medium", serif;
+			font-size: 0.875rem;
 		}
 
 		dt{
@@ -1815,7 +1858,7 @@ nav.woocommerce-MyAccount-navigation{
 	}
 
 	.btn {
-		margin-top: 2rem;
+		margin-top: 1.5rem;
 	}
 }
 
@@ -1863,11 +1906,12 @@ nav.woocommerce-MyAccount-navigation{
 
 		&.regular-price {
 			font-size: 1rem;
+			font-family: 'Roboto-Medium', serif;
 		}
 	}
 
 	.price {
-		font-family: 'Roboto-Medium', serif;
+		font-family: 'Roboto-Bold', serif;
 		font-size: 1rem;
 	}
 
@@ -1875,6 +1919,7 @@ nav.woocommerce-MyAccount-navigation{
 		font-size: 0.6rem;
 		line-height: 15px;
 		vertical-align: text-top;
+		font-family: 'Roboto-Bold', serif;
 	}
 }
 
@@ -1959,13 +2004,23 @@ nav.woocommerce-MyAccount-navigation{
 
 .page-description {
 	margin-bottom: 2em;
+	text-align: center;
+
+	@media (min-width: @screen-sm-min) {
+		text-align: inherit;
+	}
 
 	h4 {
 		margin-top: 0;
 		font-family: "Playfair Display";
-		font-size: 88px;
+		font-size: 58px;
 		font-weight: bold;
 		color: @grey;
+
+		@media (min-width: @screen-sm-min) {
+			text-align: inherit;
+			font-size: 88px;
+		}
 	}
 
 	.text {
@@ -2022,27 +2077,38 @@ nav.woocommerce-MyAccount-navigation{
 #product {
 	.product-details__title {
 		font-family: "PlayfairDisplay-Bold", serif;
-		font-size: 3rem;
 		color: @grey;
+		font-size: 2.8rem;
+		margin-bottom: 1rem;
+		line-height: 1.3;
 	}
 	.product-details {
+		text-align: center;
+
+		@media (min-width: @screen-sm-min) {
+			text-align: inherit;
+		}
 
 		.product-details_contents {
 
 			.product-details_description {
 				font-size: 1.125rem;
-				margin-bottom: .5em;
+				margin-bottom: 1em;
 			}
 
 			.product-details__price {
-				display: flex;
-				align-items: center;
-				margin-bottom: 2rem;
+				
+
+				@media (min-width: @screen-sm-min) {
+					display: flex;
+					align-items: center;
+					margin-bottom: 2rem;
+				}
 
 				.price-details {
 					display: inline-block;
 					margin-bottom: 0;
-					margin-right: 1.5rem;
+					margin-right: 1rem;
 				}
 				.product-slider__discount {
 					display: inline-block;
@@ -2073,6 +2139,10 @@ nav.woocommerce-MyAccount-navigation{
 
 }
 
+.fancybox-placeholder{
+	background: @default-background !important;
+}
+
 .related-products {
 	padding: 8em 0 0 0;
 	text-align: center;
@@ -2088,7 +2158,29 @@ nav.woocommerce-MyAccount-navigation{
 		text-align: center;
 		line-height: 19px;
 		color: @grey;
+		display: inline-block;
+		position: relative;
+
+		&:before,
+		&:after{
+			content:"";
+			width: 18px;
+			height: 1px;
+			display: block;
+			position: absolute;
+			background: @grey;
+			top: 9px;
+		}
+
+		&:before{
+			left: -30px;
+		}
+
+		&:after{
+			right: -30px;
+		}
 	}
+
 	.item {
 		position: relative;
 		max-width: 15em;
@@ -2316,6 +2408,21 @@ textarea,
 	}
 }
 
+/*----------------End Wholesale page-------------------*/
+
+
+.page-template-get-in-touch{
+	.contact-info{
+		margin-bottom: 4rem;
+		text-align: center;
+		
+		@media (min-width: @screen-md-min) {
+			margin-bottom: 0;
+			text-align: inherit;
+		}
+	}
+}
+
 .contact-info {
 	p {
 		margin-bottom: 2rem;
@@ -2426,5 +2533,36 @@ textarea,
 			}
 		}
 	}
-
 }
+
+/*----------------Wordpress Admin Edit content styles-------------------*/
+
+footer.entry-footer{
+	margin-top: 5rem;
+
+	.post-edit-link{
+		/*background: @yellow;*/
+		border: 1px solid @yellow;
+		text-shadow: none;
+		box-shadow: none;
+		border-radius: @border-radius;
+		font-size: @btn-sm_font-size;
+		line-height: 1;
+		/*color: white;*/
+		font-family: 'Roboto-Medium';
+		padding: @btnPadding;
+		
+
+		&:hover,
+		&:focus {
+			background: @yellow;
+			border: 1px solid @yellow;
+			/*background: @dark-green;*/
+			/*border: 1px solid @dark-green;*/
+			color: white;
+		}
+
+	}
+}
+
+
