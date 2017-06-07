@@ -90,7 +90,7 @@ $classes = get_body_class();
                 <div class="right-menu-item_account">
 
                     <?php if (is_user_logged_in()) { ?>
-                    <a title="my account"  class="dropdown-toggle" data-toggle="dropdown" id="account-manage" >
+                    <a title="my account"  class="dropdown-toggle" data-toggle="dropdown" id="account-manage" role="button">
                         <?php global $current_user;
                               get_currentuserinfo();
 
@@ -104,7 +104,7 @@ $classes = get_body_class();
                         ?>
 
                     </a>
-                    <nav id="account-manage-drop" class="account-drop dropdown-menu dropdown-menu-left"  aria-labelledby="account-manage">
+                    <nav id="account-manage-drop" class="account-drop dropdown-menu dropdown-menu-left" aria-labelledby="account-manage">
                         
                         <ul>
                             <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard">
@@ -129,7 +129,7 @@ $classes = get_body_class();
                     </nav>
 
                     <?php } else { ?>
-                    <a class="dropdown-toggle" data-toggle="dropdown" title="sign in" id="signin">
+                    <a class="dropdown-toggle" data-toggle="dropdown" title="sign in" id="signin" role="button">
                         sign in
                         <!-- <span class="caret"></span> -->
                     </a>
@@ -205,7 +205,7 @@ $classes = get_body_class();
                     <?php } ?>
                 </div>
                 <div class="right-menu-item_cart">
-                    <a class="dropdown" data-toggle="dropdown" title="cart">
+                    <a class="dropdown" data-toggle="dropdown" title="cart" role="button">
                         cart
                         <small>(<?php echo $count; ?>)</small>
                     </a>

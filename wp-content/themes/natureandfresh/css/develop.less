@@ -60,6 +60,7 @@
 
 @input: #F2EEE3;
 @input-bg: @gold-2;
+@error-bg: #e6b3b3;
 
 
 @yellow: #F9B916;
@@ -330,6 +331,7 @@ html, body {
 		transition: @transition;
 		color: @green;
 		text-decoration: none;
+		cursor: pointer;
 	}
 
 	span.is-img {
@@ -367,6 +369,7 @@ header.header-nav {
 
 	a {
 		font-size: .875rem;
+		font-family: 'Roboto-Medium';
 	}
 
 	#logo {
@@ -1359,9 +1362,15 @@ footer#footer {
 /*My account page left navigation*/
 nav.woocommerce-MyAccount-navigation{
 	border: 1px solid @hr;
-	width: 20% !important;
+	width: 100% !important;
 	border-radius: @border-radius;
 	margin-top: 2.6rem;
+	margin-bottom: 2rem;
+
+	@media (min-width: @screen-sm-min) {
+		width: 20% !important;
+		margin-bottom: 0;
+	}
 
 	h3{
 		padding: .5rem;
@@ -1418,7 +1427,11 @@ nav.woocommerce-MyAccount-navigation{
 
 /*My account content wrapper*/
 .woocommerce-MyAccount-content{
-	width: 74% !important;
+	width: 100% !important;
+
+	@media (min-width: @screen-sm-min) {
+		width: 74% !important;
+	}
 
 	table.shop_table{
 		margin-bottom: 2rem !important;
@@ -1519,8 +1532,6 @@ nav.woocommerce-MyAccount-navigation{
 
 		@media (min-width: @screen-sm-min) {
 			width: 10%;
-
-
 		}
 	}
 
@@ -2563,6 +2574,28 @@ footer.entry-footer{
 		}
 
 	}
+}
+
+#wppb_form_success_message, 
+.wppb-success,
+#wppb_general_top_error_message, 
+.wppb-error, 
+.wppb-warning{
+	padding: 1.5rem;
+	border: none;
+	border-radius: @border-radius;
+}
+
+
+#wppb_form_success_message, 
+.wppb-success{
+	background: @gold-1;
+}
+
+#wppb_general_top_error_message, 
+.wppb-error, 
+.wppb-warning{
+	background: @error-bg;
 }
 
 
