@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div class="u-columns col2-set" id="customer_login">
 
-	<div class="col-md-6 col-xs-12">
+	<div class="col-md-12 col-xs-12">
 
 <?php endif; ?>
 
@@ -69,10 +69,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 			<footer class="form-group">
-				<div>
+				<!-- <div>
                 <input class="woocommerce-Input woocommerce-Input--checkbox" name="rememberme" type="checkbox" id="rememberme" value="forever" />
                 <?php _e( 'Remember me', 'woocommerce' ); ?>
+                </div> --!>
+                <div>
+                	<a href="/registration/" title="signup">New here? Sign up</a>
                 </div>
+
                 <div>
                	 <a class="woocommerce-LostPassword lost_password" href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?', 'woocommerce' ); ?></a>
                 </div>
@@ -87,7 +91,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 </div>
 
-<div class="col-md-6 col-xs-12">
+<div class="col-md-6 col-xs-12" style="display: none;">
 
 <h2><?php _e( 'Register', 'woocommerce' ); ?></h2>
 

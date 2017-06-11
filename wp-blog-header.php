@@ -26,9 +26,43 @@ if ( !isset($wp_did_header) ) {
 
     try {
         $client = new WC_API_Client(PRODUCT_FEED_URL, WC_CONSUMER_KEY, WC_CONSUMER_SECRET, $options);
-        $myProducts = $client->products->get();
+        $result = $client->products->get();
+
+        $map = array();
+        foreach ($result->products as $itm) {
+            $map[$itm->id] = $itm;
+        }
+
+        if ( !defined('ABSPATH') )
+            define('ABSPATH', dirname(__FILE__) . '/');
+
+        $dsn = 'mysql:dbname=' . DB_NAME . ';host=' . DB_HOST;
+        $user = DB_USER;
+        $password = DB_PASSWORD;
+        $pdo = new PDO($dsn, $user, $password);
+
+        $sql = 'SELECT ID FROM wp_posts WHERE post_type = \'product\' AND post_status = \'publish\' ORDER BY menu_order';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        $data = $stmt->fetchAll();
+
+        $myProducts = new stdClass();
+        $myProducts->products = array();
+        foreach ($data as $itm) {
+            if (isset($map[$itm['ID']])) {
+                $myProducts->products[] = $map[$itm['ID']];
+            }
+        }
+
+//        echo "<pre>";
+//        var_dump($myProducts);
+//        echo "</pre>";
+//        exit;
+
     } catch (WC_API_Client_Exception $e) {
+    } catch (PDOException $e) {
     }
+
 
 	// Load the theme template.
 	require_once( ABSPATH . WPINC . '/template-loader.php' );

@@ -58,6 +58,19 @@ $(function () {
     //     alert('modal show');
     // });
 
+    $(document).on('click', '.header-nav .js-toggle', function (event) {
+        $('.header-nav .js-toggle').not(this).parent().removeClass('open');
+        $(this).parent().toggleClass('open');
+    });
+
+    $(document).on('click', 'body', function (e) {
+        if (!$('.header-nav .js-toggle').is(e.target)
+            && $('.header-nav .js-toggle').has(e.target).length === 0
+            && $('.open').has(e.target).length === 0
+        ) {
+            $('.header-nav .js-toggle').parent().removeClass('open');
+        }
+    });
 
     if ($('#google-map').length) {
         var myLatlng = {lat: -37.250261, lng: 174.750975};
@@ -342,15 +355,21 @@ $(function () {
             // });
         });
 
-        $(document).on('submit', 'form.js-address-form', function (event) {
+        $(document).on('submit', 'form.js-address-form, form.js-account-form', function (event) {
             $('.woocommerce-MyAccount-content').html('<div class="pjax-loading product-loading"><h3 class="text">We are processing your request. <br /><small>Please wait...</small></h3><div class="spinner"></div></div>');
             $.pjax.submit(event, '.woocommerce-MyAccount-content', {
                 fragment: '.woocommerce-MyAccount-content'
             });
         });
         $('.woocommerce-MyAccount-content').on('pjax:success', function(e) {
-            var html = '<h3>Your changes have been made</h3>';
-            html += '<p><a class="btn btn-sm" href="/my-account/edit-address/">Click here to go back to your addresses</a></p>';
+            if (document.URL.indexOf('address') != -1) {
+                var html = '<h3>Your changes have been made</h3>';
+                html += '<p><a class="btn btn-sm" href="/my-account/edit-address/">Click here to go back to your addresses</a></p>';
+            } else if (document.URL.indexOf('account') != -1) {
+                var html = '<h3>Your changes have been made</h3>';
+                html += '<p><a class="btn btn-sm" href="/my-account/edit-account/">Click here to go back to your account</a></p>';
+            }
+
             $('.woocommerce-MyAccount-content').html(html);
         });
 
@@ -367,6 +386,42 @@ $(function () {
             // html += '<p><a href="/cart/">Click here to view your shopping cart now</a></p>';
             $('.js-add-cart-info').html(html);
         });
+
+        // $(document).on('submit', 'form.js-dropdown-cart-form', function (event) {
+        //     $.pjax.submit(event, '#cart-drop', {
+        //         fragment: '#cart-drop'
+        //     });
+        //     $('#cart-drop').html('<div class="pjax-loading"><span class="text">We are processing your request. <br /><small>Please wait...</small></span><div class="spinner"></div></div>');
+        // });
+
+
+        $(document).on('click', 'form.js-login [type=submit]', function (event) {
+            // $.pjax.submit(event, '#account-drop', {
+            //     fragment: '#account-drop'
+            // });
+            $(this).closest('form').hide();
+            $('.woocommerce-error').hide();
+            $('#account-drop').prepend('<div class="pjax-loading"><span class="text">We are processing your request. <br /><small>Please wait...</small></span><div class="spinner"></div></div>');
+            $(this).closest('form').submit();
+        });
+
+        $(document).on('click', 'form.js-dropdown-cart-form [type=submit]', function (event) {
+            // $.pjax.submit(event, '#account-drop', {
+            //     fragment: '#account-drop'
+            // });
+            $(this).closest('form').hide();
+            $('.woocommerce-error').hide();
+            $('#cart-drop').prepend('<div class="pjax-loading"><span class="text">We are processing your request. <br /><small>Please wait...</small></span><div class="spinner"></div></div>');
+            $(this).closest('form').submit();
+        });
+    }
+
+    if (window.location.hash == '#account-drop' && $('#account-drop').length) {
+        $('#account-drop').parent().addClass('open')
+    }
+
+    if (window.location.hash == '#cart-drop' && $('#cart-drop').length) {
+        $('#cart-drop').parent().addClass('open')
     }
 
     if ($('#shop').length || $('#homepage').length) {

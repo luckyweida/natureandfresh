@@ -90,7 +90,7 @@ $classes = get_body_class();
                 <div class="right-menu-item_account">
 
                     <?php if (is_user_logged_in()) { ?>
-                    <a title="my account"  class="dropdown-toggle" data-toggle="dropdown" id="account-manage" role="button">
+                    <a title="my account"  class="dropdown-toggle js-toggle" id="account-manage" role="button">
                         <?php global $current_user;
                               get_currentuserinfo();
 
@@ -129,13 +129,15 @@ $classes = get_body_class();
                     </nav>
 
                     <?php } else { ?>
-                    <a class="dropdown-toggle" data-toggle="dropdown" title="sign in" id="signin" role="button">
+                    <a class="dropdown-toggle js-toggle" title="sign in" id="signin" role="button">
                         sign in
                         <!-- <span class="caret"></span> -->
                     </a>
                     <div id="account-drop" class="dropdown-menu dropdown-menu-right"  aria-labelledby="signin">
 
-                        <form method="post" class="login">
+                        <?php wc_print_notices(); ?>
+
+                        <form method="post" class="login js-login" action="#account-drop">
 
                             <?php do_action( 'woocommerce_login_form_start' ); ?>
 
@@ -205,7 +207,7 @@ $classes = get_body_class();
                     <?php } ?>
                 </div>
                 <div class="right-menu-item_cart">
-                    <a class="dropdown" data-toggle="dropdown" title="cart" role="button">
+                    <a class="dropdown js-toggle" title="cart" role="button">
                         cart
                         <small>(<?php echo $count; ?>)</small>
                     </a>
@@ -215,7 +217,7 @@ $classes = get_body_class();
 
                         <?php if (count(WC()->cart->get_cart())) { ?>
 
-                        <form action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post" class="js-dropdown-cart-form">
+                        <form action="<?php echo esc_url( wc_get_cart_url() ); ?>#cart-drop" method="post" class="js-dropdown-cart-form">
 
                             <?php do_action( 'woocommerce_before_cart_table' ); ?>
 

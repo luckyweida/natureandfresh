@@ -33,8 +33,10 @@ Template Name: Home page
 
                 <!--@Weida Please update to show one product only-->
                 <div class="row">
+                    <?php $added = 0; ?>
                     <?php foreach ($myProducts->products as $idx => $product) { ?>
-                        <?php if ($product->id === 161) { ?>
+                        <?php if ($product->featured && !$added) { ?>
+                            <?php $added = 1; ?>
                             <div class="product-slider col-md-6 col-md-offset-3 text-center">
                                 <div class="product-slider">
                                     <div class="product-slider_inner">
