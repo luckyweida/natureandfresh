@@ -256,8 +256,8 @@ jQuery( function( $ ) {
 						$.pjax.defaults.timeout = 600000;
 						$.pjax.defaults.scrollTo = false;
 						$('[data-title="Shipping"]').html('Recalculating shipping cost...');
-						$.pjax.reload('.cart_totals.calculated_shipping', {
-							fragment: '.cart_totals.calculated_shipping',
+						$.pjax.reload('.cart_totals', {
+							fragment: '.cart_totals',
 							url: document.URL,
 						});
 					}
