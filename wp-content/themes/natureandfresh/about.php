@@ -36,7 +36,7 @@ Template Name: About
 
 			<article class="col-md-6 col-xs-12">
 				<div class="article-offset_heading">
-					<h2 class="article-title">Organic &amp; Natural from groud up in Franklin, Waiuku2</h2>
+					<h2 class="article-title">Organic &amp; Natural from groud up in Franklin, Waiuku</h2>
 				</div>
 				<p>Nature &amp; Fresh’s twelve acre orchard is 6 years old and situated in the Franklin suburb of Waiuku. With 700 peak age macadamia trees, over 150 feijoa trees, 100 chestnut trees, and 200 freshly planted Manuka, we are diverse yet focussed on our greatest prize: the macadamia.</p>
 				<p>We have a strong organic approach, which includes the way we raise and utilise our animals.  Over 100 chickens, ducks and geese roam the farm, keeping the number of insects and weeds in the soil to a minimum. Also among the Nature &amp; Fresh family are sheep and pigs, who eat the macadamia nuts that have fallen to the ground. This keeps the farm tidy in a cheap and environmentally friendly way while maintaining healthy animals and a positive, natural cycle.</p>
