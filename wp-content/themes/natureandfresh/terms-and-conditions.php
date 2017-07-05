@@ -9,11 +9,20 @@ Template Name: Terms and Conditions
 <div id="terms-and-conditions" class="container">
 
 
-	<div class="row">
+	<div class="row row-centered">
+		
+            <article class="col-md-8 col-xs-12 col-centered">
+            	<header class="entry-header">
+					<h1 class="entry-title">Terms &amp; Conditions</h1>
+				</header>
 
-            <article class="col-md-12">
-                <h2 class="article-title">Terms &amp; Conditions</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                <ol>
+                	<li>Nature &amp; Fresh customers are covered by the Consumer Guarantees Act (1993) and Nature &amp; Fresh will meet their responsibilities under the Fair Trading Act (1986).</li>
+                	<li>We reserve the right to change the shipping/delivery period at any time.</li>
+                	<li>Payment is due 48 hours subsequent to purchase. Confirmation of order will be sent once payment is received.</li>
+                	<li>Time of arrival to customer is dependent on processing, shipping and delivery time.</li>
+                	<li>If either party wants to end the transaction or relationship at any time, an agreement between the customer and Nature &amp; Fresh will be reached.</li>
+                </ol>
 
             </article>
         </div>

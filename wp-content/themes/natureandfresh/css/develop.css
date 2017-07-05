@@ -1760,6 +1760,8 @@ nav.woocommerce-MyAccount-navigation ul li a:hover {
   float: none;
   vertical-align: top;
   padding-bottom: 2em;
+  padding-left: 0;
+  padding-right: 0;
 }
 @media (min-width: 768px) {
   .article-offset .row article {
@@ -2125,6 +2127,24 @@ textarea:focus,
 #wholesale .contact-info {
   margin-top: 2rem;
 }
+/*Youtube videos*/
+.videoWrapper {
+  position: relative;
+  padding-bottom: 39.25% !important;
+  /* 16:9 */
+
+  padding-top: 25px;
+  height: 0;
+  margin-bottom: 20px;
+}
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 15%;
+}
 /*----------------End Wholesale page-------------------*/
 .page-template-get-in-touch .contact-info {
   margin-bottom: 4rem;
@@ -2187,6 +2207,16 @@ textarea:focus,
 }
 #the-photo .insta_container:hover .insta_msg {
   opacity: 1;
+}
+/*----------------Terms and conditions page-------------------*/
+#terms-and-conditions ol {
+  margin: 0;
+  padding: 0;
+}
+#terms-and-conditions ol li {
+  margin-bottom: 1rem;
+  margin-left: 1.5rem;
+  list-style-position: outside;
 }
 /*----------------The photo page-------------------*/
 #get-in-touch #google-map {
