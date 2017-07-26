@@ -482,7 +482,8 @@ $(function () {
                 if (!window._carLock) {
                     window._selLock = 1;
                     var elm = $(this).closest('.product-slider').find('.owl-carousel').find('.owl-item:not(.cloned)').find('[data-var="' + $(this).val() + '"]');
-                    $(this).closest('.product-slider').find('.owl-carousel').trigger('to.owl.carousel', elm.parent().index() + 2)
+                    var num = $(this).closest('.product-slider').find('.owl-carousel').find('.owl-item.cloned').length / 2;
+                    $(this).closest('.product-slider').find('.owl-carousel').trigger('to.owl.carousel', elm.parent().index() - num)
                     window._selLock = 0;
                 }
             });
@@ -495,7 +496,9 @@ $(function () {
             if (!window._carLock) {
                 window._selLock = 1;
                 var elm = $(this).closest('.product-details').find('.owl-carousel').find('.owl-item:not(.cloned)').find('[data-var="' + $(this).data('html') + '"]');
-                $(this).closest('.product-details').find('.owl-carousel').trigger('to.owl.carousel', elm.parent().index() + 2)
+                var num = $(this).closest('.product-details').find('.owl-carousel').find('.owl-item.cloned').length / 2;
+                console.log(elm.parent().index())
+                $(this).closest('.product-details').find('.owl-carousel').trigger('to.owl.carousel', elm.parent().index() - num)
                 window._selLock = 0;
             }
         });
@@ -514,6 +517,17 @@ $(function () {
                 }
             }
         })
+
+        var val = '';
+        $.each($('.product-attr input'), function (idx, itm) {
+            if ($(itm).is(':checked')) {
+                val = val + (val == '' ? '' : ' ') + $(itm).val();
+            }
+        })
+        $('.js-var input[data-html="' + val + '"]').click();
+        // console.log($('.js-var input[data-html="' + val + '"]'), '.js-var input[data-html=' + val + ']');
+        // alert(val);
+
 
         $('.js-attrs').empty();
         if ($('.js-var input:checked').length) {
