@@ -14,7 +14,7 @@ Template Name: Home page
 
                 <h1>Macadamia Nuts</h1>
                 <h2>Organic, creamy, sweet &amp; crunchy</h2>
-                <p>Our organic certified macadamia nuts are grown and hand picked with care in a quiet franklin suburb. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magnaLorem.</p>
+                <p>We are passionate about Macadamia nuts, our organic certified products are grown and hand picked with care in a quiet Franklin suburb.</p>
 
                 <div class="home-feature_left__img hidden-xs">
                     <img class="lazy-load" src="http://placehold.it/350x150/FEFBF3/FEFBF3" data-src="<?php echo get_template_directory_uri(); ?>/images/img-macadamia-side.png?v=1" data-delay="500" data-class=""/>
@@ -171,11 +171,10 @@ Template Name: Home page
             </div>
             <article class="col-md-6 col-xs-12">
                 <div class="article-offset_heading">
-                    <h2 class="article-title">Title to be placed here, lorem our farm is spray and pesticide free.</h2>
+                    <h2 class="article-title">Our farm is spray and pesticide free</h2>
                 </div>
-                <p>Introduction copy to be placed here, we try our best not to use machines in the orchard. Instead, we use natural fertilizers such as Agrissentials Rok Solid and comfrey. We use comfrey as a liquid fertilizer on our trees for the nutrients and minerals it brings up from deep in the ground.</p>
+                <p>We try our best not to use machines in the orchard. Instead, we use natural fertilizers such as Agrissentials Rok Solid and comfrey. We use comfrey as a liquid fertilizer on our trees for the nutrients and minerals it brings up from deep in the ground.</p>
                 <p>We are out on the farm daily picking the macadamia nuts which are then husked and dried at a low temperature for eight weeks. The cracked nuts are then vacuum packed to preserve that fresh, original macadamia taste that we love. From growing to harvesting, drying and packaging, you can enjoy natural quality foods that have been grown and prepared with care.</p>
-                <p>With more products to come, it is an exciting time for everyone at Nature & Fresh! Stay tuned to our website for more updates and information as we continue to work on bringing you more of the fresh, natural taste you love.</p>
                 <p><a href="/about" class="btn btn-lg">About us</a></p>
             </article>
         </div>

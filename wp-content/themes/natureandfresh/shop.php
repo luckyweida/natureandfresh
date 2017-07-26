@@ -14,7 +14,7 @@ Template Name: Shop
             <h4>Finest nuts</h4>
         </div>
         <div class="col-md-7 col-sm-12">
-            <p class="text">Our ingredients are carefully selected. We’re ridiculously proud of our product and love nothing more than to share what we do with others. Lorem ispum lorem ipsum lorem ipsum lorem ipsum lorem ipsum.</p>
+            <p class="text">Our ingredients are carefully selected. We’re incredibly proud of our product and love nothing more than to share what we do with others.</p>
         </div>
     </div>
 
