@@ -73,7 +73,7 @@ $(function () {
     });
 
     if ($('#google-map').length) {
-        var myLatlng = {lat: -37.250261, lng: 174.750975};
+        var myLatlng = {lat: -37.195232, lng: 174.757556};
         var map = new google.maps.Map(document.getElementById('google-map'), {
             zoom: 15,
             center: myLatlng,
