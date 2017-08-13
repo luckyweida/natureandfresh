@@ -48,15 +48,15 @@ Template Name: About
 
 			<article class="col-md-6 col-xs-12">
 				<div class="article-offset_heading">
-					<h2 class="article-title">Organic &amp; Naturally grown from ground up in Franklin, Waiuku</h2>
+					<h2 class="article-title">Grown organic &amp; natural from the ground up in Franklin, Waiuku</h2>
 				</div>
 
 				<div class="videoWrapper">
 					<iframe width="560" height="315" src="https://www.youtube.com/embed/VeRJPIjpKYM?modestbranding=1&autohide=1&showinfo=0&controls=2&rel=0" frameborder="0" allowfullscreen></iframe>
 				</div>
 
-				<p>Nature &amp; Fresh's twelve acre orchard is 6 years old and situated in the Franklin suburb of Waiuku. With 700 peak age macadamia trees, over 150 feijoa trees, 100 chestnut trees, and 200 freshly planted Manuka, we are diverse yet focussed on our greatest prize: the macadamia.</p>
-				<p>We have a strong organic approach, which includes the way we raise and utilise our animals. Over 100 chickens, ducks and geese roam the farm, keeping the number of insects and weeds in the soil to a minimum. Also among the Nature &amp; Fresh family are sheep and pigs, who eat the macadamia nuts that have fallen to the ground. This keeps the farm tidy in a cheap and environmentally friendly way while maintaining healthy animals and a positive, natural cycle.</p>
+				<p>Nature &amp; Fresh's 12 acre organic orchard is situated in the Franklin suburb of Waiuku. With 700 peak age macadamia trees, over 150 feijoa trees, 100 chestnut trees, and 400 Manuka trees, we are diverse yet focused on our greatest prize: the macadamia.</p>
+				<p>We have a strong organic approach, which includes the way we raise and utilise our animals. Over 100 chickens, ducks and geese roam the farm, keeping the number of insects and weeds in the soil to a minimum. Also among the Nature & Fresh family are sheep and pigs, who eat the macadamia nuts that have fallen to the ground. This keeps the farm tidy in a cheap and environmentally friendly way while maintaining healthy animals and a positive, natural cycle.</p>
 				
 			</article>
 

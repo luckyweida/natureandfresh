@@ -11,7 +11,7 @@ Template Name: Shop
 <div id="shop" class="container">
     <div class="row page-description">
         <div class="col-md-5 col-sm-12">
-            <h4>Finest nuts</h4>
+            <h4>The Finest</h4>
         </div>
         <div class="col-md-7 col-sm-12">
             <p class="text">Our ingredients are carefully selected. We’re incredibly proud of our product and love nothing more than to share what we do with others.</p>
