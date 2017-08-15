@@ -34,7 +34,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 			<tr>
 				<th class="product-thumbnail">Product</th>
 				<th class="product-name"><?php //_e( 'Product', 'woocommerce' ); ?></th>
-				<!--<th class="product-price"><?php //_e( 'Price', 'woocommerce' ); ?></th>-->
+				<th class="product-price"><?php _e( 'Price', 'woocommerce' ); ?></th>
 				<th class="product-quantity"><?php _e( 'Quantity', 'woocommerce' ); ?></th>
 				<th class="product-subtotal"><?php _e( 'Total', 'woocommerce' ); ?></th>
 				<th class="product-remove">&nbsp;</th>
@@ -85,13 +85,11 @@ do_action( 'woocommerce_before_cart' ); ?>
 							?>
 						</td>
 
-						<!--Hide for now
 						<td class="cart-view_price" data-title="<?php _e( 'Price', 'woocommerce' ); ?>">
 							<?php
 								echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
 							?>
 						</td>
-						-->
 
 						<td class="cart-view_quantity" data-title="<?php _e( 'Quantity', 'woocommerce' ); ?>">
 							<?php
@@ -134,6 +132,14 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 			do_action( 'woocommerce_cart_contents' );
 			?>
+            <?php $freeContent = wcj_get_left_to_free_shipping($content) ?>
+            <?php /**if ($freeContent) { ?>
+                <tr>
+                    <td colspan="6">
+                        <?php echo $freeContent; ?>
+                    </td>
+                </tr>
+            <?php } */?>
 			<tr>
 				<td colspan="6" class="actions">
 
