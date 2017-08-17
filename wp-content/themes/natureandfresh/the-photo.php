@@ -14,7 +14,10 @@ Template Name: The photo
             <h4>The photo</h4>
         </div>
         <div class="col-md-7 col-sm-12">
-            <p class="text">We keep things simple to keep our farm beautiful, our farm relies on fertilizers of organic origin and is 100% pesticide free. Write something about happy animal and showing user photos. Lorem ipsum lorem ipsum  lorem.</p>
+            <?php /**
+                <p class="text">We keep things simple to keep our farm beautiful, our farm relies on fertilizers of organic origin and is 100% pesticide free. Write something about happy animal and showing user photos. Lorem ipsum lorem ipsum  lorem.</p>
+             */?>
+            <p class="text"><?php echo get_field('intro_content'); ?></p>
         </div>
     </div>
 

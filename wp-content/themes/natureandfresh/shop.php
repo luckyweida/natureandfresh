@@ -14,7 +14,10 @@ Template Name: Shop
             <h4>The Finest</h4>
         </div>
         <div class="col-md-7 col-sm-12">
+            <?php /**
             <p class="text">Our ingredients are carefully selected. We’re incredibly proud of our product and love nothing more than to share what we do with others.</p>
+             * */?>
+            <p class="text"><?php echo get_field('intro_content'); ?></p>
         </div>
     </div>
 

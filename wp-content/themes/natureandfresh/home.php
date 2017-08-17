@@ -12,9 +12,18 @@ Template Name: Home page
         <div class="row home-feature">
             <article class="col-sm-6 home-feature_left">
 
+                <?php
+                    $post = get_post(238);
+//                    while (@ob_end_clean());
+//                    var_dump(get_field('top_content'));exit;
+                ?>
+
                 <h1>Macadamia Nuts</h1>
                 <h2>Organic, creamy, sweet &amp; crunchy</h2>
+                <?php echo get_field('top_content'); ?>
+                <?php /**
                 <p>Welcome to the Nature &amp; Fresh! It’s our goal to give our customers a great quality product with natural freshness. There is a wide variety of nuts in the market, but it’s rare to find New Zealand grown, spray-free nuts. You can find out more about our farm by reading our story and any feedback or comments are greatly appreciated so feel free to get in touch. Enjoy fresh at its finest!</p>
+                */?>
 
                 <div class="home-feature_left__img hidden-xs">
                     <img class="lazy-load" src="http://placehold.it/350x150/FEFBF3/FEFBF3" data-src="<?php echo get_template_directory_uri(); ?>/images/img-macadamia-side.png?v=1" data-delay="500" data-class=""/>
@@ -171,10 +180,17 @@ Template Name: Home page
             </div>
             <article class="col-md-6 col-xs-12">
                 <div class="article-offset_heading">
+                    <h2 class="article-title"><?php echo get_field('bottom_title'); ?></h2>
+                </div>
+                <?php echo get_field('bottom_content'); ?>
+
+                <?php /**
+                <div class="article-offset_heading">
                     <h2 class="article-title">Our farm is grown naturally, produced locally</h2>
                 </div>
                 <p>Our macadamias are grown in clean soil in Franklin suburb and we try our best not to use machines in the orchard. Instead, we use natural fertilizers such as Agrissentials Rok Solid and comfrey. We use comfrey as a liquid fertilizer on our trees for the nutrients and minerals it brings up from deep in the ground.</p>
                 <p>We are out on the farm daily picking the macadamia nuts which are then husked and dried at a low temperature. The cracked nuts are then Nitrogen packed to preserve that fresh, original macadamia taste that we love. From growing to harvesting, drying and packaging, you can enjoy natural quality foods that have been grown and prepared with care.</p>
+                */?>
                 <p><a href="/about" class="btn btn-lg">About us</a></p>
             </article>
         </div>
