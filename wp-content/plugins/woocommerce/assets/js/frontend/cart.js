@@ -252,15 +252,16 @@ jQuery( function( $ ) {
 				complete: function() {
 					unblock( $form );
 					unblock( $( 'div.cart_totals' ) );
-					if ($.support.pjax) {
-						$.pjax.defaults.timeout = 600000;
-						$.pjax.defaults.scrollTo = false;
-						$('[data-title="Shipping"]').html('Recalculating shipping cost...');
-						$.pjax.reload('.cart_totals', {
-							fragment: '.cart_totals',
-							url: document.URL,
-						});
-					}
+					// if ($.support.pjax) {
+					// 	$.pjax.defaults.timeout = 600000;
+					// 	$.pjax.defaults.scrollTo = false;
+					// 	$('[data-title="Shipping"]').html('Recalculating shipping cost...');
+					// 	$.pjax.reload('.cart_totals', {
+					// 		fragment: '.cart_totals',
+					// 		url: document.URL,
+					// 	});
+					// }
+					location.reload()
 				}
 			} );
 		}
